@@ -1,0 +1,179 @@
+.settings-adunicamp, .about-adunicamp {
+    display: block;
+    position: relative;
+    margin: 0 auto;
+    width: 99%;
+    min-height: 500px;
+    border: 1px solid #888;
+    margin-top: 15px;
+    margin-left: -5px;
+    padding: 20px;
+}
+
+.settings-adunicamp label {
+    display: block !important;
+}
+
+.settings-adunicamp .wp-editor-wrap {
+    width: 100%;
+}
+
+.settings-adunicamp .title, .about-adunicamp .title {
+    color: #000;
+}
+
+.settings-adunicamp hr, .about-adunicamp hr {
+    background-color: #bbb !important;
+    border: 1px solid #bbb !important;
+}
+
+.settings-adunicamp table {
+    width: 65em;
+    border-spacing: 0;
+}
+
+.settings-adunicamp table img {
+    height: 100%;
+}
+
+.settings-adunicamp input[type=number] {
+    width: 7em;
+    font-weight: 400;
+}
+
+.settings-adunicamp input[type=email], .settings-adunicamp input[type=text] {
+    width: 40em;
+    font-weight: 400;
+}
+
+.settings-adunicamp textarea {
+    width: 100%;
+    font-weight: 400;
+    margin-bottom: -3px;
+}
+
+.settings-adunicamp table td:nth-child(1), .settings-adunicamp table td:nth-child(3) {
+    width: 4em;
+}
+
+.settings-adunicamp table td:nth-child(1) div {
+    text-align: center !important;
+    font-weight: 600;
+}
+
+.settings-adunicamp table td:nth-child(2) {
+    width: 40em;
+}
+
+.settings-adunicamp table td:nth-child(2) input {
+    width: 100%;
+}
+
+table.access {
+    width: 50%;
+    border-spacing: 0;
+}
+
+table.access th {
+    background-color: #ccc;
+}
+
+table.access th,
+table.access td {
+    border: 1px solid #555;
+    padding: 3px;
+}
+
+#post_descricao_id input[type=text]{
+    width: 100%;
+}
+
+.postbox-full {
+    display: block;
+    position: relative;
+    width: 100%;
+}
+
+.postbox-full a {
+    background-color: #135E96;
+    color: #fff;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 3px;
+}
+
+.postbox-full a:hover {
+    background-color: #054474;
+}
+
+#agenda_data_inicio_id,
+#agenda_data_fim_id,
+#post_upload_id_0 {
+    margin-top: 30px;
+}
+
+#post_upload_id_0{
+    border: 1px solid #999;
+    background: #fff;
+    width: 100%;
+    padding: 20px;
+    border-radius: 3px;
+    min-height: 200px;
+}
+
+#post_upload_id_0 .form-add{
+    display: block;
+    position: relative;
+    width: 100%;
+    margin-top: 50px;
+}
+
+#post_upload_id_0 .form-add input[type=text]{
+    width: 100%;
+}
+
+#post_upload_id_0 #imageListId {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+#post_upload_id_0 #imageListId .listitemClass {
+    background: #fff;
+    display: inline-block;
+    position: relative;
+    top: 0px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    width: 32%;
+    height: 250px;
+    padding: 20px;
+    cursor:move;
+}
+
+#post_upload_id_0 #imageListId img {
+    display: block;
+    position: relative;
+    margin: 0 auto;
+    max-width: 100%;
+    max-height: 100%;  
+}
+
+#post_upload_id_0 #imageListId .btn-del{
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
+
+#post_upload_id_0 #imageListId #outputvalues {
+    margin: 0 2px 2px 2px;
+    padding: 0.4em;
+    padding-left: 1.5em;
+    width: 250px;
+    border: 2px solid dark-green;
+    background: gray;
+}
+
+#post_upload_id_0 #imageListId .height {
+    height: 10px;
+}
