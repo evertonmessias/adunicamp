@@ -16,17 +16,11 @@
           </div>
 
           <div class="col-lg-3 col-md-6 footer-links">
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
-            </ul>
+            <?php wp_nav_menu(array('menu' => 'Footer-ADUnicamp') ); ?>
           </div>
 
           <div class="col-lg-3 col-md-6 footer-newsletter">
-            <h4>Newsletter</h4>
+            <h4>Inscreva-se</h4>
             <form action="" method="post">
               <input type="email" name="email"><input type="submit" value="Subscribe">
             </form>

@@ -57,8 +57,8 @@ $post_color = get_option('portal_input_3');
 
       <div class="portal-desc"><?php echo get_option('portal_input_4'); ?></div>
 
-      <nav id="navbar" class="navbar">
-        <?php wp_nav_menu(); ?>
+      <nav id="navbar" class="navbar">       
+        <?php wp_nav_menu(array('menu' => 'NAV-ADUnicamp') ); ?>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 

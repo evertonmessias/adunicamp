@@ -138,6 +138,7 @@ add_action('after_setup_theme', 'remove_admin_bar');
 function register_menu()
 {
 	register_nav_menu('adunicamp-nav', __('ADUnicamp NAV'));
+	register_nav_menu('adunicamp-footer', __('ADUnicamp Footer'));
 }
 add_action('init', 'register_menu');
 
