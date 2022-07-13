@@ -7,7 +7,7 @@
   $('#navbar ul li a').addClass('nav-link scrollto');
   $('#navbar ul li:first-child a').addClass('active');
   $('#navbar ul li.menu-item-has-children').addClass('dropdown');
-  
+
   $('.display').hide();
   $('.btn-album').click(() => {
     $('.display').show();
@@ -202,7 +202,7 @@
   });
 
   /**
-   * Clients Slider
+   * Convênios Slider
    */
   new Swiper('.clients-slider', {
     speed: 400,
@@ -238,7 +238,7 @@
   });
 
   /**
- * Clients Slider
+ * Top News Slider
  */
   new Swiper('.gallery-slider', {
     speed: 400,

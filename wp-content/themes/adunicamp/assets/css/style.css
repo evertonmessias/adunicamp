@@ -715,6 +715,33 @@ section {
 }
 
 /*--------------------------------------------------------------
+# Clients
+--------------------------------------------------------------*/
+.clients{
+  height: 45vh;
+}
+.clients .swiper-pagination {
+  margin-top: 4em;
+  position: relative;
+}
+.clients .swiper-pagination .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background-color: #fff;
+  opacity: 1;
+}
+.clients .swiper-pagination .swiper-pagination-bullet-active {
+  background-color: #2682A8;
+}
+.clients .swiper-slide img {
+  opacity: 0.5;
+  transition: 0.3s;
+}
+.clients .swiper-slide img:hover {
+  opacity: 1;
+}
+
+/*--------------------------------------------------------------
 # Values
 --------------------------------------------------------------*/
 .values .card {

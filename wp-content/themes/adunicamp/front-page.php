@@ -146,32 +146,30 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
     </div>
   </section><!-- End Services Section -->
 
-  <!-- ======= Convênios Section ======= -->
-  <section id="agreement" class="services section-bg">
-
-    <div class="container">
+<!-- ======= Convênios Section ======= -->
+<section id="agreement" class="clients section-bg">
+      <div class="container" data-aos="zoom-in">
 
       <div class="section-title" data-aos="fade-up">
         <h2>Convênios</h2>
       </div>
 
-      <div class="row">
-
-        <div class="col-lg-12" data-aos="fade-up">
-          inserir convênios aqui
-          <br>.
-          <br>.
-          <br>.
-          <br>.
-          <br>.
+        <div class="clients-slider swiper">
+          <div class="swiper-wrapper align-items-center">
+            <div class="swiper-slide"><img src="<?php echo SITEPATH; ?>assets/img/clients/client-1.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="<?php echo SITEPATH; ?>assets/img/clients/client-2.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="<?php echo SITEPATH; ?>assets/img/clients/client-3.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="<?php echo SITEPATH; ?>assets/img/clients/client-4.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="<?php echo SITEPATH; ?>assets/img/clients/client-5.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="<?php echo SITEPATH; ?>assets/img/clients/client-6.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="<?php echo SITEPATH; ?>assets/img/clients/client-7.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="<?php echo SITEPATH; ?>assets/img/clients/client-8.png" class="img-fluid" alt=""></div>
+          </div><br>
+          <div class="swiper-pagination"></div>
         </div>
 
       </div>
-
-    </div>
-
-    </div>
-  </section><!-- End Services Section -->
+</section><!-- End Convênios Section -->
 
 
 
