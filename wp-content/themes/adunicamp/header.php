@@ -34,7 +34,7 @@ $post_color = get_option('portal_input_3');
   <!-- Template Main CSS File -->
   <link href="<?php echo SITEPATH; ?>assets/css/style.css" rel="stylesheet">
   <link href="<?php echo SITEPATH; ?>assets/css/calendar.css" rel="stylesheet">
-  
+
   <style>
     #header {
       background: <?php echo $post_color ?>;
@@ -57,8 +57,8 @@ $post_color = get_option('portal_input_3');
 
       <div class="portal-desc"><?php echo get_option('portal_input_4'); ?></div>
 
-      <nav id="navbar" class="navbar">       
-        <?php wp_nav_menu(array('menu' => 'NAV-ADUnicamp') ); ?>
+      <nav id="navbar" class="navbar">
+        <?php wp_nav_menu(array('menu' => 'NAV-ADUnicamp')); ?>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 

@@ -157,7 +157,7 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
 
       <div class="row">
 
-        <div class="col-lg-12 calendar" data-aos="fade-up">
+        <div class="col-lg-12" data-aos="fade-up">
           inserir convênios aqui
           <br>.
           <br>.
