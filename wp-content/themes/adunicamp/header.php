@@ -58,28 +58,6 @@ $post_color = get_option('portal_input_3');
       <div class="portal-desc"><?php echo get_option('portal_input_4'); ?></div>
 
       <nav id="navbar" class="navbar">
-        <!--<ul>
-          <li><a class="nav-link scrollto active" href="/#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="/#services">Serviços</a></li>
-          <li><a class="nav-link scrollto" href="/#agreement">Convênios</a></li>
-          <li><a class="nav-link scrollto" href="/#news">Arquivos</a></li>
-          <li class="dropdown media"><a class="nav-link scrollto" href="/#media"><span>Mídia</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>              
-              <li><a class="nav-link scrollto" href="/#podcast">Podcast</a></li>
-              <li><a class="nav-link scrollto" href="/#gallery">Galeria</a></li>
-            </ul>
-          </li>         
-          <li><a class="nav-link scrollto" href="/#contact">Contato</a></li>
-          <li class="dropdown entity"><a href="javascript:void(0)"><span>Entidade</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>              
-              <li><a href="/#">Regimento</a></li>
-              <li><a href="/#">História</a></li>
-              <li><a href="/#">Diretoria</a></li>
-              <li><a href="/#">Conselho</a></li>
-              <li><a href="/#">Equipe</a></li>
-            </ul>
-          </li>
-        </ul>-->
         <?php wp_nav_menu(); ?>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->

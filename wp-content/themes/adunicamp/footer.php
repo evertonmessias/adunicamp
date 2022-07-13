@@ -5,7 +5,7 @@
       <div class="container">
         <div class="row">
 
-          <div class="col-lg-3 col-md-6 footer-contact">
+          <div class="col-lg-6 col-md-6 footer-contact">
             <h3><?php echo get_option('portal_input_0'); ?></h3>
             <p>
             <?php echo get_option('portal_input_6'); ?>
@@ -15,8 +15,7 @@
             </p>
           </div>
 
-          <div class="col-lg-2 col-md-6 footer-links">
-            <h4>Links</h4>
+          <div class="col-lg-3 col-md-6 footer-links">
             <ul>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
@@ -26,18 +25,7 @@
             </ul>
           </div>
 
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Nossos Serviços</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-4 col-md-6 footer-newsletter">
+          <div class="col-lg-3 col-md-6 footer-newsletter">
             <h4>Newsletter</h4>
             <form action="" method="post">
               <input type="email" name="email"><input type="submit" value="Subscribe">
