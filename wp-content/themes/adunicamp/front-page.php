@@ -72,8 +72,8 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
   <section id="top-news" class="gallery section-bg">
     <div class="container" data-aos="fade-up">
 
-    <br><br>
-    <div class="section-title" data-aos="fade-up">
+      <br><br>
+      <div class="section-title" data-aos="fade-up">
         <h2>Destaques</h2>
       </div>
 
@@ -101,7 +101,7 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
 
               <div class="post-entry-1">
                 <a href="<?php the_permalink() ?>"><img src="<?php echo $imagem; ?>" alt="" class="img-fluid"></a>
-                <div class="post-meta"><span class="date"><?php echo get_the_category()[1]->name; ?></span>
+                <div class="post-meta"><span class="date"><?php echo get_the_category()[0]->name; ?></span>
                   <span class="mx-1">&bullet;</span> <span><?php echo get_the_date('d M Y', $post->ID); ?></span>
                 </div>
                 <h2><a href="<?php the_permalink() ?>"><?php echo get_the_title() ?></a></h2>
@@ -174,7 +174,9 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
     </div>
   </section><!-- End Services Section -->
 
-  <!-- ======= Values Section ======= -->
+
+
+  <!-- ======= News Section ======= -->
   <section id="news" class="new-posts">
     <div class="container">
 
@@ -182,46 +184,64 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
         <h2>Arquivos</h2>
       </div>
 
+      <?php
+      $x = 1;
+      $args = array(
+        'post_type' => 'post',
+        'order' => 'DESC',
+        'posts_per_page' => 11
+      );
+      $loop = new WP_Query($args);
+      $postentry = array();
+      foreach ($loop->posts as $post) {
+        if (has_post_thumbnail()) {
+          $imagem = get_the_post_thumbnail_url(get_the_ID(), 'full');
+        } else {
+          $imagem = SITEPATH . "assets/img/semimagem.png";
+        }
+        if ($x <= 2) {
+          $excerpt = '<p class="mb-4 d-block">' . get_the_excerpt() . '</p>';
+        } else {
+          $excerpt = "";
+        }
+        $postentry[] = '<div class="post-entry-2">' .
+          '<a href="' . get_the_permalink() . '"><img src="' . $imagem . '" alt="" class="img-fluid"></a>' .
+          '<div class="post-meta"><span class="date">' . get_the_category()[0]->name . '</span>' .
+          '<span class="mx-1">&bullet;</span> <span>' . get_the_date('d M Y', $post->ID) . '</span></div>' .
+          '<h2><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></h2>' . $excerpt . '</div>';
+        $x++;
+      }
+      wp_reset_postdata();
+      ?>
+
+
       <div class="row">
+        <div class="col-lg-4">
 
-        <?php
-        $x = 1;
-        $args = array(
-          'post_type' => 'post',
-          'order' => 'DESC',
-          'posts_per_page' => 9
-        );
-        $loop = new WP_Query($args);
-        foreach ($loop->posts as $post) {
-          if (has_post_thumbnail()) {
-            $imagem = get_the_post_thumbnail_url(get_the_ID(), 'full');
-          } else {
-            $imagem = SITEPATH . "assets/img/semimagem.png";
-          }
-        ?>
+          <?php echo $postentry[0] . $postentry[1]; ?>
 
-          <div class="col-md-4 d-flex align-items-stretch" data-aos="fade-up">
-            <div class="post-entry-2">
-              <a href="<?php the_permalink() ?>"><img src="<?php echo $imagem; ?>" alt="" class="img-fluid"></a>
-              <div class="post-meta"><span class="date"><?php echo get_the_category()[1]->name; ?></span>
-                <span class="mx-1">&bullet;</span> <span><?php echo get_the_date('d M Y', $post->ID); ?></span>
-              </div>
-              <h2><a href="<?php the_permalink() ?>"><?php echo get_the_title() ?></a></h2>
+        </div>
+
+        <div class="col-lg-8">
+          <div class="row">
+            <div class="col-lg-4 border-start custom-border">
+              <?php echo $postentry[2] . $postentry[3] . $postentry[4]; ?>
+            </div>
+            <div class="col-lg-4 border-start custom-border">
+              <?php echo $postentry[5] . $postentry[6] . $postentry[7]; ?>
+            </div>
+            <div class="col-lg-4 border-start custom-border">
+              <?php echo $postentry[8] . $postentry[9] . $postentry[10]; ?>
             </div>
           </div>
+        </div>
 
-        <?php $x++;
-        }
-        wp_reset_postdata();
-        ?>
-
-
-      </div>
+      </div> <!-- End .row -->
     </div>
-  </section><!-- End Values Section -->
+  </section><!-- End News Section -->
+
 
   <div id="media">
-
     <!-- ======= Video Section ======= -->
     <section id="podcast" class="podcast" style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('<?php echo get_option('portal_input_2') ?>') center center;background-size: cover;background-attachment: fixed;">>
       <div class="container" data-aos="fade-up">
@@ -232,7 +252,6 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
 
         <div class="podcast-slider swiper">
           <div class="swiper-wrapper align-items-center">
-
 
             <?php
             $x = 1;
@@ -307,7 +326,7 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
           );
           $loop = new WP_Query($args);
           foreach ($loop->posts as $post) {
-            $array_imgs = explode(',',rtrim(get_post_meta($post->ID, 'post_upload_0', true),','));
+            $array_imgs = explode(',', rtrim(get_post_meta($post->ID, 'post_upload_0', true), ','));
             foreach ($array_imgs as $img) {
           ?>
               <div class="<?php if ($x != 1) echo "display"; ?> col-lg-4 col-md-6 portfolio-item filter-<?php echo $post->post_name ?>">
@@ -329,7 +348,6 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
         </div>
       </div>
     </section><!-- End Portfolio Section -->
-
   </div>
 
   <!-- ======= Contact Section ======= -->

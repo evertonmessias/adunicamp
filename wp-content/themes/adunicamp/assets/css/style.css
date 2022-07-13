@@ -535,7 +535,7 @@ section {
 }
 
 /*--------------------------------------------------------------
-# News Posts
+# Top News Posts
 --------------------------------------------------------------*/
 
 #top-news .post-entry-1 {
@@ -575,19 +575,21 @@ section {
   text-align: left !important;
 }
 
+/*--------------------------------------------------------------
+# News Posts
+--------------------------------------------------------------*/
+
 #news .post-entry-2 {
   margin-bottom: 30px;
-  border-left: 1px solid #ccc;
-  padding: 30px;
   min-height: 300px;
 }
 #news .post-entry-2 img {
   position: relative;
   margin: 0 auto;
   margin-bottom: 30px;
-  width: auto !important;
-  height: 200px;
+  height: 100%;
 }
+
 #news .post-entry-2 h2 {
   margin-bottom: 20px;
   font-size: 20px;
