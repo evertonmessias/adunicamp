@@ -119,7 +119,8 @@ h1, h2, h3, h4, h5, h6 {
 /**
 * Desktop Navigation 
 */
-.navbar {
+#navbar {
+  display: none;
   padding: 0;
 }
 .navbar ul {
@@ -718,10 +719,10 @@ section {
 # Clients
 --------------------------------------------------------------*/
 .clients{
-  height: 45vh;
+  height: 50vh;
 }
 .clients .swiper-pagination {
-  margin-top: 4em;
+  margin-bottom: 2em;
   position: relative;
 }
 .clients .swiper-pagination .swiper-pagination-bullet {
@@ -734,11 +735,16 @@ section {
   background-color: #2682A8;
 }
 .clients .swiper-slide img {
-  opacity: 0.5;
   transition: 0.3s;
 }
-.clients .swiper-slide img:hover {
-  opacity: 1;
+.clients .swiper-slide a:hover img {
+  transform: scale(1.1);
+}
+.clients p{
+  margin-top: 15px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
 }
 
 /*--------------------------------------------------------------

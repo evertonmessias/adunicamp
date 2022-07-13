@@ -146,30 +146,49 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
     </div>
   </section><!-- End Services Section -->
 
-<!-- ======= Convênios Section ======= -->
-<section id="agreement" class="clients section-bg">
-      <div class="container" data-aos="zoom-in">
+  <!-- ======= Convênios Section ======= -->
+  <section id="agreement" class="clients section-bg">
+    <div class="container" data-aos="zoom-in">
 
       <div class="section-title" data-aos="fade-up">
         <h2>Convênios</h2>
       </div>
 
-        <div class="clients-slider swiper">
-          <div class="swiper-wrapper align-items-center">
-            <div class="swiper-slide"><img src="<?php echo SITEPATH; ?>assets/img/clients/client-1.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="<?php echo SITEPATH; ?>assets/img/clients/client-2.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="<?php echo SITEPATH; ?>assets/img/clients/client-3.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="<?php echo SITEPATH; ?>assets/img/clients/client-4.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="<?php echo SITEPATH; ?>assets/img/clients/client-5.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="<?php echo SITEPATH; ?>assets/img/clients/client-6.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="<?php echo SITEPATH; ?>assets/img/clients/client-7.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="<?php echo SITEPATH; ?>assets/img/clients/client-8.png" class="img-fluid" alt=""></div>
-          </div><br>
-          <div class="swiper-pagination"></div>
-        </div>
+      <div class="clients-slider swiper">
+        <div class="swiper-wrapper align-items-center">
 
+        <?php
+          $x = 1;
+          $args = array(
+            'post_type' => 'convenio',
+            'order' => 'DESC',
+            'posts_per_page' => 20
+          );
+          $loop = new WP_Query($args);
+          foreach ($loop->posts as $post) {
+            if (has_post_thumbnail()) {
+              $imagem = get_the_post_thumbnail_url(get_the_ID(), 'full');
+            } else {
+              $imagem = SITEPATH . "assets/img/semimagem.png";
+            }
+          ?>
+
+          <div class="swiper-slide">
+            <a href="<?php echo get_the_permalink() ?>"><img src="<?php echo $imagem; ?>" class="img-fluid" alt="" title="<?php echo $post->post_title; ?>">
+            <p><?php echo $post->post_title; ?></p></a>
+          </div>
+
+          <?php $x++;
+          }
+          wp_reset_postdata();
+          ?>
+          
+        </div><br>
+        <div class="swiper-pagination"></div>
       </div>
-</section><!-- End Convênios Section -->
+
+    </div>
+  </section><!-- End Convênios Section -->
 
 
 

@@ -73,7 +73,7 @@ function portal_page_html()
 				wp_editor($portal5, 'portal_about_box', $settings);
 				?>				
 			</label>
-			<span>(Para voltar ao estado inicial limpe o editor)</span>
+			<span>(Para voltar ao estado padrão salve o editor vazio)</span>
 
 			<br><br><!-- Endereço *************************************** -->
 			<hr>
