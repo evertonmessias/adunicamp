@@ -1,13 +1,13 @@
 <?php
 
 /**
- * Plugin Name: ADunicamp
- * Plugin URI: https://ic.unicamp.br/~everton
- * Description: Plugin para gerenciamento do site da ADunicamp
+ * Plugin Name: ADUnicamp
+ * Plugin URI: https://ic.Unicamp.br/~everton
+ * Description: Plugin para gerenciamento do site da ADUnicamp
  * Author: EvM.
  * Version: 1.0
- * Text Domain: ADunicamp
- * Plugin ADunicamp
+ * Text Domain: ADUnicamp
+ * Plugin ADUnicamp
  */
 
 // Exit if accessed directly.

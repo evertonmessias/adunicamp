@@ -616,6 +616,9 @@ section {
 .gallery {
   overflow: hidden;
 }
+.gallery .gallery-slider{
+  margin-top: -50px;
+}
 .gallery .swiper-pagination {
   margin-top: 10px;
   position: relative;

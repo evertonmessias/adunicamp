@@ -61,7 +61,8 @@ $post_color = get_option('portal_input_3');
         <ul>
           <li><a class="nav-link scrollto active" href="/#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="/#services">Serviços</a></li>
-          <li><a class="nav-link scrollto" href="/#news">Notícias</a></li>
+          <li><a class="nav-link scrollto" href="/#agreement">Convênios</a></li>
+          <li><a class="nav-link scrollto" href="/#news">Arquivos</a></li>
           <li class="dropdown media"><a class="nav-link scrollto" href="/#media"><span>Mídia</span> <i class="bi bi-chevron-down"></i></a>
             <ul>              
               <li><a class="nav-link scrollto" href="/#podcast">Podcast</a></li>

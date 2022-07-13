@@ -36,7 +36,7 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
           <div class="carousel-item <?php if ($x == 1) echo 'active'; ?>" style="background-image: url(<?php echo $imagem; ?>)">
             <div class="carousel-container">
               <div class="carousel-content">
-                <h5 class="animate__animated animate__fadeInDown">Cultura</h5><br>
+                <h5 class="animate__animated animate__fadeInDown"><?php echo get_the_category()[0]->name; ?></h5><br>
                 <h2 class="animate__animated animate__fadeInDown"><?php echo get_the_title() ?></h2>
                 <a href="<?php the_permalink() ?>" class="btn-get-started animate__animated animate__fadeInUp">Leia Mais</a>
               </div>
@@ -71,6 +71,12 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
   <!-- ======= Last News ======= -->
   <section id="top-news" class="gallery section-bg">
     <div class="container" data-aos="fade-up">
+
+    <br><br>
+    <div class="section-title" data-aos="fade-up">
+        <h2>Destaques</h2>
+      </div>
+
       <div class="gallery-slider swiper">
         <div class="swiper-wrapper icon-boxes">
 
@@ -141,12 +147,39 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
     </div>
   </section><!-- End Services Section -->
 
+  <!-- ======= Convênios Section ======= -->
+  <section id="agreement" class="services section-bg">
+
+    <div class="container">
+
+      <div class="section-title" data-aos="fade-up">
+        <h2>Convênios</h2>
+      </div>
+
+      <div class="row">
+
+        <div class="col-lg-12 calendar" data-aos="fade-up">
+          inserir convênios aqui
+          <br>.
+          <br>.
+          <br>.
+          <br>.
+          <br>.
+        </div>
+
+      </div>
+
+    </div>
+
+    </div>
+  </section><!-- End Services Section -->
+
   <!-- ======= Values Section ======= -->
   <section id="news" class="new-posts">
     <div class="container">
 
       <div class="section-title" data-aos="fade-up">
-        <h2>Notícias</h2>
+        <h2>Arquivos</h2>
       </div>
 
       <div class="row">

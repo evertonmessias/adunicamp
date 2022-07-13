@@ -70,7 +70,7 @@ add_action('admin_menu', 'wd_admin_menu_rename');
 // ***************** Add in Menu
 function menu_adunicamp()
 {
-	add_menu_page('ADunicamp', 'ADunicamp', 'edit_posts', 'adunicamp', 'function_about', 'dashicons-screenoptions', 1);
+	add_menu_page('ADUnicamp', 'ADUnicamp', 'edit_posts', 'adunicamp', 'function_about', 'dashicons-screenoptions', 1);
 }
 add_action('admin_menu', 'menu_adunicamp');
 
