@@ -91,6 +91,7 @@ add_action('admin_enqueue_scripts', 'load_media_files');
 //************* Add thumbnails
 add_theme_support('post-thumbnails', array('post'));
 add_theme_support('post-thumbnails', array('agenda'));
+add_theme_support('post-thumbnails', array('convenio'));
 
 
 //************* Data Base

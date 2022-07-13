@@ -53,4 +53,5 @@ include ABSPATH . '/wp-content/plugins/adunicamp/includes/settings.php';
 // TYPES ************************************************
 include ABSPATH . '/wp-content/plugins/adunicamp/includes/types/agenda.php';
 include ABSPATH . '/wp-content/plugins/adunicamp/includes/types/album.php';
+include ABSPATH . '/wp-content/plugins/adunicamp/includes/types/convenio.php';
 
