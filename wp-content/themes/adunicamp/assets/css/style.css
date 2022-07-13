@@ -1,13 +1,11 @@
 /**
-* Template Name: Flexor - v4.7.0
-* Template URL: https://bootstrapmade.com/flexor-free-multipurpose-bootstrap-template/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
+* ADUnicamp
 */
 
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+
 body {
   font-family: "Open Sans", sans-serif;
   color: #313030;
@@ -25,6 +23,10 @@ a:hover {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Raleway", sans-serif;
+}
+
+.white{
+  color: #fff !important;
 }
 
 /*--------------------------------------------------------------
@@ -180,7 +182,7 @@ h1, h2, h3, h4, h5, h6 {
 .navbar .dropdown ul li {
   margin-bottom: 5px;
 }
-.navbar .dropdown.entity ul li{
+.navbar .dropdown ul li{
   min-width: 112px;
 }
 .navbar .dropdown ul a {
@@ -409,7 +411,8 @@ h1, h2, h3, h4, h5, h6 {
   color: #2682A8;
 }
 #hero .carousel-indicators{
-  margin-bottom: 4em;
+  margin-bottom: 3em;
+  height: 30px;
 }
 #hero .carousel-indicators li {
   cursor: pointer;
@@ -537,6 +540,9 @@ section {
 /*--------------------------------------------------------------
 # Top News Posts
 --------------------------------------------------------------*/
+#top-news{
+  padding-top: 5em;
+}
 
 #top-news .post-entry-1 {
   position: relative;
@@ -760,7 +766,7 @@ section {
 # Podcast Section
 --------------------------------------------------------------*/
 .podcast {
-  height: 60vh;
+  height: 45vh;
   overflow: hidden;
 }
 

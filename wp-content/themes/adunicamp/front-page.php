@@ -72,7 +72,6 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
   <section id="top-news" class="gallery section-bg">
     <div class="container" data-aos="fade-up">
 
-      <br><br>
       <div class="section-title" data-aos="fade-up">
         <h2>Destaques</h2>
       </div>
@@ -200,7 +199,7 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
           $imagem = SITEPATH . "assets/img/semimagem.png";
         }
         if ($x <= 2) {
-          $excerpt = '<p class="mb-4 d-block">' . get_the_excerpt() . '</p>';
+          $excerpt = '<p class="mb-4 d-block">' . get_excerpt(300) . '</p>';
         } else {
           $excerpt = "";
         }

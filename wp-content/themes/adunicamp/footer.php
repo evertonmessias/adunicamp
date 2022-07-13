@@ -80,7 +80,6 @@
 
   <!-- Template Main JS File -->
   <script src="<?php echo SITEPATH; ?>assets/js/main.js"></script>
-  <script src="<?php echo SITEPATH; ?>assets/js/adunicamp.js"></script>
   <script src="<?php echo SITEPATH; ?>assets/js/calendar.js"></script>
 
   <!-- Calendar -->

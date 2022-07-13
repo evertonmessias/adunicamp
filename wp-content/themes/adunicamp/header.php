@@ -33,8 +33,8 @@ $post_color = get_option('portal_input_3');
 
   <!-- Template Main CSS File -->
   <link href="<?php echo SITEPATH; ?>assets/css/style.css" rel="stylesheet">
-  <link href="<?php echo SITEPATH; ?>assets/css/adunicamp.css" rel="stylesheet">
   <link href="<?php echo SITEPATH; ?>assets/css/calendar.css" rel="stylesheet">
+  
   <style>
     #header {
       background: <?php echo $post_color ?>;
@@ -58,7 +58,7 @@ $post_color = get_option('portal_input_3');
       <div class="portal-desc"><?php echo get_option('portal_input_4'); ?></div>
 
       <nav id="navbar" class="navbar">
-        <ul>
+        <!--<ul>
           <li><a class="nav-link scrollto active" href="/#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="/#services">Serviços</a></li>
           <li><a class="nav-link scrollto" href="/#agreement">Convênios</a></li>
@@ -79,7 +79,8 @@ $post_color = get_option('portal_input_3');
               <li><a href="/#">Equipe</a></li>
             </ul>
           </li>
-        </ul>
+        </ul>-->
+        <?php wp_nav_menu(); ?>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 

@@ -1,11 +1,32 @@
 /**
-* Template Name: Flexor - v4.7.0
-* Template URL: https://bootstrapmade.com/flexor-free-multipurpose-bootstrap-template/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
+* ADUnicamp
 */
-(function() {
+(function () {
   "use strict";
+
+  $('#navbar ul li a').addClass('nav-link scrollto');
+  $('#navbar ul li:first-child a').addClass('active');
+  $('#navbar ul li.menu-item-has-children').addClass('dropdown');
+  
+
+  $('.display').hide();
+  $('.btn-album').click(() => {
+    $('.display').show();
+  })
+
+  /*$(document).on('click', '.btn-accordion', {}, function (e) {       
+      var sec = $(this).attr('data-section');
+      var acc = $(this).attr('data-accordion');
+      if (!$('.block' + sec + acc).is(":visible")) {         
+          $('.block' + sec).slideUp(500);
+          $('.btn-accordion' + sec).removeClass('btn-accordion-active');
+          $('.btn-accordion' + sec + acc).addClass('btn-accordion-active');         
+          $('.block' + sec + acc).slideDown(500);              
+      }else { 
+          $('.btn-accordion' + sec + acc).removeClass('btn-accordion-active'); 
+          $('.block' + sec + acc).slideUp(500);             
+      }
+  });*/
 
   /**
    * Easy selector helper function
@@ -40,17 +61,17 @@
     el.addEventListener('scroll', listener)
   }
 
-      /**
-   * Hero carousel indicators
-   */
-       let heroCarouselIndicators = select("#hero-carousel-indicators")
-       let heroCarouselItems = select('#heroCarousel .carousel-item', true)
-     
-       heroCarouselItems.forEach((item, index) => {
-         (index === 0) ?
-         heroCarouselIndicators.innerHTML += "<li data-bs-target='#heroCarousel' data-bs-slide-to='" + index + "' class='active'></li>":
-           heroCarouselIndicators.innerHTML += "<li data-bs-target='#heroCarousel' data-bs-slide-to='" + index + "'></li>"
-       });
+  /**
+* Hero carousel indicators
+*/
+  let heroCarouselIndicators = select("#hero-carousel-indicators")
+  let heroCarouselItems = select('#heroCarousel .carousel-item', true)
+
+  heroCarouselItems.forEach((item, index) => {
+    (index === 0) ?
+      heroCarouselIndicators.innerHTML += "<li data-bs-target='#heroCarousel' data-bs-slide-to='" + index + "' class='active'></li>" :
+      heroCarouselIndicators.innerHTML += "<li data-bs-target='#heroCarousel' data-bs-slide-to='" + index + "'></li>"
+  });
 
 
   /**
@@ -90,25 +111,25 @@
   /**
    * Toggle .header-scrolled class to #header when page is scrolled
    */
-   let selectHeader = select('#header')
-   let selectTopbar = select('#topbar')
-   if (selectHeader) {
-     const headerScrolled = () => {
-       if (window.scrollY > 100) {
-         selectHeader.classList.add('header-scrolled')
-         if (selectTopbar) {
-           selectTopbar.classList.add('topbar-scrolled')
-         }
-       } else {
-         selectHeader.classList.remove('header-scrolled')
-         if (selectTopbar) {
-           selectTopbar.classList.remove('topbar-scrolled')
-         }
-       }
-     }
-     window.addEventListener('load', headerScrolled)
-     onscroll(document, headerScrolled)
-   }
+  let selectHeader = select('#header')
+  let selectTopbar = select('#topbar')
+  if (selectHeader) {
+    const headerScrolled = () => {
+      if (window.scrollY > 100) {
+        selectHeader.classList.add('header-scrolled')
+        if (selectTopbar) {
+          selectTopbar.classList.add('topbar-scrolled')
+        }
+      } else {
+        selectHeader.classList.remove('header-scrolled')
+        if (selectTopbar) {
+          selectTopbar.classList.remove('topbar-scrolled')
+        }
+      }
+    }
+    window.addEventListener('load', headerScrolled)
+    onscroll(document, headerScrolled)
+  }
 
   /**
    * Back to top button
@@ -129,7 +150,7 @@
   /**
    * Mobile nav toggle
    */
-  on('click', '.mobile-nav-toggle', function(e) {
+  on('click', '.mobile-nav-toggle', function (e) {
     select('#navbar').classList.toggle('navbar-mobile')
     this.classList.toggle('bi-list')
     this.classList.toggle('bi-x')
@@ -138,7 +159,7 @@
   /**
    * Mobile nav dropdowns activate
    */
-  on('click', '.navbar .dropdown > a', function(e) {
+  on('click', '.navbar .dropdown > a', function (e) {
     if (select('#navbar').classList.contains('navbar-mobile')) {
       e.preventDefault()
       this.nextElementSibling.classList.toggle('dropdown-active')
@@ -148,7 +169,7 @@
   /**
    * Scrool with ofset on links with a class name .scrollto
    */
-  on('click', '.scrollto', function(e) {
+  on('click', '.scrollto', function (e) {
     if (select(this.hash)) {
       e.preventDefault()
 
@@ -217,44 +238,44 @@
     }
   });
 
-    /**
-   * Clients Slider
-   */
-     new Swiper('.gallery-slider', {
-      speed: 400,
-      loop: true,
-      centeredSlides: true,
-      autoplay: {
-        delay: 5000,
-        disableOnInteraction: false
+  /**
+ * Clients Slider
+ */
+  new Swiper('.gallery-slider', {
+    speed: 400,
+    loop: true,
+    centeredSlides: true,
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false
+    },
+    slidesPerView: 'auto',
+    pagination: {
+      el: '.swiper-pagination',
+      type: 'bullets',
+      clickable: true
+    },
+    breakpoints: {
+      320: {
+        slidesPerView: 1,
+        spaceBetween: 1
       },
-      slidesPerView: 'auto',
-      pagination: {
-        el: '.swiper-pagination',
-        type: 'bullets',
-        clickable: true
+      640: {
+        slidesPerView: 3,
+        spaceBetween: 1
       },
-      breakpoints: {
-        320: {
-          slidesPerView: 1,
-          spaceBetween: 1
-        },
-        640: {
-          slidesPerView: 3,
-          spaceBetween: 1
-        },
-        992: {
-          slidesPerView: 3,
-          spaceBetween: 1
-        }
+      992: {
+        slidesPerView: 3,
+        spaceBetween: 1
       }
-    });
+    }
+  });
 
-  
+
   /**
    * Podcast Slider
    */
-   new Swiper('.podcast-slider', {
+  new Swiper('.podcast-slider', {
     speed: 400,
     loop: true,
     centeredSlides: true,
@@ -297,9 +318,9 @@
 
       let portfolioFilters = select('#portfolio-flters li', true);
 
-      on('click', '#portfolio-flters li', function(e) {
+      on('click', '#portfolio-flters li', function (e) {
         e.preventDefault();
-        portfolioFilters.forEach(function(el) {
+        portfolioFilters.forEach(function (el) {
           el.classList.remove('filter-active');
         });
         this.classList.add('filter-active');
@@ -307,7 +328,7 @@
         portfolioIsotope.arrange({
           filter: this.getAttribute('data-filter')
         });
-        portfolioIsotope.on('arrangeComplete', function() {
+        portfolioIsotope.on('arrangeComplete', function () {
           AOS.refresh()
         });
       }, true);

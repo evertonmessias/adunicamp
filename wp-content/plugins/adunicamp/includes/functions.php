@@ -135,11 +135,11 @@ add_action('after_setup_theme', 'remove_admin_bar');
 
 
 //************* Add Menu
-function register_my_menu()
+function register_menu()
 {
-	//register_nav_menu('adunicamp-nav', __('adunicamp NAV'));
+	register_nav_menu('adunicamp-nav', __('ADUnicamp NAV'));
 }
-add_action('init', 'register_my_menu');
+add_action('init', 'register_menu');
 
 
 //************* Remove tags support from posts
