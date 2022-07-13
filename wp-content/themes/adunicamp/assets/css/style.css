@@ -179,12 +179,14 @@ h1, h2, h3, h4, h5, h6 {
   background: transparent;
   transition: 0.3s;
 }
+.navbar .dropdown{
+  min-width: 115px;
+}
 .navbar .dropdown ul li {
   margin-bottom: 5px;
+  min-width: 115px;
 }
-.navbar .dropdown ul li{
-  min-width: 112px;
-}
+
 .navbar .dropdown ul a {
   padding: 5px 15px;
   color: #2682A8;
@@ -766,16 +768,15 @@ section {
 # Podcast Section
 --------------------------------------------------------------*/
 .podcast {
-  height: 45vh;
-  overflow: hidden;
+  height: 60vh;
 }
 
 .podcast-slider{
-  margin-top: -20px;
+  margin-top: -2em;
 }
 
 .podcast .swiper-pagination {
-  margin-top: 20px;
+  margin-top: 30px;
   position: relative;
 }
 

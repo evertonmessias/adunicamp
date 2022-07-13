@@ -8,7 +8,6 @@
   $('#navbar ul li:first-child a').addClass('active');
   $('#navbar ul li.menu-item-has-children').addClass('dropdown');
   
-
   $('.display').hide();
   $('.btn-album').click(() => {
     $('.display').show();
