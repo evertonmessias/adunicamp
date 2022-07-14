@@ -29,6 +29,10 @@ h1, h2, h3, h4, h5, h6 {
   color: #fff !important;
 }
 
+.user-logged{
+  top: 20px;
+}
+
 /*--------------------------------------------------------------
 # Back to top button
 --------------------------------------------------------------*/
@@ -68,45 +72,77 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+
+/*--------------------------------------------------------------
+# Top Bar
+--------------------------------------------------------------*/
+#topbar {
+  background: #39312f;
+  font-size: 14px;
+  padding: 0;
+  color: rgba(255, 255, 255, 0.8);
+  height: 40px;
+}
+#topbar .contact-info i {
+  font-style: normal;
+  color: #2682A8;
+}
+#topbar .contact-info i a, #topbar .contact-info i span {
+  padding-left: 5px;
+  color: #fff;
+}
+#topbar .contact-info i a {
+  line-height: 0;
+  transition: 0.3s;
+}
+#topbar .contact-info i a:hover {
+  color: #2682A8;
+}
+
+#topbar .portal-desc {
+  margin-right: 20px;
+  padding: 10px 0;
+  font-size: 16px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 500;
+  color: #fff;
+}
+
+#topbar .cta a {
+  margin-right: 20px;
+  color: #fff;
+  background: #2682A8;
+  padding: 10px 20px;
+  display: inline-block;
+  transition: 0.3s;
+}
+#topbar .cta a:hover {
+  background: #1e6583;
+}
+
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
+
 #header {
-  position: fixed;
-  width: 100%;
   height: 90px;
   transition: all 0.5s;
   z-index: 997;
 }
 
-#header.header-scrolled {
-  height: 60px;
-}
-
-#header .portal-desc {
-  display: block;
-  position: relative;
-  width: 100%;
-  margin: 0px 10px 0px 10px;
-  font-size: 16px;
-  font-family: "Open Sans", sans-serif;
-  position: relative;  
-  font-weight: 500;
-  color: #fff;
-}
 #header .logo img {
   padding: 0;
   margin: 0;
   max-height: 75px;
-  transition: all 0.5s;
+  transition: all 1s;
 }
 
-#header.header-scrolled .logo img {
-  max-height: 50px;
+.fixed-top {
+  height: 60px !important;
 }
 
-.scrolled-offset {
-  margin-top: 70px;
+.fixed-top .logo img {
+  height: 50px !important;
 }
 
 #main {
@@ -326,16 +362,15 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   height: 70vh;
   background: #2682A8;
-  top: 60px;
+  top: 0;
   position: relative;
   z-index: 1;
+  padding: 0;
 }
-#hero .hero-container, #hero #heroCarousel{
-  height: 70vh;
-}
+
 #hero .carousel-item {
   width: 100%;
-  height: 70vh;
+  height: 75vh;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -414,8 +449,8 @@ h1, h2, h3, h4, h5, h6 {
   color: #2682A8;
 }
 #hero .carousel-indicators{
-  margin-bottom: 3em;
-  height: 30px;
+  margin-bottom: 30px;
+  height: 20px;
 }
 #hero .carousel-indicators li {
   cursor: pointer;
@@ -455,7 +490,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 @media (max-height: 768px), (max-width: 1200px) {
   #hero {
-    margin-bottom: 20px;
+    margin-bottom: 0px;
   }
   #hero .carousel-container {
     padding-bottom: 0;
@@ -544,7 +579,7 @@ section {
 # Top News Posts
 --------------------------------------------------------------*/
 #top-news{
-  padding-top: 5em;
+  padding-top: 2em;
 }
 
 #top-news .post-entry-1 {
@@ -1891,36 +1926,31 @@ section {
   padding-bottom: 12px;
 }
 #footer .footer-newsletter form {
-  margin-top: 30px;
-  background: #fff;
-  padding: 6px 10px;
+  margin-top: 3px; 
   position: relative;
-  border-radius: 50px;
   text-align: left;
-  border: 1px solid #ffe2d9;
 }
 #footer .footer-newsletter form input[type=email] {
   border: 0;
   padding: 4px 8px;
-  width: calc(100% - 100px);
+  width: 100%;
 }
 #footer .footer-newsletter form input[type=submit] {
-  position: absolute;
-  top: 0;
+  margin-top: 5px;
   right: 0;
   bottom: 0;
   border: 0;
   background: none;
   font-size: 16px;
-  padding: 0 20px;
+  padding: 5px 20px;
   background: #2682A8;
   color: #fff;
   transition: 0.3s;
-  border-radius: 50px;
+  border-radius: 5px;
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
 }
 #footer .footer-newsletter form input[type=submit]:hover {
-  background: #ed3b00;
+  background: #1e6583;
 }
 #footer .credits {
   padding-top: 5px;

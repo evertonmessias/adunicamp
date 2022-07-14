@@ -16,7 +16,7 @@ function tf_wp_admin_login_logo()
 
     #login {
       background: #fff;
-      margin-top: 100px !important;
+      margin-top: 50px !important;
       padding: 0% 0 0 !important;
       padding: 20px !important;
       box-shadow: 0 0 15px rgb(0, 0, 0, 0.8) !important;

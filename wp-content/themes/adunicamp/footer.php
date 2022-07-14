@@ -6,7 +6,7 @@
         <div class="row">
 
           <div class="col-lg-6 col-md-6 footer-contact">
-            <h3><?php echo get_option('portal_input_0'); ?></h3>
+            <h3><a href="/wp-admin/"><?php echo get_option('portal_input_0'); ?></h3></a>
             <p>
             <?php echo get_option('portal_input_6'); ?>
             <br>
@@ -21,9 +21,7 @@
 
           <div class="col-lg-3 col-md-6 footer-newsletter">
             <h4>Inscreva-se</h4>
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Subscribe">
-            </form>
+            <?php echo do_shortcode('[contact-form-7 id="213" title="Newsletter"]') ?>
           </div>
 
         </div>
