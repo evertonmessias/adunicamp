@@ -719,11 +719,11 @@ section {
 # Clients
 --------------------------------------------------------------*/
 .clients{
-  height: 50vh;
+  height: 350px;
 }
 .clients .swiper-pagination {
-  margin-bottom: 2em;
-  position: relative;
+  position: absolute;
+  bottom: 0;  
 }
 .clients .swiper-pagination .swiper-pagination-bullet {
   width: 12px;
@@ -801,7 +801,7 @@ section {
 # Podcast Section
 --------------------------------------------------------------*/
 .podcast {
-  height: 60vh;
+  height: 400px;
 }
 
 .podcast-slider{
@@ -1266,14 +1266,15 @@ section {
   color: #444444;
   text-align: center;
   box-shadow: 0 0 30px rgba(214, 215, 216, 0.6);
-  padding: 20px 0 30px 0;
+  padding: 30px 0 32px 0;
+  border-radius: 4px;
 }
 .contact .info-box i {
   font-size: 32px;
-  color: #1e6583;
+  color: #4C5C96;
   border-radius: 50%;
   padding: 8px;
-  border: 2px dotted #fef5f4;
+  border: 2px dotted #f8d4d5;
 }
 .contact .info-box h3 {
   font-size: 20px;
@@ -1290,13 +1291,7 @@ section {
 .contact .php-email-form {
   box-shadow: 0 0 30px rgba(214, 215, 216, 0.6);
   padding: 30px;
-}
-.contact .php-email-form .validate {
-  display: none;
-  color: red;
-  margin: 0 0 15px 0;
-  font-weight: 400;
-  font-size: 13px;
+  border-radius: 4px;
 }
 .contact .php-email-form .error-message {
   display: none;
@@ -1335,13 +1330,16 @@ section {
   -webkit-animation: animate-loading 1s linear infinite;
   animation: animate-loading 1s linear infinite;
 }
+.contact .php-email-form .form-group {
+  margin-bottom: 25px;
+}
 .contact .php-email-form input, .contact .php-email-form textarea {
-  border-radius: 0;
   box-shadow: none;
   font-size: 14px;
+  border-radius: 4px;
 }
 .contact .php-email-form input:focus, .contact .php-email-form textarea:focus {
-  border-color: #1e6583;
+  border-color: #111111;
 }
 .contact .php-email-form input {
   padding: 10px 15px;
@@ -1350,15 +1348,15 @@ section {
   padding: 12px 15px;
 }
 .contact .php-email-form button[type=submit] {
-  background: #1e6583;
+  background: #4C5C96;
   border: 0;
-  border-radius: 50px;
-  padding: 10px 24px;
+  padding: 10px 32px;
   color: #fff;
   transition: 0.4s;
+  border-radius: 4px;
 }
 .contact .php-email-form button[type=submit]:hover {
-  background: #e6573f;
+  background: #3f58b3;
 }
 @-webkit-keyframes animate-loading {
   0% {
@@ -1377,6 +1375,25 @@ section {
   }
 }
 
+.contact .wpcf7-form-control-wrap{
+  width: 100%;
+  margin-bottom: 10px;
+}
+.contact .wpcf7-form-control-wrap textarea{
+  height: 230px;
+}
+
+.contact input[type=submit] {
+  background: #2682A8;
+  padding: 8px 20px;
+  border-radius: 4px;
+  color: #fff;
+  border:0
+}
+.contact input[type=submit]:hover {
+  color: #fff;
+  background: #1e6583;
+}
 
 /*--------------------------------------------------------------
 # Blog
