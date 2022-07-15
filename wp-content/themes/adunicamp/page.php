@@ -6,7 +6,7 @@
       <div class="d-flex justify-content-between align-items-center">
         <h2><?php the_title() ?></h2>
         <ol>
-          <li><a href="/">home</a></li>
+          <li><a href="/">inicio</a></li>
           <li>
             <?php
             if (url_active()[2] == "") echo url_active()[1];
