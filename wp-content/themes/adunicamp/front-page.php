@@ -5,7 +5,6 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
 }
 ?>
 
-
 <!-- ======= Hero Section ======= -->
 <section id="hero">
   <div class="hero-container">
@@ -31,7 +30,6 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
             $imagem = SITEPATH . "assets/img/semimagem.png";
           }
         ?>
-
           <!-- Slide -->
           <div class="carousel-item <?php if ($x == 1) echo 'active'; ?>" style="background-image: url(<?php echo $imagem; ?>)">
             <div class="carousel-container">
@@ -42,21 +40,15 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
               </div>
             </div>
           </div>
-
-
         <?php $x++;
         }
         wp_reset_postdata();
         ?>
-
-
-
       </div>
 
       <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
         <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
       </a>
-
       <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
         <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
       </a>
@@ -64,7 +56,6 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
     </div>
   </div>
 </section><!-- End Hero -->
-
 
 <main id="main">
 
@@ -115,6 +106,12 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
 
         </div>
         <div class="swiper-pagination"></div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12 more">
+          <a class="getstarted" href="/topicos">Veja mais</a>
+        </div>
       </div>
 
     </div>
