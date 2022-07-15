@@ -56,7 +56,7 @@ $post_color = get_option('portal_input_3');
       </div>      
       <div class="cta d-none d-md-flex align-items-center">
         <div class="portal-desc"><?php echo get_option('portal_input_4'); ?></div>
-        <a href="#about" class="scrollto">FILIE-SE</a>
+        <a href="<?php echo explode(',',get_option('portal_input_41'))[0]; ?>" class="scrollto"><?php echo explode(',',get_option('portal_input_41'))[1]; ?></a>
       </div>
     </div>
   </section>

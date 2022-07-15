@@ -449,7 +449,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #2682A8;
 }
 #hero .carousel-indicators{
-  margin-bottom: 30px;
+  bottom: 2em;
   height: 20px;
 }
 #hero .carousel-indicators li {

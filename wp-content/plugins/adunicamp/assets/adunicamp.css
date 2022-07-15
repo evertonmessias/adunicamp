@@ -1,3 +1,16 @@
+#scrollToTop{
+    display: none;
+    position: fixed;
+    top: 90%;
+    left: 92%;
+    font-size: 50px;
+    cursor: pointer;
+    opacity: 0.6;
+}
+#scrollToTop:hover{
+    opacity: 1;
+}
+
 .settings-adunicamp, .about-adunicamp {
     display: block;
     position: relative;
@@ -44,6 +57,10 @@
 .settings-adunicamp input[type=email], .settings-adunicamp input[type=text] {
     width: 40em;
     font-weight: 400;
+}
+
+.settings-adunicamp select {
+    width: 50%;
 }
 
 .settings-adunicamp textarea {

@@ -19,9 +19,9 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
         $x = 1;
         $args = array(
           'post_type' => 'post',
-          'category_name' => 'cultura',
-          'order' => 'DESC',
-          'posts_per_page' => 3
+          'posts_per_page' =>  get_option('portal_input_42'),
+          'category_name' => get_option('portal_input_43'),
+          'order' => 'DESC'          
         );
         $loop = new WP_Query($args);
         foreach ($loop->posts as $post) {
@@ -83,9 +83,9 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
           $x = 1;
           $args = array(
             'post_type' => 'post',
-            'category_name' => 'destaque',
-            'order' => 'DESC',
-            'posts_per_page' => 6
+            'posts_per_page' =>  get_option('portal_input_44'),
+            'category_name' => get_option('portal_input_45'),
+            'order' => 'DESC'
           );
           $loop = new WP_Query($args);
           foreach ($loop->posts as $post) {
@@ -136,7 +136,13 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
         </div>
 
         <div class="col-lg-4 buttons" data-aos="fade-up">
-          <?php echo get_option('portal_input_5'); ?>
+          <?php
+          $valor = array();
+          for ($i = 1; $i <= 8; $i++) {
+            $valor = explode(',', get_option('portal_input_5' . $i), 3);
+            echo '<a href="' . $valor[0] . '"><div class="icon-box"><div class="icon"><i class="' . $valor[1] . '"></i></div><h4 class="title">' . $valor[2] . '</h4></div></a>';
+          }
+          ?>
         </div>
 
       </div>
@@ -157,7 +163,7 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
       <div class="clients-slider swiper">
         <div class="swiper-wrapper align-items-center">
 
-        <?php
+          <?php
           $x = 1;
           $args = array(
             'post_type' => 'convenio',
@@ -173,16 +179,17 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
             }
           ?>
 
-          <div class="swiper-slide">
-            <a href="<?php echo get_the_permalink() ?>"><img src="<?php echo $imagem; ?>" class="img-fluid" alt="" title="<?php echo $post->post_title; ?>">
-            <p><?php echo $post->post_title; ?></p></a>
-          </div>
+            <div class="swiper-slide">
+              <a href="<?php echo get_the_permalink() ?>"><img src="<?php echo $imagem; ?>" class="img-fluid" alt="" title="<?php echo $post->post_title; ?>">
+                <p><?php echo $post->post_title; ?></p>
+              </a>
+            </div>
 
           <?php $x++;
           }
           wp_reset_postdata();
           ?>
-          
+
         </div><br>
         <div class="swiper-pagination"></div>
       </div>
