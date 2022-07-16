@@ -63,16 +63,17 @@ function url_active()
 add_action('url_active', 'url_active');
 
 //************* Limit Exceerpt
-function get_excerpt($limit, $source = null){
+function get_excerpt($limit, $source = null)
+{
 
   $excerpt = $source == "content" ? get_the_content() : get_the_excerpt();
-  $excerpt = preg_replace(" (\[.*?\])",'',$excerpt);
+  $excerpt = preg_replace(" (\[.*?\])", '', $excerpt);
   $excerpt = strip_shortcodes($excerpt);
   $excerpt = strip_tags($excerpt);
   $excerpt = substr($excerpt, 0, $limit);
   $excerpt = substr($excerpt, 0, strripos($excerpt, " "));
-  $excerpt = trim(preg_replace( '/\s+/', ' ', $excerpt));
-  $excerpt = $excerpt.' ... <a href="'.get_permalink(get_the_ID()).'">mais</a>';
+  $excerpt = trim(preg_replace('/\s+/', ' ', $excerpt));
+  $excerpt = $excerpt . ' ... <a class="read-more" href="' . get_permalink(get_the_ID()) . '">mais</a>';
   return $excerpt;
 }
 
@@ -80,9 +81,9 @@ function get_excerpt($limit, $source = null){
 function listCalendar()
 {
   $string_saida = "";
-  
+
   $loop = new WP_Query(array('post_type' => 'agenda'));
-  
+
   while ($loop->have_posts()) {
     $loop->the_post();
     $string_calendar = "";
@@ -99,19 +100,32 @@ function listCalendar()
       $dataf = explode('-', $adataf[0]);
       $horaf = explode(':', $adataf[1]);
 
-      $string_calendar = 
-        "{title:'".get_the_title()."',".
-        "start: new Date(".$datai[0] . "," . ($datai[1] - 1) . "," . $datai[2] . "," . $horai[0] . "," . $horai[1]."),".
-        "end: new Date(".$dataf[0] . "," . ($dataf[1] - 1) . "," . $dataf[2] . "," . $horaf[0] . "," . $horaf[1]."),".
-        "allDay: false,url:'".get_the_permalink()."',className: 'success'},";
+      $string_calendar =
+        "{title:'" . get_the_title() . "'," .
+        "start: new Date(" . $datai[0] . "," . ($datai[1] - 1) . "," . $datai[2] . "," . $horai[0] . "," . $horai[1] . ")," .
+        "end: new Date(" . $dataf[0] . "," . ($dataf[1] - 1) . "," . $dataf[2] . "," . $horaf[0] . "," . $horaf[1] . ")," .
+        "allDay: false,url:'" . get_the_permalink() . "',className: 'success'},";
 
       $string_saida .= $string_calendar;
-      
     }
   }
   wp_reset_postdata();
 
   return $string_saida;
-
 }
 add_action('listCalendar', 'listCalendar');
+
+
+//************* Post Pagination
+function post_pagination()
+{
+  global $wp_query;
+  $pager = 999999999; // need an unlikely integer
+  echo paginate_links(array(
+    'base' => str_replace($pager, '%#%', esc_url(get_pagenum_link($pager))),
+    'format' => '/page/%#%',
+    'current' => max(1, get_query_var('paged')),
+    'total' => $wp_query->max_num_pages
+  ));
+}
+add_action('post_pagination', 'post_pagination');

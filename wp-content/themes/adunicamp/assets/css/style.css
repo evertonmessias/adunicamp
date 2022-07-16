@@ -640,9 +640,10 @@ section {
 
 #news .post-entry-2 {
   margin-bottom: 30px;
-  min-height: 300px;
+  border-bottom: 1px solid #ddd;
 }
 #news .post-entry-2 img {
+  display: block;
   position: relative;
   margin: 0 auto;
   margin-bottom: 30px;
@@ -669,6 +670,32 @@ section {
   font-weight: 600;
   margin-bottom: 10px;
   text-align: left !important;
+}
+
+#news .categories .getstarted {
+  display: block;
+  position: relative;
+  width: 100%;
+  margin-left: 0;
+  background: #2682A8;
+  border:1px solid #2682A8;
+  padding: 2px 5px;
+  border-radius: 4px;
+  color: #fff;
+}
+#news .categories .getstarted:hover  {
+  color: #fff;
+  background: #1e6583;
+}
+
+#news .categories .getstarted.empty {
+  background: #fff;
+  border:1px solid #2682A8;
+  color: #2682A8;
+}
+#news .categories .getstarted.empty:hover  {
+  color: #fff;
+  background: #1e6583;
 }
 
 /*--------------------------------------------------------------
@@ -1211,7 +1238,7 @@ section {
 }
 
 /*--------------------------------------------------------------
-# Blog
+# New Posts
 --------------------------------------------------------------*/
 .new-posts {
   padding: 20px 0;
@@ -1272,16 +1299,17 @@ section {
   -moz-text-align-last: right;
   text-align-last: right;
 }
-.new-posts .entry .entry-content .read-more a {
-  display: inline-block;
+.new-posts .entry .entry-content .read-more {
   background: #2682A8;
   color: #fff;
-  padding: 6px 20px;
+  padding: 2px 8px;
   transition: 0.3s;
   font-size: 14px;
   border-radius: 4px;
+  margin-top: 20px;
+  float: right;
 }
-.new-posts .entry .entry-content .read-more a:hover {
+.new-posts .entry .entry-content .read-more:hover {
   background: #1e6583;
 }
 .new-posts .entry .entry-content h3 {
@@ -1625,6 +1653,34 @@ section {
   padding-left: 5px;
   color: #ddd7d6;
   font-size: 14px;
+}
+
+.new-posts .navigation li a,
+.new-posts .navigation li a:hover,
+.new-posts .navigation li.active a,
+.new-posts .navigation li.disabled {
+    color: #fff;
+    text-decoration:none;
+}
+ 
+.new-posts .navigation li {
+    display: inline;
+}
+ 
+.new-posts .navigation li a,
+.new-posts .navigation li a:hover,
+.new-posts .navigation li.active a,
+.new-posts .navigation li.disabled {
+    background-color: #6FB7E9;
+    border-radius: 3px;
+    cursor: pointer;
+    padding: 12px;
+    padding: 0.75rem;
+}
+ 
+.new-posts .navigation li a:hover,
+.new-posts .navigation li.active a {
+    background-color: #3C8DC5;
 }
 
 /*--------------------------------------------------------------

@@ -5,7 +5,7 @@
   "use strict";
 
   $('#navbar ul li a').addClass('nav-link scrollto');
-  $('#navbar ul li:first-child a').addClass('active');
+  //$('#navbar ul li:first-child a').addClass('active');
   $('#navbar ul li.menu-item-has-children').addClass('dropdown');
   $('#navbar').show();
 

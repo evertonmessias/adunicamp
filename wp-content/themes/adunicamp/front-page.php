@@ -20,7 +20,7 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
           'post_type' => 'post',
           'posts_per_page' =>  get_option('portal_input_42'),
           'category_name' => get_option('portal_input_43'),
-          'order' => 'DESC'          
+          'order' => 'DESC'
         );
         $loop = new WP_Query($args);
         foreach ($loop->posts as $post) {
@@ -213,12 +213,11 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
       );
       $loop = new WP_Query($args);
       $postentry = array();
+
       foreach ($loop->posts as $post) {
-        if (has_post_thumbnail()) {
-          $imagem = get_the_post_thumbnail_url(get_the_ID(), 'full');
-        } else {
-          $imagem = SITEPATH . "assets/img/semimagem.png";
-        }
+        $imagem = get_the_post_thumbnail_url(get_the_ID(), 'full');
+        if ($imagem == "") $imagem = SITEPATH . "assets/img/semimagem.png";
+
         if ($x <= 2) {
           $excerpt = '<p class="mb-4 d-block">' . get_excerpt(300) . '</p>';
         } else {

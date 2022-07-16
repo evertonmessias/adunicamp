@@ -6,9 +6,10 @@
     <div class="container">
       <ol>
         <li><a href="/">inicio</a></li>
-        <li>arquivos</li>
+        <li><a href="/arquivos">arquivos</a></li>
+        <li><?php echo get_the_category()[0]->slug ?></li>
       </ol>
-      <h2>Todos os Arquivos</h2>
+      <h2>Categoria: <?php echo get_the_category()[0]->name ?></h2>
     </div>
   </section><!-- End Breadcrumbs -->
 
@@ -22,15 +23,20 @@
           <div class="row">
             <?php
             $x = 1;
+            $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
             $args = array(
               'post_type' => 'post',
+              'category_name' => get_the_category()[0]->slug,
               'order' => 'DESC',
-              'posts_per_page' => 33
+              'paged' => $paged,
+              'posts_per_page' => 10
             );
+
             $loop = new WP_Query($args);
 
             foreach ($loop->posts as $post) {
+
               $imagem = get_the_post_thumbnail_url(get_the_ID(), 'full');
               if ($imagem == "") $imagem = SITEPATH . "assets/img/semimagem.png";
 
@@ -40,9 +46,16 @@
                 '<span class="mx-1">&bullet;</span> <span>' . get_the_date('d M Y', $post->ID) . '</span></div>' .
                 '<h2><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></h2></div></div>';
               $x++;
-            }
-            wp_reset_postdata();
-            ?>
+            } ?>
+
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="new-posts-pagination">
+                  <?php echo post_pagination(); ?>
+                </div>
+              </div>
+            </div>
+            <?php wp_reset_postdata(); ?>
           </div>
         </div><!-- End blog entries list -->
 
@@ -59,6 +72,8 @@
             <h3 class="sidebar-title">Categorias</h3>
             <div class="sidebar-item categories">
               <ul>
+                <li><a class="getstarted empty" href="/arquivos">Todos os Arquivos</a></li>
+                <li><a class="getstarted" href="/<?php echo get_the_category()[0]->slug ?>"><?php echo get_the_category()[0]->name ?> <span>(<?php echo get_the_category()[0]->count ?>)</span></a></li>
                 <?php
                 $argsCat = array(
                   'post_type' => 'post',
@@ -67,7 +82,9 @@
                 );
                 $categories = get_terms('category', $argsCat);
                 foreach ($categories as $category) {
-                  echo '<li><a class="getstarted empty" href="/' . $category->slug . '">' . $category->name . ' <span>(' . $category->count . ')</span></a></li>';
+                  if ($category->slug != get_the_category()[0]->slug) {
+                    echo '<li><a class="getstarted empty" href="/' . $category->slug . '">' . $category->name . ' <span>(' . $category->count . ')</span></a></li>';
+                  }
                 }
                 ?>
               </ul>
