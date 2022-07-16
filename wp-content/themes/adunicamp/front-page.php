@@ -237,9 +237,7 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
 
       <div class="row">
         <div class="col-lg-4">
-
           <?php echo $postentry[0] . $postentry[1]; ?>
-
         </div>
 
         <div class="col-lg-8">
