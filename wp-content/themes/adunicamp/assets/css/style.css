@@ -641,6 +641,7 @@ section {
 #news .post-entry-2 {
   margin-bottom: 30px;
   border-bottom: 1px solid #ddd;
+  padding-bottom: 20px;
 }
 #news .post-entry-2 img {
   display: block;
@@ -1243,6 +1244,7 @@ section {
 .new-posts {
   padding: 20px 0;
 }
+
 .new-posts .entry {
   padding: 30px;
   margin-bottom: 60px;
@@ -1299,19 +1301,7 @@ section {
   -moz-text-align-last: right;
   text-align-last: right;
 }
-.new-posts .entry .entry-content .read-more {
-  background: #2682A8;
-  color: #fff;
-  padding: 2px 8px;
-  transition: 0.3s;
-  font-size: 14px;
-  border-radius: 4px;
-  margin-top: 20px;
-  float: right;
-}
-.new-posts .entry .entry-content .read-more:hover {
-  background: #1e6583;
-}
+
 .new-posts .entry .entry-content h3 {
   font-size: 22px;
   margin-top: 30px;
@@ -1505,7 +1495,16 @@ section {
   background-color: #554945;
 }
 .new-posts .new-posts-pagination {
-  color: #7f6d68;
+  display: block;
+  position: relative;
+  width: 35%;
+  margin: 0 auto;
+  border: 1px solid #2682A8;
+  padding: 5px;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  text-align: center;
+  border-radius: 4px;
 }
 .new-posts .new-posts-pagination ul {
   display: flex;
@@ -1513,23 +1512,7 @@ section {
   margin: 0;
   list-style: none;
 }
-.new-posts .new-posts-pagination li {
-  margin: 0 5px;
-  transition: 0.3s;
-}
-.new-posts .new-posts-pagination li a {
-  color: #473d3a;
-  padding: 7px 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.new-posts .new-posts-pagination li.active, .new-posts .new-posts-pagination li:hover {
-  background: #2682A8;
-}
-.new-posts .new-posts-pagination li.active a, .new-posts .new-posts-pagination li:hover a {
-  color: #fff;
-}
+
 .new-posts .sidebar {
   padding: 30px;
   margin: 0 0 60px 20px;

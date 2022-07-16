@@ -67,7 +67,7 @@
                 );
                 $categories = get_terms('category', $argsCat);
                 foreach ($categories as $category) {
-                  echo '<li><a class="getstarted empty" href="/' . $category->slug . '">' . $category->name . ' <span>(' . $category->count . ')</span></a></li>';
+                  echo '<li><a class="getstarted empty" href="/arquivos/' . $category->slug . '">' . $category->name . ' <span>(' . $category->count . ')</span></a></li>';
                 }
                 ?>
               </ul>

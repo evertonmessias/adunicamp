@@ -73,7 +73,7 @@ function get_excerpt($limit, $source = null)
   $excerpt = substr($excerpt, 0, $limit);
   $excerpt = substr($excerpt, 0, strripos($excerpt, " "));
   $excerpt = trim(preg_replace('/\s+/', ' ', $excerpt));
-  $excerpt = $excerpt . ' ... <a class="read-more" href="' . get_permalink(get_the_ID()) . '">mais</a>';
+  $excerpt = $excerpt . ' ... <a href="' . get_permalink(get_the_ID()) . '">mais</a>';
   return $excerpt;
 }
 
@@ -119,11 +119,10 @@ add_action('listCalendar', 'listCalendar');
 //************* Post Pagination
 function post_pagination()
 {
-  global $wp_query;
+  global $wp_query;  
   $pager = 999999999; // need an unlikely integer
   echo paginate_links(array(
     'base' => str_replace($pager, '%#%', esc_url(get_pagenum_link($pager))),
-    'format' => '/page/%#%',
     'current' => max(1, get_query_var('paged')),
     'total' => $wp_query->max_num_pages
   ));

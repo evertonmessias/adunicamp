@@ -9,7 +9,7 @@
         <li><a href="/arquivos">arquivos</a></li>
         <li><?php echo get_the_category()[0]->slug ?></li>
       </ol>
-      <h2>Categoria: <?php echo get_the_category()[0]->name ?></h2>
+      <h2>Arquivos: <?php echo get_the_category()[0]->name ?></h2>
     </div>
   </section><!-- End Breadcrumbs -->
 
@@ -30,7 +30,7 @@
               'category_name' => get_the_category()[0]->slug,
               'order' => 'DESC',
               'paged' => $paged,
-              'posts_per_page' => 10
+              'posts_per_page' => 16
             );
 
             $loop = new WP_Query($args);
@@ -40,11 +40,11 @@
               $imagem = get_the_post_thumbnail_url(get_the_ID(), 'full');
               if ($imagem == "") $imagem = SITEPATH . "assets/img/semimagem.png";
 
-              echo '<div class="col-lg-4 border-start custom-border"><div class="post-entry-2">' .
+              echo '<div class="col-lg-6 border-start custom-border"><div class="post-entry-2">' .
                 '<a href="' . get_the_permalink() . '"><img src="' . $imagem . '" alt="" class="img-fluid"></a>' .
                 '<div class="post-meta"><span class="date">' . get_the_category()[0]->name . '</span>' .
                 '<span class="mx-1">&bullet;</span> <span>' . get_the_date('d M Y', $post->ID) . '</span></div>' .
-                '<h2><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></h2></div></div>';
+                '<h2><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></h2>' . get_excerpt(200) . '</div></div>';
               $x++;
             } ?>
 
@@ -83,7 +83,7 @@
                 $categories = get_terms('category', $argsCat);
                 foreach ($categories as $category) {
                   if ($category->slug != get_the_category()[0]->slug) {
-                    echo '<li><a class="getstarted empty" href="/' . $category->slug . '">' . $category->name . ' <span>(' . $category->count . ')</span></a></li>';
+                    echo '<li><a class="getstarted empty" href="/arquivos/' . $category->slug . '">' . $category->name . ' <span>(' . $category->count . ')</span></a></li>';
                   }
                 }
                 ?>
