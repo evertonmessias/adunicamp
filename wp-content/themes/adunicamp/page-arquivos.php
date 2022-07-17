@@ -49,9 +49,10 @@
         <div class="col-lg-3">
           <div class="sidebar">
             <h3 class="sidebar-title">Busca</h3>
-            <div class="sidebar-item search-form">
-              <form action="">
-                <input type="text">
+
+            <div class="sidebar-item search-form search">
+              <form action="/" method="get">
+                <input type="text" placeholder="Pesquisar" required name="s" id="search" value="<?php the_search_query(); ?>" />
                 <button type="submit"><i class="bi bi-search"></i></button>
               </form>
             </div><!-- End sidebar search formn-->

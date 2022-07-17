@@ -1810,6 +1810,26 @@ section {
 }
 
 /*--------------------------------------------------------------
+# Search
+--------------------------------------------------------------*/
+
+.search .result{
+  min-height: 130px;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+.search .result .col-lg-10{
+  border-left: 1px solid #ccc;
+}
+.search img{
+  display: block;
+  position: relative;
+  margin: 0 auto;
+  max-height: 100px;
+}
+
+/*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/
 #footer {
