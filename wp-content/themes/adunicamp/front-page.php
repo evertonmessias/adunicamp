@@ -291,7 +291,7 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
                 $imagem = SITEPATH . "assets/img/semimagem.png";
               }
             ?>
-              <div class="swiper-slide"><a href="<?php echo get_permalink() ?>"><img src="<?php echo $imagem ?>" class="img-fluid" alt="" title="<?php echo get_the_title() ?>"></a></div>
+              <div class="swiper-slide"><a href="<?php echo get_permalink() ?>"><img src="<?php echo $imagem ?>" class="img-fluid" alt="" title="<?php echo get_the_title() ?>"><small><?php echo get_the_title() ?></small></a></div>
             <?php $x++;
             }
             wp_reset_postdata();

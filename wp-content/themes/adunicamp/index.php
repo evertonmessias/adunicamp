@@ -37,9 +37,9 @@
 
             <div class="entry-meta">
               <ul>
-                <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">John Doe</a></li>
-                <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"><time datetime="2020-01-01">Jan 1, 2020</time></a></li>
-                <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-single.html">12 Comments</a></li>
+                <li class="d-flex align-items-center"><i class="bi bi-person"></i> <?php echo get_the_author_meta('display_name',$post->post_author) ?></li>
+                <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <time><?php echo get_the_date('d M Y', $post->ID) ?></time></li>
+                <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <?php echo get_comments_number(get_the_ID()) ?> Comentários</li>
               </ul>
             </div>
 

@@ -891,7 +891,7 @@ section {
 # Podcast Section
 --------------------------------------------------------------*/
 .podcast {
-  height: 400px;
+  height: 500px;
 }
 
 .podcast-slider{
@@ -930,6 +930,10 @@ section {
     z-index: 1;
     transform: scale(1.2);
   }
+}
+.podcast small{
+  font-size: 12px;
+  font-weight: 500;
 }
 
 /*--------------------------------------------------------------
