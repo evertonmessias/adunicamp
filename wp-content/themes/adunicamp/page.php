@@ -1,40 +1,22 @@
 <?php get_header(); ?>
-<main id="main" class="post" data-aos="fade-up">
+<main id="main">
+
   <!-- ======= Breadcrumbs ======= -->
-  <section class="breadcrumbs">
+  <section id="breadcrumbs" class="breadcrumbs">
     <div class="container">
-      <div class="d-flex justify-content-between align-items-center">
-        <h2><?php the_title() ?></h2>
-        <ol>
-          <li><a href="/">inicio</a></li>
-          <li>
-            <?php
-            if (url_active()[2] == "") echo url_active()[1];
-            else echo "<a href='/" . url_active()[1] . "'>" . url_active()[1] . "</a>";
-            ?>
-          </li>
-          <!--<li>
-            <?php //if (url_active()[2] != "") echo url_active()[2]; 
-            ?>
-          </li>-->
-        </ol>
-      </div>
+      <ol>
+        <li><a href="/">inicio</a></li>
+        <li><a href="<?php echo get_the_permalink() ?>"><?php echo $post->post_name ?></a></li>
+      </ol>
+      <h2><?php echo $post->post_title ?></h2>
     </div>
-  </section><!-- Breadcrumbs Section -->
+  </section><!-- End Breadcrumbs -->
 
-		<!-- ======= Portfolio Details Section ======= -->
-    <section id="page" class="portfolio-details">
-
+  <section class="inner-page pt-3 page">
     <div class="container">
-
-      <div class="portfolio-description text-justify">
-        <?php the_content() ?>
-        <h1>&nbsp;</h1>
-      </div>
-      
+      <?php the_content() ?>
     </div>
-
-  </section><!-- End Portfolio Details Section -->
+  </section>
 
 </main><!-- End #main -->
 <?php get_footer(); ?>

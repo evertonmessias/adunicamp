@@ -25,6 +25,12 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "Raleway", sans-serif;
 }
 
+.error404 h1{
+  text-align: center;
+  margin-top: 100px;
+  color: #f00;
+}
+
 .white{
   color: #fff !important;
 }
@@ -1794,6 +1800,13 @@ section {
 }
 .new-posts .blog-comments .reply-form .submit:hover {
   background-color: #1e6583;
+}
+
+/*--------------------------------------------------------------
+# Page
+--------------------------------------------------------------*/
+.page{
+  min-height: 400px;
 }
 
 /*--------------------------------------------------------------

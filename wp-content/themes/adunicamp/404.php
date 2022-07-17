@@ -1,13 +1,8 @@
 <?php get_header(); ?>
 <main id="main">
-<section class="post">
-    <div class="container error404" data-aos="zoom-in">
-        <h1>&nbsp;</h1>
-        <h1>&nbsp;</h1>
-        <h1>&nbsp;</h1>
-        <h1>Pagina não encontrada !</h1>
-        <h1>&nbsp;</h1>
-        <h1>&nbsp;</h1>
+<section class="page">
+    <div class="container error404" data-aos="fade-up">        
+        <h1 class="center">Pagina não encontrada !</h1>        
     </div>
 </section>
 </main>
