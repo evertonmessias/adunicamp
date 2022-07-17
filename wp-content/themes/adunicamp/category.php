@@ -73,7 +73,7 @@
             <div class="sidebar-item categories">
               <ul>
                 <li><a class="getstarted empty" href="/arquivos">Todos os Arquivos</a></li>
-                <li><a class="getstarted" href="/<?php echo get_the_category()[0]->slug ?>"><?php echo get_the_category()[0]->name ?> <span>(<?php echo get_the_category()[0]->count ?>)</span></a></li>
+                <li><a class="getstarted" href="/arquivos/<?php echo get_the_category()[0]->slug ?>"><?php echo get_the_category()[0]->name ?> <span>(<?php echo get_the_category()[0]->count ?>)</span></a></li>
                 <?php
                 $argsCat = array(
                   'post_type' => 'post',

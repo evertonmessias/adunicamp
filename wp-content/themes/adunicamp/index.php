@@ -1,57 +1,143 @@
 <?php get_header(); ?>
-<main id="main" class="post" data-aos="fade-up">
+<main id="main">
+
   <!-- ======= Breadcrumbs ======= -->
-  <section class="breadcrumbs">
+  <section id="breadcrumbs" class="breadcrumbs">
     <div class="container">
-      <div class="d-flex justify-content-between align-items-center">
-        <h2><?php the_title() ?></h2>
-        <ol>
-          <li><a href="/">home</a></li>
-          <li>
+      <ol>
+        <li><a href="/">inicio</a></li>
+        <li><a href="/arquivos">arquivos</a></li>
+        <li><a href="/arquivos/<?php echo get_the_category()[0]->slug ?>"><?php echo get_the_category()[0]->slug ?></a></li>
+      </ol>
+      <h2><?php echo get_the_title() ?></h2>
+    </div>
+  </section><!-- End Breadcrumbs -->
+
+  <!-- ======= Blog Single Section ======= -->
+  <section id="news" class="new-posts">
+    <div class="container" data-aos="fade-up">
+
+      <div class="row">
+
+        <div class="col-lg-9 entries">
+
+          <article class="entry entry-single">
+
+            <div class="entry-img">
+              <?php
+              $imagem = get_the_post_thumbnail_url(get_the_ID(), 'full');
+              if ($imagem == "") $imagem = SITEPATH . "assets/img/semimagem.png";
+              ?>
+              <img src="<?php echo $imagem; ?>" alt="" class="img-fluid">
+            </div>
+
+            <h2 class="entry-title">
+              <?php echo get_the_title(); ?>
+            </h2>
+
+            <div class="entry-meta">
+              <ul>
+                <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">John Doe</a></li>
+                <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"><time datetime="2020-01-01">Jan 1, 2020</time></a></li>
+                <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-single.html">12 Comments</a></li>
+              </ul>
+            </div>
+
+            <div class="entry-content">
+              <?php the_content() ?>
+            </div>
+          </article><!-- End blog entry -->
+
+
+          <div class="blog-comments">
+            <h4 class="comments-count"><?php echo get_comments_number(get_the_ID()) ?> Comentários</h4>
             <?php
-            if (url_active()[2] == "") echo url_active()[1];
-            else echo "<a href='/" . url_active()[1] . "'>" . url_active()[1] . "</a>";
+            $x = 1;
+            $argsComments = array(
+              'post_id' => get_the_ID(),
+              'status' => 'approve'
+            );
+            $comments = get_comments($argsComments);
+            foreach ($comments as $comment) {
+              echo '<div id="comment-' . $x . '" class="comment"><div class="d-flex"><div><h5>' . get_comment_author() . '</h5><time>' . get_comment_date() . '</time><p>' . get_comment_text() . '</p></div></div></div>';
+              $x++;
+            }
             ?>
-          </li>          
-        </ol>
+            <div class="reply-form">
+              <?php
+              $comments_args = array(
+                'fields' => array(
+                  'author' => '<p><input class="form-control" id="author" name="author" required placeholder="Nome *"></input></p>',
+                  'email' => '<p><input class="form-control" id="email" name="email" required placeholder="E-Mail *"></input></p>',
+                  'cookies' => '',
+                ),
+                'label_submit' => __('Enviar'),
+                'title_reply' => __('Deixe um comentário'),
+                'comment_field' => '<p"><textarea class="form-control" id="comment" name="comment" required placeholder="Comentário *"></textarea></p>',
+                'comment_notes_after' => '',
+                'id_submit' => __('comment-submit'),
+              );
+              comment_form($comments_args);
+              ?>
+            </div>
+
+          </div><!-- End blog comments -->
+        </div><!-- End blog entries list -->
+
+        <div class="col-lg-3">
+          <div class="sidebar">
+            <h3 class="sidebar-title">Busca</h3>
+            <div class="sidebar-item search-form">
+              <form action="">
+                <input type="text">
+                <button type="submit"><i class="bi bi-search"></i></button>
+              </form>
+            </div><!-- End sidebar search formn-->
+
+            <div class="sidebar-item categories">
+              <ul>
+                <li><a class="getstarted empty" href="/arquivos">Todos os Arquivos</a></li>
+                <li><a class="getstarted" href="/arquivos/<?php echo get_the_category()[0]->slug ?>"><?php echo get_the_category()[0]->name ?> <span>(<?php echo get_the_category()[0]->count ?>)</span></a></li>
+              </ul>
+            </div><!-- End sidebar categories-->
+
+            <h3 class="sidebar-title">Recentes</h3>
+            <div class="sidebar-item recent-posts">
+
+              <?php
+              $x = 1;
+              $args = array(
+                'post_type' => 'post',
+                'category_name' => get_the_category()[0]->slug,
+                'order' => 'DESC',
+                'posts_per_page' => 10
+              );
+
+              $loop = new WP_Query($args);
+
+              foreach ($loop->posts as $post) {
+
+                $imagem = get_the_post_thumbnail_url(get_the_ID(), 'full');
+                if ($imagem == "") $imagem = SITEPATH . "assets/img/semimagem.png";
+
+                echo '<div class="post-item clearfix">
+              <a href="' . get_the_permalink() . '"><img src="' . $imagem . '" alt=""></a>
+              <h4><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></h4>
+              <time>' . get_the_date('d M Y', $post->ID) . '</time>
+              </div>';
+                $x++;
+              } ?>
+
+            </div><!-- End sidebar recent posts-->
+
+          </div><!-- End sidebar -->
+
+        </div><!-- End blog sidebar -->
+
       </div>
+
     </div>
-  </section><!-- Breadcrumbs Section -->
-
-		<!-- ======= Portfolio Details Section ======= -->
-    <section id="page" class="portfolio-details">
-
-    <div class="container">
-
-    <div class="portfolio-details-container">
-        <?php if (has_post_thumbnail()) { ?>
-          <div class="owl-carousel portfolio-details-carousel">
-            <a href="<?php the_post_thumbnail_url('full'); ?>" target="_blank">
-              <img src="<?php the_post_thumbnail_url('full'); ?>" class="img-fluid" title="<?php the_title() ?>">
-            </a>
-          </div>
-          <br><br>
-        <?php } ?>
-      </div>
-
-      <div class="portfolio-description text-justify">
-          <h5><strong>Data Início:</strong>&ensp;<?php echo get_post_meta($post->ID, 'agenda_data_inicio', true); ?></h5>
-          <h5><strong>Data Fim:</strong>&ensp;<?php echo get_post_meta($post->ID, 'agenda_data_fim', true); ?></h5>
-          <?php
-          $adata = explode('T', get_post_meta($post->ID, 'agenda_data_inicio', true));
-          
-          $data = explode('-', $adata[0]);
-          $hora = explode(':', $adata[1]);          
-
-          echo "<p>".$data[2] . "/" . $data[1] . "/" . $data[0]."</p>";
-          echo "<p>".$hora[0]." :: ".$hora[1]."</p>";
-          ?>
-        <?php the_content() ?>        
-      </div>
-      
-    </div>
-
-  </section><!-- End Portfolio Details Section -->
+  </section><!-- End Blog Single Section -->
 
 </main><!-- End #main -->
 <?php get_footer(); ?>
