@@ -934,7 +934,7 @@ section {
 .podcast small{
   display: none;
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 600;
 }
 .podcast .swiper-slide-active small {
   display: block;
@@ -1122,6 +1122,81 @@ section {
   padding: 0;
 }
 
+
+/*--------------------------------------------------------------
+# Team
+--------------------------------------------------------------*/
+
+.team .team-slider {
+  overflow: hidden;
+  padding-top: 20px;
+}
+
+.team .member {
+  margin-bottom: 20px;
+  overflow: hidden;
+  border-radius: 5px;
+  background: #fff; 
+  height: 350px;
+  padding: 10px;
+  box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.08);
+}
+.team .member .member-img {
+  position: relative;
+  overflow: hidden;
+}
+.team .member .member-img img {
+  display: block;
+  position: relative;
+  margin: 0 auto;
+  border-radius: 50%;
+  max-height: 200px;
+}
+.team .member .member-info {
+  padding: 25px 15px;
+}
+.team .member .member-info h4 {
+  font-weight: 700;
+  margin-bottom: 5px;
+  font-size: 18px;
+  color: #111111;
+  text-align: center;
+}
+.team .member .member-info span,.team .member .member-info p {
+  display: block;
+  position: absolute;
+  width: 100%;  
+  left: 0px;
+  text-align: center;
+}
+.team .member .member-info span {
+  bottom: 50px;
+  font-size: 13px;
+  font-weight: 400;
+  color: #aaa;
+}
+.team .member .member-info p {
+  bottom: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #777;
+}
+
+.team .swiper-pagination {
+  margin-top: 20px;
+  position: relative;
+}
+.team .swiper-pagination .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background-color: #fff;
+  opacity: 1;
+  border: 1px solid #2682A8;
+}
+.team .swiper-pagination .swiper-pagination-bullet-active {
+  background-color: #2682A8;
+}
+
 /*--------------------------------------------------------------
 # Contact
 --------------------------------------------------------------*/
@@ -1134,7 +1209,7 @@ section {
 }
 .contact .info-box i {
   font-size: 32px;
-  color: #4C5C96;
+  color: #2682A8;
   border-radius: 50%;
   padding: 8px;
   border: 2px dotted #f8d4d5;
@@ -1211,7 +1286,7 @@ section {
   padding: 12px 15px;
 }
 .contact .php-email-form button[type=submit] {
-  background: #4C5C96;
+  background: #2682A8;
   border: 0;
   padding: 10px 32px;
   color: #fff;

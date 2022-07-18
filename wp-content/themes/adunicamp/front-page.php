@@ -372,6 +372,54 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
     </section><!-- End Portfolio Section -->
   </div>
 
+  <!-- ======= Team Section ======= -->
+  <section id="team" class="team" style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('<?php echo get_option('portal_input_2') ?>') center center;background-size: cover;background-attachment: fixed;">>
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-title" data-aos="fade-up">
+        <h2 class="white">Equipe</h2>
+      </div>
+
+      <div class="team-slider swiper">
+        <div class="swiper-wrapper align-items-center">
+
+          <?php
+          $args = array(
+            'post_type' => 'equipe',
+            'posts_per_page' => 100,
+            'order' => 'ASC'
+          );
+          $loop = new WP_Query($args);
+          while ($loop->have_posts()) {
+            $loop->the_post();
+            $imagem = get_the_post_thumbnail_url(get_the_ID(), 'full');
+            if ($imagem == "") $imagem = SITEPATH . "assets/img/semimagem.png";
+
+          ?>
+            <div class="swiper-slide">
+              <div class="member">
+                <div class="member-img">
+                  <img src="<?php echo $imagem; ?>" class="img-fluid" title="<?php echo get_the_title() ?>">
+                </div>
+                <div class="member-info">
+                  <h4><?php echo get_the_title() ?></h4>
+                  <span>(<?php echo get_post_meta($post->ID, 'equipe_local', true); ?>)</span>
+                  <p><?php echo get_post_meta($post->ID, 'equipe_funcao', true); ?></p>
+                </div>
+              </div>
+            </div>
+
+          <?php
+          }
+          wp_reset_postdata();
+          ?>
+
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+  </section><!-- End Team Section -->
+
   <!-- ======= Contact Section ======= -->
   <section id="contact" class="contact">
     <div class="container">

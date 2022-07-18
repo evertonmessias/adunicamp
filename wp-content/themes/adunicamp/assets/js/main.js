@@ -107,27 +107,27 @@
       behavior: 'smooth'
     })
   }
-  
 
-    /**
-   * Header fixed top on scroll
-   */
-     let selectHeader = select('#header')
-     if (selectHeader) {
-       let headerOffset = selectHeader.offsetTop
-       let nextElement = selectHeader.nextElementSibling
-       const headerFixed = () => {
-         if ((headerOffset - window.scrollY) <= 0) {
-           selectHeader.classList.add('fixed-top')
-           nextElement.classList.add('scrolled-offset')
-         } else {
-           selectHeader.classList.remove('fixed-top')
-           nextElement.classList.remove('scrolled-offset')
-         }
-       }
-       window.addEventListener('load', headerFixed)
-       onscroll(document, headerFixed)
-     }
+
+  /**
+ * Header fixed top on scroll
+ */
+  let selectHeader = select('#header')
+  if (selectHeader) {
+    let headerOffset = selectHeader.offsetTop
+    let nextElement = selectHeader.nextElementSibling
+    const headerFixed = () => {
+      if ((headerOffset - window.scrollY) <= 0) {
+        selectHeader.classList.add('fixed-top')
+        nextElement.classList.add('scrolled-offset')
+      } else {
+        selectHeader.classList.remove('fixed-top')
+        nextElement.classList.remove('scrolled-offset')
+      }
+    }
+    window.addEventListener('load', headerFixed)
+    onscroll(document, headerFixed)
+  }
 
   /**
    * Back to top button
@@ -302,6 +302,41 @@
       }
     }
   });
+
+
+  /**
+  * Team Slider
+  */
+  new Swiper('.team-slider', {
+    speed: 400,
+    loop: true,
+    centeredSlides: true,
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false
+    },
+    slidesPerView: 'auto',
+    pagination: {
+      el: '.swiper-pagination',
+      type: 'bullets',
+      clickable: true
+    },
+    breakpoints: {
+      320: {
+        slidesPerView: 1,
+        spaceBetween: 20
+      },
+      640: {
+        slidesPerView: 3,
+        spaceBetween: 20
+      },
+      992: {
+        slidesPerView: 5,
+        spaceBetween: 20
+      }
+    }
+  });
+
 
   /**
    * Porfolio isotope and filter

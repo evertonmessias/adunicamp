@@ -101,7 +101,10 @@ table.access td {
     padding: 3px;
 }
 
-#post_descricao_id input[type=text]{
+#post_descricao_id input[type=text],
+#equipe_funcao_id input[type=text],
+#equipe_local_id input[type=text],
+#equipe_contato_id input[type=text]{
     width: 100%;
 }
 
