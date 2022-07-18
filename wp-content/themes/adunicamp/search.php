@@ -22,7 +22,8 @@
                     $s = get_search_query();
                     $args = array(
                         's' => $s,
-                        'post_type' => 'post'
+                        'post_type' => 'post',
+                        'posts_per_page' => 100
                     );
                     $x = 1;
 

@@ -932,8 +932,12 @@ section {
   }
 }
 .podcast small{
+  display: none;
   font-size: 12px;
   font-weight: 500;
+}
+.podcast .swiper-slide-active small {
+  display: block;
 }
 
 /*--------------------------------------------------------------
@@ -1832,7 +1836,12 @@ section {
   margin: 0 auto;
   max-height: 100px;
 }
-
+.search .result h4{
+  font-size: 18px;
+}
+.search .result p{
+  font-size: 14px;
+}
 /*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/
