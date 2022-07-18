@@ -586,15 +586,18 @@ section {
 --------------------------------------------------------------*/
 #top-news{
   padding-top: 2em;
+  height: 650px;
 }
 
 #top-news .post-entry-1 {
   position: relative;
   top: 30px;
   margin-bottom: 30px;
-  border-left: 1px solid #ccc;
   padding: 30px;
-  min-height: 300px;
+  height: 420px;
+  background: #fff;
+  margin: 0px 5px;  
+  border-radius: 5px;
 }
 #top-news .post-entry-1 img {
   position: relative;
@@ -721,7 +724,7 @@ section {
   margin-top: -50px;
 }
 .gallery .swiper-pagination {
-  margin-top: 10px;
+  margin-top: 80px;
   position: relative;
 }
 .gallery .swiper-pagination .swiper-pagination-bullet {
@@ -756,6 +759,7 @@ section {
   position: relative;
   background: #fff;
   border-radius: 25px;
+  box-shadow: 0px 0px 21px 2px rgb(0 0 0 / 18%);
 }
 .services .icon {
   position: absolute;
@@ -806,86 +810,52 @@ section {
 }
 
 /*--------------------------------------------------------------
-# Clients
+# Agreement
 --------------------------------------------------------------*/
-.clients{
-  height: 350px;
+.agreement{
+  height: 450px;
+  padding: 0;
 }
-.clients .swiper-pagination {
+.agreement .swiper{
+  top:-50px;
+  height: 300px;
+}
+.agreement .swiper-pagination {
   position: absolute;
-  bottom: 0;  
+  bottom: 0px;  
 }
-.clients .swiper-pagination .swiper-pagination-bullet {
+.agreement .swiper-pagination .swiper-pagination-bullet {
   width: 12px;
   height: 12px;
   background-color: #fff;
   opacity: 1;
 }
-.clients .swiper-pagination .swiper-pagination-bullet-active {
+.agreement .swiper-pagination .swiper-pagination-bullet-active {
   background-color: #2682A8;
 }
-.clients .swiper-slide img {
+.agreement .swiper-slide{
+  background: #fff;
+  padding: 30px;
+  height: 200px;
+  border-radius: 5px;
+}
+.agreement .swiper-slide img {
+  display: block;
+  position: relative;
+  margin: 0 auto;
+  height: 100px;
+  max-width: 100%;
   transition: 0.3s;
 }
-.clients .swiper-slide a:hover img {
+.agreement .swiper-slide a:hover img {
   transform: scale(1.1);
 }
-.clients p{
+.agreement p{
   margin-top: 15px;
   text-align: center;
   font-size: 13px;
   font-weight: 600;
 }
-
-/*--------------------------------------------------------------
-# Values
---------------------------------------------------------------*/
-.values .card {
-  border: 0;
-  padding: 160px 20px 20px 20px;
-  position: relative;
-  width: 100%;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-}
-.values .card-body {
-  z-index: 10;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 15px 30px;
-  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
-  transition: 0.3s;
-  transition: ease-in-out 0.4s;
-  border-radius: 5px;
-}
-.values .card-title {
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 15px;
-}
-.values .card-title a {
-  color: #473d3a;
-}
-.values .card-text {
-  color: #4b4949;
-}
-.values .read-more a {
-  color: #656262;
-  text-transform: uppercase;
-  font-weight: 600;
-  font-size: 12px;
-  transition: 0.4s;
-}
-.values .read-more a:hover {
-  text-decoration: underline;
-}
-.values .card:hover .card-body {
-  background: #2682A8;
-}
-.values .card:hover .read-more a, .values .card:hover .card-title, .values .card:hover .card-title a, .values .card:hover .card-text {
-  color: #fff;
-}
-
 
 /*--------------------------------------------------------------
 # Podcast Section
@@ -925,10 +895,11 @@ section {
 
   .podcast .swiper-slide-active {
     border: 6px solid var(--color-primary);
-    padding: 4px;
+    padding: 10px;
     background: #fff;
     z-index: 1;
     transform: scale(1.2);
+    border-radius: 5px;
   }
 }
 .podcast small{
@@ -939,6 +910,81 @@ section {
 .podcast .swiper-slide-active small {
   display: block;
 }
+
+/*--------------------------------------------------------------
+# Team
+--------------------------------------------------------------*/
+
+.team .team-slider {
+  overflow: hidden;
+  padding-top: 20px;
+}
+
+.team .member {
+  margin-bottom: 20px;
+  overflow: hidden;
+  border-radius: 5px;
+  background: #fff; 
+  height: 350px;
+  padding: 10px;
+  box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.08);
+}
+.team .member .member-img {
+  position: relative;
+  overflow: hidden;
+}
+.team .member .member-img img {
+  display: block;
+  position: relative;
+  margin: 0 auto;
+  border-radius: 50%;
+  max-height: 200px;
+}
+.team .member .member-info {
+  padding: 25px 15px;
+}
+.team .member .member-info h4 {
+  font-weight: 700;
+  margin-bottom: 5px;
+  font-size: 18px;
+  color: #111111;
+  text-align: center;
+}
+.team .member .member-info span,.team .member .member-info p {
+  display: block;
+  position: absolute;
+  width: 100%;  
+  left: 0px;
+  text-align: center;
+}
+.team .member .member-info span {
+  bottom: 50px;
+  font-size: 13px;
+  font-weight: 400;
+  color: #aaa;
+}
+.team .member .member-info p {
+  bottom: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #777;
+}
+
+.team .swiper-pagination {
+  margin-top: 20px;
+  position: relative;
+}
+.team .swiper-pagination .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background-color: #fff;
+  opacity: 1;
+  border: 1px solid #2682A8;
+}
+.team .swiper-pagination .swiper-pagination-bullet-active {
+  background-color: #2682A8;
+}
+
 
 /*--------------------------------------------------------------
 # Portfolio
@@ -1120,81 +1166,6 @@ section {
 }
 .portfolio-details .portfolio-description p {
   padding: 0;
-}
-
-
-/*--------------------------------------------------------------
-# Team
---------------------------------------------------------------*/
-
-.team .team-slider {
-  overflow: hidden;
-  padding-top: 20px;
-}
-
-.team .member {
-  margin-bottom: 20px;
-  overflow: hidden;
-  border-radius: 5px;
-  background: #fff; 
-  height: 350px;
-  padding: 10px;
-  box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.08);
-}
-.team .member .member-img {
-  position: relative;
-  overflow: hidden;
-}
-.team .member .member-img img {
-  display: block;
-  position: relative;
-  margin: 0 auto;
-  border-radius: 50%;
-  max-height: 200px;
-}
-.team .member .member-info {
-  padding: 25px 15px;
-}
-.team .member .member-info h4 {
-  font-weight: 700;
-  margin-bottom: 5px;
-  font-size: 18px;
-  color: #111111;
-  text-align: center;
-}
-.team .member .member-info span,.team .member .member-info p {
-  display: block;
-  position: absolute;
-  width: 100%;  
-  left: 0px;
-  text-align: center;
-}
-.team .member .member-info span {
-  bottom: 50px;
-  font-size: 13px;
-  font-weight: 400;
-  color: #aaa;
-}
-.team .member .member-info p {
-  bottom: 10px;
-  font-size: 15px;
-  font-weight: 600;
-  color: #777;
-}
-
-.team .swiper-pagination {
-  margin-top: 20px;
-  position: relative;
-}
-.team .swiper-pagination .swiper-pagination-bullet {
-  width: 12px;
-  height: 12px;
-  background-color: #fff;
-  opacity: 1;
-  border: 1px solid #2682A8;
-}
-.team .swiper-pagination .swiper-pagination-bullet-active {
-  background-color: #2682A8;
 }
 
 /*--------------------------------------------------------------

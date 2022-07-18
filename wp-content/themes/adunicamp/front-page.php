@@ -118,12 +118,12 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
   </section><!-- End Gallery -->
 
   <!-- ======= Services Section ======= -->
-  <section id="services" class="services" style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('<?php echo get_option('portal_input_2') ?>') center center;background-size: cover;padding: 50px 0;background-attachment: fixed;">
+  <section id="services" class="services">
 
     <div class="container">
 
       <div class="section-title" data-aos="fade-up">
-        <h2 class="white">Serviços</h2>
+        <h2>Serviços</h2>
       </div>
 
       <div class="row">
@@ -150,14 +150,14 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
   </section><!-- End Services Section -->
 
   <!-- ======= Convênios Section ======= -->
-  <section id="agreement" class="clients section-bg">
+  <section id="agreement" class="agreement" style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('<?php echo get_option('portal_input_2') ?>') center center;background-size: cover;padding: 50px 0;background-attachment: fixed;">
     <div class="container" data-aos="fade-up">
 
       <div class="section-title" data-aos="fade-up">
-        <h2>Convênios</h2>
+        <h2 class="white">Convênios</h2>
       </div>
 
-      <div class="clients-slider swiper">
+      <div class="agreement-slider swiper">
         <div class="swiper-wrapper align-items-center">
 
           <?php
@@ -187,14 +187,12 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
           wp_reset_postdata();
           ?>
 
-        </div><br>
+        </div>
         <div class="swiper-pagination"></div>
       </div>
 
     </div>
   </section><!-- End Convênios Section -->
-
-
 
   <!-- ======= News Section ======= -->
   <section id="news" class="new-posts">
@@ -261,7 +259,6 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
       </div>
     </div>
   </section><!-- End News Section -->
-
 
   <div id="media">
     <!-- ======= Video Section ======= -->
