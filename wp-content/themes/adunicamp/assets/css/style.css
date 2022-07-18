@@ -938,7 +938,8 @@ section {
   position: relative;
   margin: 0 auto;
   border-radius: 50%;
-  max-height: 200px;
+  max-width: 100%;
+  height: 200px;
 }
 .team .member .member-info {
   padding: 25px 15px;
