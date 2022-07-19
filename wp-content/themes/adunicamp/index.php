@@ -4,12 +4,12 @@
   <!-- ======= Breadcrumbs ======= -->
   <section id="breadcrumbs" class="breadcrumbs">
     <div class="container">
+      <h2><?php echo get_the_title() ?></h2>
       <ol>
         <li><a href="/">inicio</a></li>
         <li><a href="/arquivos">arquivos</a></li>
         <li><a href="/arquivos/<?php echo get_the_category()[0]->slug ?>"><?php echo get_the_category()[0]->slug ?></a></li>
-      </ol>
-      <h2><?php echo get_the_title() ?></h2>
+      </ol>      
     </div>
   </section><!-- End Breadcrumbs -->
 

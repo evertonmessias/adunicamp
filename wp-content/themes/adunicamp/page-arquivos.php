@@ -4,11 +4,11 @@
   <!-- ======= Breadcrumbs ======= -->
   <section id="breadcrumbs" class="breadcrumbs">
     <div class="container">
+      <h2>Todos os Arquivos</h2>
       <ol>
         <li><a href="/">inicio</a></li>
         <li>arquivos</li>
-      </ol>
-      <h2>Todos os Arquivos</h2>
+      </ol>      
     </div>
   </section><!-- End Breadcrumbs -->
 
