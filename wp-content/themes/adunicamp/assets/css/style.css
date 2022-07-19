@@ -743,6 +743,9 @@ section {
 /*--------------------------------------------------------------
 # Services
 --------------------------------------------------------------*/
+.services{
+  height: 700px;
+}
 .services .buttons{
   padding-top: 1px;
 }
@@ -835,15 +838,19 @@ section {
 }
 .agreement .swiper-slide{
   background: #fff;
-  padding: 30px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 200px;
   border-radius: 5px;
 }
+
 .agreement .swiper-slide img {
   display: block;
   position: relative;
   margin: 0 auto;
-  height: 100px;
+  max-height: 100px;
   max-width: 100%;
   transition: 0.3s;
 }
@@ -851,7 +858,11 @@ section {
   transform: scale(1.1);
 }
 .agreement p{
-  margin-top: 15px;
+  display: block;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 85%;
   text-align: center;
   font-size: 13px;
   font-weight: 600;
@@ -958,17 +969,19 @@ section {
   left: 0px;
   text-align: center;
 }
-.team .member .member-info span {
-  bottom: 50px;
-  font-size: 13px;
-  font-weight: 400;
-  color: #aaa;
-}
+
 .team .member .member-info p {
-  bottom: 10px;
+  bottom: 30px;
   font-size: 15px;
   font-weight: 600;
   color: #777;
+}
+
+.team .member .member-info span {
+  bottom: 25px;
+  font-size: 13px;
+  font-weight: 400;
+  color: #aaa;
 }
 
 .team .swiper-pagination {

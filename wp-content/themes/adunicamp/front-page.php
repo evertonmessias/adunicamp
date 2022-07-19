@@ -391,7 +391,8 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
             $loop->the_post();
             $imagem = get_the_post_thumbnail_url(get_the_ID(), 'full');
             if ($imagem == "") $imagem = SITEPATH . "assets/img/semimagem.png";
-
+            $local = get_post_meta($post->ID, 'equipe_local', true);
+            $contato = get_post_meta($post->ID, 'equipe_contato', true);
           ?>
             <div class="swiper-slide">
               <div class="member">
@@ -400,8 +401,16 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
                 </div>
                 <div class="member-info">
                   <h4><?php echo get_the_title() ?></h4>
-                  <span>(<?php echo get_post_meta($post->ID, 'equipe_local', true); ?>)</span>
                   <p><?php echo get_post_meta($post->ID, 'equipe_funcao', true); ?></p>
+                  <span>
+                    <?php 
+                    if( $local != ""){
+                      echo '('.$local.')';
+                    }else if($contato != ""){
+                      echo '<i class="ri-phone-line"></i> '.$contato;
+                    }
+                    ?>
+                  </span>                  
                 </div>
               </div>
             </div>
