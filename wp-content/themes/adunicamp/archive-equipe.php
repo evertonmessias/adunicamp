@@ -22,7 +22,8 @@
         <?php
         $args = array(
           'post_type' => url_active()[1],
-          'posts_per_page' => 100
+          'posts_per_page' => 100,
+          'order' => 'ASC'
         );
         $loop = new WP_Query($args);
         while ($loop->have_posts()) {
@@ -33,35 +34,30 @@
             $imagem = SITEPATH . "assets/img/semimagem.png";
           }
         ?>
-          <div class="col-lg-3 portfolio-item agenda">
+          <div class="col-lg-3 portfolio-item agenda equipe">
             <a href="<?php echo get_the_permalink(); ?>" title="Abrir"><img src="<?php echo $imagem; ?>" class="img-fluid" title="<?php echo get_the_title() ?>"></a>
             <div class="portfolio-info">
               <h4><a href="<?php echo get_the_permalink(); ?>" title="Abrir"><?php echo get_the_title() ?></a></h4>
             </div>
             <?php
-            $agenda_inicio = get_post_meta($post->ID, 'agenda_data_inicio', true);
-            $agenda_fim = get_post_meta($post->ID, 'agenda_data_fim', true);
-            if ($agenda_inicio != "" && $agenda_fim != "") {
-
-              $campo_agenda_inicio = explode('T', $agenda_inicio);
-              $hora_inicio = $campo_agenda_inicio[1];
-              $array_agenda_inicio = explode('-', $campo_agenda_inicio[0]);
-
-              $campo_agenda_fim = explode('T', $agenda_fim);
-              $hora_fim = $campo_agenda_fim[1];
-              $array_agenda_fim = explode('-', $campo_agenda_fim[0]);
+            $equipe_funcao = get_post_meta($post->ID, 'equipe_funcao', true);
+            $equipe_local = get_post_meta($post->ID, 'equipe_local', true);
+            $equipe_contato = get_post_meta($post->ID, 'equipe_contato', true);
             ?>
-              <div class="entry-info">
-                <h5><b>Início:</b>&nbsp;<?php echo $array_agenda_inicio[2] . "/" . $array_agenda_inicio[1] . "/" . $array_agenda_inicio[0]  . " - " . $hora_inicio; ?></h5>
-                <h5><b>Fim:</b>&emsp;<?php echo $array_agenda_fim[2] . "/" . $array_agenda_fim[1] . "/" . $array_agenda_fim[0]  . " - " . $hora_fim; ?></h5>
-              </div>
-            <?php }
-            ?>
+            <div class="entry-info">
+              <h5><b>Função:</b>&ensp;<?php echo $equipe_funcao ?></h5>
+              <?php if ($equipe_local != "") { ?>
+                <h5><b>Local:</b>&nbsp;&emsp;<?php echo $equipe_local ?></h5>
+              <?php } else if ($equipe_contato != "") { ?>
+                <h5><b>Contato:</b>&nbsp;<?php echo $equipe_contato ?></h5>
+              <?php } ?>
+            </div>
           </div>
         <?php }
         wp_reset_postdata();
         ?>
       </div>
+
     </div>
 
   </section><!-- End Portfolio Details Section -->

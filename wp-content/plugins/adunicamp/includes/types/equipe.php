@@ -39,6 +39,7 @@ function create_custom_post_type_equipe()
 }
 add_action('init', 'create_custom_post_type_equipe');
 
+/*
 function create_equipe_taxonomies() {
     $labels = array(
         'name'              => _x( 'Categories', 'taxonomy general name' ),
@@ -64,7 +65,7 @@ function create_equipe_taxonomies() {
     register_taxonomy( 'equipe_categories','equipe', $args );
 }	
 add_action('init', 'create_equipe_taxonomies');
-
+*/
 
 //Roles for Admin, Editor
 function role_caps_equipe()

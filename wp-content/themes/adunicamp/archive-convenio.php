@@ -33,30 +33,11 @@
             $imagem = SITEPATH . "assets/img/semimagem.png";
           }
         ?>
-          <div class="col-lg-3 portfolio-item agenda">
+          <div class="col-lg-3 portfolio-item agenda convenio">
             <a href="<?php echo get_the_permalink(); ?>" title="Abrir"><img src="<?php echo $imagem; ?>" class="img-fluid" title="<?php echo get_the_title() ?>"></a>
             <div class="portfolio-info">
               <h4><a href="<?php echo get_the_permalink(); ?>" title="Abrir"><?php echo get_the_title() ?></a></h4>
             </div>
-            <?php
-            $agenda_inicio = get_post_meta($post->ID, 'agenda_data_inicio', true);
-            $agenda_fim = get_post_meta($post->ID, 'agenda_data_fim', true);
-            if ($agenda_inicio != "" && $agenda_fim != "") {
-
-              $campo_agenda_inicio = explode('T', $agenda_inicio);
-              $hora_inicio = $campo_agenda_inicio[1];
-              $array_agenda_inicio = explode('-', $campo_agenda_inicio[0]);
-
-              $campo_agenda_fim = explode('T', $agenda_fim);
-              $hora_fim = $campo_agenda_fim[1];
-              $array_agenda_fim = explode('-', $campo_agenda_fim[0]);
-            ?>
-              <div class="entry-info">
-                <h5><b>Início:</b>&nbsp;<?php echo $array_agenda_inicio[2] . "/" . $array_agenda_inicio[1] . "/" . $array_agenda_inicio[0]  . " - " . $hora_inicio; ?></h5>
-                <h5><b>Fim:</b>&emsp;<?php echo $array_agenda_fim[2] . "/" . $array_agenda_fim[1] . "/" . $array_agenda_fim[0]  . " - " . $hora_fim; ?></h5>
-              </div>
-            <?php }
-            ?>
           </div>
         <?php }
         wp_reset_postdata();

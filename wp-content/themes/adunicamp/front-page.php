@@ -397,20 +397,22 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
             <div class="swiper-slide">
               <div class="member">
                 <div class="member-img">
-                  <img src="<?php echo $imagem; ?>" class="img-fluid" title="<?php echo get_the_title() ?>">
+                  <a href="<?php echo get_the_permalink(); ?>" title="Abrir"><img src="<?php echo $imagem; ?>" class="img-fluid" title="<?php echo get_the_title() ?>"></a>
                 </div>
                 <div class="member-info">
-                  <h4><?php echo get_the_title() ?></h4>
+                  <a href="<?php echo get_the_permalink(); ?>" title="Abrir">
+                    <h4><?php echo get_the_title() ?></h4>
+                  </a>
                   <p><?php echo get_post_meta($post->ID, 'equipe_funcao', true); ?></p>
                   <span>
-                    <?php 
-                    if( $local != ""){
-                      echo '('.$local.')';
-                    }else if($contato != ""){
-                      echo '<i class="ri-phone-line"></i> '.$contato;
+                    <?php
+                    if ($local != "") {
+                      echo '(' . $local . ')';
+                    } else if ($contato != "") {
+                      echo '<i class="ri-phone-line"></i> ' . $contato;
                     }
                     ?>
-                  </span>                  
+                  </span>
                 </div>
               </div>
             </div>
