@@ -160,8 +160,9 @@ table.access td {
 
 #post_upload_id_0 #imageListId .listitemClass {
     background: #fff;
-    display: inline-block;
-    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     top: 0px;
     margin: 5px;
     border: 1px solid #ccc;
@@ -196,4 +197,9 @@ table.access td {
 
 #post_upload_id_0 #imageListId .height {
     height: 10px;
+}
+@media(max-width:900px){
+    #post_upload_id_0 #imageListId .listitemClass{
+        width: 100%;
+    }
 }

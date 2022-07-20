@@ -2026,6 +2026,11 @@ font-weight: 600;
   width: 30%;
   margin-top: 30px;
 }
+@media(max-width:900px){
+  .portfolio-item.agenda{
+    width: 100%;
+  }
+}
 
 /*--------------------------------------------------------------
 # Forminator Button
