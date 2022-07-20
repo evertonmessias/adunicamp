@@ -478,12 +478,12 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
 
       <div class="row">
 
-        <div class="col-lg-6 ">
-          <iframe class="mb-4 mb-lg-0" src="<?php echo get_option('portal_input_7'); ?>" frameborder="0" style="border:0; width: 100%; height: 384px;" allowfullscreen></iframe>
+        <div class="col-lg-6 maps">
+          <iframe class="mb-4 mb-lg-0" src="<?php echo get_option('portal_input_7'); ?>" frameborder="0" style="border:0; width: 100%; height: 500px;" allowfullscreen></iframe>
         </div>
 
         <div class="col-lg-6">
-          <?php echo do_shortcode('[contact-form-7 id="130" title="Contato"]') ?>
+          <?php echo do_shortcode('[forminator_form id="16526"]') ?>
         </div>
 
       </div>

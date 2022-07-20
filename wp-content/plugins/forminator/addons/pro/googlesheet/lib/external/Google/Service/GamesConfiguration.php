@@ -1,0 +1,1066 @@
+<?php
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
+
+/**
+ * Service definition for GamesConfiguration (v1configuration).
+ *
+ * <p>
+ * The Publishing API for Google Play Game Services.</p>
+ *
+ * <p>
+ * For more information about this service, see the API
+ * <a href="https://developers.google.com/games/services" target="_blank">Documentation</a>
+ * </p>
+ *
+ * @author Google, Inc.
+ */
+class Forminator_Google_Service_GamesConfiguration extends Forminator_Google_Service
+{
+  /** View and manage your Google Play Developer account. */
+  const ANDROIDPUBLISHER =
+      "https://www.googleapis.com/auth/androidpublisher";
+
+  public $achievementConfigurations;
+  public $imageConfigurations;
+  public $leaderboardConfigurations;
+  
+
+  /**
+   * Constructs the internal representation of the GamesConfiguration service.
+   *
+   * @param Forminator_Google_Client $client
+   */
+  public function __construct(Forminator_Google_Client $client)
+  {
+    parent::__construct($client);
+    $this->rootUrl = 'https://www.googleapis.com/';
+    $this->servicePath = 'games/v1configuration/';
+    $this->version = 'v1configuration';
+    $this->serviceName = 'gamesConfiguration';
+
+    $this->achievementConfigurations = new Forminator_Google_Service_GamesConfiguration_AchievementConfigurations_Resource(
+        $this,
+        $this->serviceName,
+        'achievementConfigurations',
+        array(
+          'methods' => array(
+            'delete' => array(
+              'path' => 'achievements/{achievementId}',
+              'httpMethod' => 'DELETE',
+              'parameters' => array(
+                'achievementId' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+              ),
+            ),'get' => array(
+              'path' => 'achievements/{achievementId}',
+              'httpMethod' => 'GET',
+              'parameters' => array(
+                'achievementId' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+              ),
+            ),'insert' => array(
+              'path' => 'applications/{applicationId}/achievements',
+              'httpMethod' => 'POST',
+              'parameters' => array(
+                'applicationId' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+              ),
+            ),'list' => array(
+              'path' => 'applications/{applicationId}/achievements',
+              'httpMethod' => 'GET',
+              'parameters' => array(
+                'applicationId' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+                'maxResults' => array(
+                  'location' => 'query',
+                  'type' => 'integer',
+                ),
+                'pageToken' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+              ),
+            ),'patch' => array(
+              'path' => 'achievements/{achievementId}',
+              'httpMethod' => 'PATCH',
+              'parameters' => array(
+                'achievementId' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+              ),
+            ),'update' => array(
+              'path' => 'achievements/{achievementId}',
+              'httpMethod' => 'PUT',
+              'parameters' => array(
+                'achievementId' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+              ),
+            ),
+          )
+        )
+    );
+    $this->imageConfigurations = new Forminator_Google_Service_GamesConfiguration_ImageConfigurations_Resource(
+        $this,
+        $this->serviceName,
+        'imageConfigurations',
+        array(
+          'methods' => array(
+            'upload' => array(
+              'path' => 'images/{resourceId}/imageType/{imageType}',
+              'httpMethod' => 'POST',
+              'parameters' => array(
+                'resourceId' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+                'imageType' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+              ),
+            ),
+          )
+        )
+    );
+    $this->leaderboardConfigurations = new Forminator_Google_Service_GamesConfiguration_LeaderboardConfigurations_Resource(
+        $this,
+        $this->serviceName,
+        'leaderboardConfigurations',
+        array(
+          'methods' => array(
+            'delete' => array(
+              'path' => 'leaderboards/{leaderboardId}',
+              'httpMethod' => 'DELETE',
+              'parameters' => array(
+                'leaderboardId' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+              ),
+            ),'get' => array(
+              'path' => 'leaderboards/{leaderboardId}',
+              'httpMethod' => 'GET',
+              'parameters' => array(
+                'leaderboardId' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+              ),
+            ),'insert' => array(
+              'path' => 'applications/{applicationId}/leaderboards',
+              'httpMethod' => 'POST',
+              'parameters' => array(
+                'applicationId' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+              ),
+            ),'list' => array(
+              'path' => 'applications/{applicationId}/leaderboards',
+              'httpMethod' => 'GET',
+              'parameters' => array(
+                'applicationId' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+                'maxResults' => array(
+                  'location' => 'query',
+                  'type' => 'integer',
+                ),
+                'pageToken' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+              ),
+            ),'patch' => array(
+              'path' => 'leaderboards/{leaderboardId}',
+              'httpMethod' => 'PATCH',
+              'parameters' => array(
+                'leaderboardId' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+              ),
+            ),'update' => array(
+              'path' => 'leaderboards/{leaderboardId}',
+              'httpMethod' => 'PUT',
+              'parameters' => array(
+                'leaderboardId' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+              ),
+            ),
+          )
+        )
+    );
+  }
+}
+
+
+/**
+ * The "achievementConfigurations" collection of methods.
+ * Typical usage is:
+ *  <code>
+ *   $gamesConfigurationService = new Forminator_Google_Service_GamesConfiguration(...);
+ *   $achievementConfigurations = $gamesConfigurationService->achievementConfigurations;
+ *  </code>
+ */
+class Forminator_Google_Service_GamesConfiguration_AchievementConfigurations_Resource extends Forminator_Google_Service_Resource
+{
+
+  /**
+   * Delete the achievement configuration with the given ID.
+   * (achievementConfigurations.delete)
+   *
+   * @param string $achievementId The ID of the achievement used by this method.
+   * @param array $optParams Optional parameters.
+   */
+  public function delete($achievementId, $optParams = array())
+  {
+    $params = array('achievementId' => $achievementId);
+    $params = array_merge($params, $optParams);
+    return $this->call('delete', array($params));
+  }
+
+  /**
+   * Retrieves the metadata of the achievement configuration with the given ID.
+   * (achievementConfigurations.get)
+   *
+   * @param string $achievementId The ID of the achievement used by this method.
+   * @param array $optParams Optional parameters.
+   * @return Forminator_Google_Service_GamesConfiguration_AchievementConfiguration
+   */
+  public function get($achievementId, $optParams = array())
+  {
+    $params = array('achievementId' => $achievementId);
+    $params = array_merge($params, $optParams);
+    return $this->call('get', array($params), "Forminator_Google_Service_GamesConfiguration_AchievementConfiguration");
+  }
+
+  /**
+   * Insert a new achievement configuration in this application.
+   * (achievementConfigurations.insert)
+   *
+   * @param string $applicationId The application ID from the Google Play
+   * developer console.
+   * @param Forminator_Google_AchievementConfiguration $postBody
+   * @param array $optParams Optional parameters.
+   * @return Forminator_Google_Service_GamesConfiguration_AchievementConfiguration
+   */
+  public function insert($applicationId, Forminator_Google_Service_GamesConfiguration_AchievementConfiguration $postBody, $optParams = array())
+  {
+    $params = array('applicationId' => $applicationId, 'postBody' => $postBody);
+    $params = array_merge($params, $optParams);
+    return $this->call('insert', array($params), "Forminator_Google_Service_GamesConfiguration_AchievementConfiguration");
+  }
+
+  /**
+   * Returns a list of the achievement configurations in this application.
+   * (achievementConfigurations.listAchievementConfigurations)
+   *
+   * @param string $applicationId The application ID from the Google Play
+   * developer console.
+   * @param array $optParams Optional parameters.
+   *
+   * @opt_param int maxResults The maximum number of resource configurations to
+   * return in the response, used for paging. For any response, the actual number
+   * of resources returned may be less than the specified maxResults.
+   * @opt_param string pageToken The token returned by the previous request.
+   * @return Forminator_Google_Service_GamesConfiguration_AchievementConfigurationListResponse
+   */
+  public function listAchievementConfigurations($applicationId, $optParams = array())
+  {
+    $params = array('applicationId' => $applicationId);
+    $params = array_merge($params, $optParams);
+    return $this->call('list', array($params), "Forminator_Google_Service_GamesConfiguration_AchievementConfigurationListResponse");
+  }
+
+  /**
+   * Update the metadata of the achievement configuration with the given ID. This
+   * method supports patch semantics. (achievementConfigurations.patch)
+   *
+   * @param string $achievementId The ID of the achievement used by this method.
+   * @param Forminator_Google_AchievementConfiguration $postBody
+   * @param array $optParams Optional parameters.
+   * @return Forminator_Google_Service_GamesConfiguration_AchievementConfiguration
+   */
+  public function patch($achievementId, Forminator_Google_Service_GamesConfiguration_AchievementConfiguration $postBody, $optParams = array())
+  {
+    $params = array('achievementId' => $achievementId, 'postBody' => $postBody);
+    $params = array_merge($params, $optParams);
+    return $this->call('patch', array($params), "Forminator_Google_Service_GamesConfiguration_AchievementConfiguration");
+  }
+
+  /**
+   * Update the metadata of the achievement configuration with the given ID.
+   * (achievementConfigurations.update)
+   *
+   * @param string $achievementId The ID of the achievement used by this method.
+   * @param Forminator_Google_AchievementConfiguration $postBody
+   * @param array $optParams Optional parameters.
+   * @return Forminator_Google_Service_GamesConfiguration_AchievementConfiguration
+   */
+  public function update($achievementId, Forminator_Google_Service_GamesConfiguration_AchievementConfiguration $postBody, $optParams = array())
+  {
+    $params = array('achievementId' => $achievementId, 'postBody' => $postBody);
+    $params = array_merge($params, $optParams);
+    return $this->call('update', array($params), "Forminator_Google_Service_GamesConfiguration_AchievementConfiguration");
+  }
+}
+
+/**
+ * The "imageConfigurations" collection of methods.
+ * Typical usage is:
+ *  <code>
+ *   $gamesConfigurationService = new Forminator_Google_Service_GamesConfiguration(...);
+ *   $imageConfigurations = $gamesConfigurationService->imageConfigurations;
+ *  </code>
+ */
+class Forminator_Google_Service_GamesConfiguration_ImageConfigurations_Resource extends Forminator_Google_Service_Resource
+{
+
+  /**
+   * Uploads an image for a resource with the given ID and image type.
+   * (imageConfigurations.upload)
+   *
+   * @param string $resourceId The ID of the resource used by this method.
+   * @param string $imageType Selects which image in a resource for this method.
+   * @param array $optParams Optional parameters.
+   * @return Forminator_Google_Service_GamesConfiguration_ImageConfiguration
+   */
+  public function upload($resourceId, $imageType, $optParams = array())
+  {
+    $params = array('resourceId' => $resourceId, 'imageType' => $imageType);
+    $params = array_merge($params, $optParams);
+    return $this->call('upload', array($params), "Forminator_Google_Service_GamesConfiguration_ImageConfiguration");
+  }
+}
+
+/**
+ * The "leaderboardConfigurations" collection of methods.
+ * Typical usage is:
+ *  <code>
+ *   $gamesConfigurationService = new Forminator_Google_Service_GamesConfiguration(...);
+ *   $leaderboardConfigurations = $gamesConfigurationService->leaderboardConfigurations;
+ *  </code>
+ */
+class Forminator_Google_Service_GamesConfiguration_LeaderboardConfigurations_Resource extends Forminator_Google_Service_Resource
+{
+
+  /**
+   * Delete the leaderboard configuration with the given ID.
+   * (leaderboardConfigurations.delete)
+   *
+   * @param string $leaderboardId The ID of the leaderboard.
+   * @param array $optParams Optional parameters.
+   */
+  public function delete($leaderboardId, $optParams = array())
+  {
+    $params = array('leaderboardId' => $leaderboardId);
+    $params = array_merge($params, $optParams);
+    return $this->call('delete', array($params));
+  }
+
+  /**
+   * Retrieves the metadata of the leaderboard configuration with the given ID.
+   * (leaderboardConfigurations.get)
+   *
+   * @param string $leaderboardId The ID of the leaderboard.
+   * @param array $optParams Optional parameters.
+   * @return Forminator_Google_Service_GamesConfiguration_LeaderboardConfiguration
+   */
+  public function get($leaderboardId, $optParams = array())
+  {
+    $params = array('leaderboardId' => $leaderboardId);
+    $params = array_merge($params, $optParams);
+    return $this->call('get', array($params), "Forminator_Google_Service_GamesConfiguration_LeaderboardConfiguration");
+  }
+
+  /**
+   * Insert a new leaderboard configuration in this application.
+   * (leaderboardConfigurations.insert)
+   *
+   * @param string $applicationId The application ID from the Google Play
+   * developer console.
+   * @param Forminator_Google_LeaderboardConfiguration $postBody
+   * @param array $optParams Optional parameters.
+   * @return Forminator_Google_Service_GamesConfiguration_LeaderboardConfiguration
+   */
+  public function insert($applicationId, Forminator_Google_Service_GamesConfiguration_LeaderboardConfiguration $postBody, $optParams = array())
+  {
+    $params = array('applicationId' => $applicationId, 'postBody' => $postBody);
+    $params = array_merge($params, $optParams);
+    return $this->call('insert', array($params), "Forminator_Google_Service_GamesConfiguration_LeaderboardConfiguration");
+  }
+
+  /**
+   * Returns a list of the leaderboard configurations in this application.
+   * (leaderboardConfigurations.listLeaderboardConfigurations)
+   *
+   * @param string $applicationId The application ID from the Google Play
+   * developer console.
+   * @param array $optParams Optional parameters.
+   *
+   * @opt_param int maxResults The maximum number of resource configurations to
+   * return in the response, used for paging. For any response, the actual number
+   * of resources returned may be less than the specified maxResults.
+   * @opt_param string pageToken The token returned by the previous request.
+   * @return Forminator_Google_Service_GamesConfiguration_LeaderboardConfigurationListResponse
+   */
+  public function listLeaderboardConfigurations($applicationId, $optParams = array())
+  {
+    $params = array('applicationId' => $applicationId);
+    $params = array_merge($params, $optParams);
+    return $this->call('list', array($params), "Forminator_Google_Service_GamesConfiguration_LeaderboardConfigurationListResponse");
+  }
+
+  /**
+   * Update the metadata of the leaderboard configuration with the given ID. This
+   * method supports patch semantics. (leaderboardConfigurations.patch)
+   *
+   * @param string $leaderboardId The ID of the leaderboard.
+   * @param Forminator_Google_LeaderboardConfiguration $postBody
+   * @param array $optParams Optional parameters.
+   * @return Forminator_Google_Service_GamesConfiguration_LeaderboardConfiguration
+   */
+  public function patch($leaderboardId, Forminator_Google_Service_GamesConfiguration_LeaderboardConfiguration $postBody, $optParams = array())
+  {
+    $params = array('leaderboardId' => $leaderboardId, 'postBody' => $postBody);
+    $params = array_merge($params, $optParams);
+    return $this->call('patch', array($params), "Forminator_Google_Service_GamesConfiguration_LeaderboardConfiguration");
+  }
+
+  /**
+   * Update the metadata of the leaderboard configuration with the given ID.
+   * (leaderboardConfigurations.update)
+   *
+   * @param string $leaderboardId The ID of the leaderboard.
+   * @param Forminator_Google_LeaderboardConfiguration $postBody
+   * @param array $optParams Optional parameters.
+   * @return Forminator_Google_Service_GamesConfiguration_LeaderboardConfiguration
+   */
+  public function update($leaderboardId, Forminator_Google_Service_GamesConfiguration_LeaderboardConfiguration $postBody, $optParams = array())
+  {
+    $params = array('leaderboardId' => $leaderboardId, 'postBody' => $postBody);
+    $params = array_merge($params, $optParams);
+    return $this->call('update', array($params), "Forminator_Google_Service_GamesConfiguration_LeaderboardConfiguration");
+  }
+}
+
+
+
+
+class Forminator_Google_Service_GamesConfiguration_AchievementConfiguration extends Forminator_Google_Model
+{
+  protected $internal_gapi_mappings = array(
+  );
+  public $achievementType;
+  protected $draftType = 'Forminator_Google_Service_GamesConfiguration_AchievementConfigurationDetail';
+  protected $draftDataType = '';
+  public $id;
+  public $initialState;
+  public $kind;
+  protected $publishedType = 'Forminator_Google_Service_GamesConfiguration_AchievementConfigurationDetail';
+  protected $publishedDataType = '';
+  public $stepsToUnlock;
+  public $token;
+
+
+  public function setAchievementType($achievementType)
+  {
+    $this->achievementType = $achievementType;
+  }
+  public function getAchievementType()
+  {
+    return $this->achievementType;
+  }
+  public function setDraft(Forminator_Google_Service_GamesConfiguration_AchievementConfigurationDetail $draft)
+  {
+    $this->draft = $draft;
+  }
+  public function getDraft()
+  {
+    return $this->draft;
+  }
+  public function setId($id)
+  {
+    $this->id = $id;
+  }
+  public function getId()
+  {
+    return $this->id;
+  }
+  public function setInitialState($initialState)
+  {
+    $this->initialState = $initialState;
+  }
+  public function getInitialState()
+  {
+    return $this->initialState;
+  }
+  public function setKind($kind)
+  {
+    $this->kind = $kind;
+  }
+  public function getKind()
+  {
+    return $this->kind;
+  }
+  public function setPublished(Forminator_Google_Service_GamesConfiguration_AchievementConfigurationDetail $published)
+  {
+    $this->published = $published;
+  }
+  public function getPublished()
+  {
+    return $this->published;
+  }
+  public function setStepsToUnlock($stepsToUnlock)
+  {
+    $this->stepsToUnlock = $stepsToUnlock;
+  }
+  public function getStepsToUnlock()
+  {
+    return $this->stepsToUnlock;
+  }
+  public function setToken($token)
+  {
+    $this->token = $token;
+  }
+  public function getToken()
+  {
+    return $this->token;
+  }
+}
+
+class Forminator_Google_Service_GamesConfiguration_AchievementConfigurationDetail extends Forminator_Google_Model
+{
+  protected $internal_gapi_mappings = array(
+  );
+  protected $descriptionType = 'Forminator_Google_Service_GamesConfiguration_LocalizedStringBundle';
+  protected $descriptionDataType = '';
+  public $iconUrl;
+  public $kind;
+  protected $nameType = 'Forminator_Google_Service_GamesConfiguration_LocalizedStringBundle';
+  protected $nameDataType = '';
+  public $pointValue;
+  public $sortRank;
+
+
+  public function setDescription(Forminator_Google_Service_GamesConfiguration_LocalizedStringBundle $description)
+  {
+    $this->description = $description;
+  }
+  public function getDescription()
+  {
+    return $this->description;
+  }
+  public function setIconUrl($iconUrl)
+  {
+    $this->iconUrl = $iconUrl;
+  }
+  public function getIconUrl()
+  {
+    return $this->iconUrl;
+  }
+  public function setKind($kind)
+  {
+    $this->kind = $kind;
+  }
+  public function getKind()
+  {
+    return $this->kind;
+  }
+  public function setName(Forminator_Google_Service_GamesConfiguration_LocalizedStringBundle $name)
+  {
+    $this->name = $name;
+  }
+  public function getName()
+  {
+    return $this->name;
+  }
+  public function setPointValue($pointValue)
+  {
+    $this->pointValue = $pointValue;
+  }
+  public function getPointValue()
+  {
+    return $this->pointValue;
+  }
+  public function setSortRank($sortRank)
+  {
+    $this->sortRank = $sortRank;
+  }
+  public function getSortRank()
+  {
+    return $this->sortRank;
+  }
+}
+
+class Forminator_Google_Service_GamesConfiguration_AchievementConfigurationListResponse extends Forminator_Google_Collection
+{
+  protected $collection_key = 'items';
+  protected $internal_gapi_mappings = array(
+  );
+  protected $itemsType = 'Forminator_Google_Service_GamesConfiguration_AchievementConfiguration';
+  protected $itemsDataType = 'array';
+  public $kind;
+  public $nextPageToken;
+
+
+  public function setItems($items)
+  {
+    $this->items = $items;
+  }
+  public function getItems()
+  {
+    return $this->items;
+  }
+  public function setKind($kind)
+  {
+    $this->kind = $kind;
+  }
+  public function getKind()
+  {
+    return $this->kind;
+  }
+  public function setNextPageToken($nextPageToken)
+  {
+    $this->nextPageToken = $nextPageToken;
+  }
+  public function getNextPageToken()
+  {
+    return $this->nextPageToken;
+  }
+}
+
+class Forminator_Google_Service_GamesConfiguration_GamesNumberAffixConfiguration extends Forminator_Google_Model
+{
+  protected $internal_gapi_mappings = array(
+  );
+  protected $fewType = 'Forminator_Google_Service_GamesConfiguration_LocalizedStringBundle';
+  protected $fewDataType = '';
+  protected $manyType = 'Forminator_Google_Service_GamesConfiguration_LocalizedStringBundle';
+  protected $manyDataType = '';
+  protected $oneType = 'Forminator_Google_Service_GamesConfiguration_LocalizedStringBundle';
+  protected $oneDataType = '';
+  protected $otherType = 'Forminator_Google_Service_GamesConfiguration_LocalizedStringBundle';
+  protected $otherDataType = '';
+  protected $twoType = 'Forminator_Google_Service_GamesConfiguration_LocalizedStringBundle';
+  protected $twoDataType = '';
+  protected $zeroType = 'Forminator_Google_Service_GamesConfiguration_LocalizedStringBundle';
+  protected $zeroDataType = '';
+
+
+  public function setFew(Forminator_Google_Service_GamesConfiguration_LocalizedStringBundle $few)
+  {
+    $this->few = $few;
+  }
+  public function getFew()
+  {
+    return $this->few;
+  }
+  public function setMany(Forminator_Google_Service_GamesConfiguration_LocalizedStringBundle $many)
+  {
+    $this->many = $many;
+  }
+  public function getMany()
+  {
+    return $this->many;
+  }
+  public function setOne(Forminator_Google_Service_GamesConfiguration_LocalizedStringBundle $one)
+  {
+    $this->one = $one;
+  }
+  public function getOne()
+  {
+    return $this->one;
+  }
+  public function setOther(Forminator_Google_Service_GamesConfiguration_LocalizedStringBundle $other)
+  {
+    $this->other = $other;
+  }
+  public function getOther()
+  {
+    return $this->other;
+  }
+  public function setTwo(Forminator_Google_Service_GamesConfiguration_LocalizedStringBundle $two)
+  {
+    $this->two = $two;
+  }
+  public function getTwo()
+  {
+    return $this->two;
+  }
+  public function setZero(Forminator_Google_Service_GamesConfiguration_LocalizedStringBundle $zero)
+  {
+    $this->zero = $zero;
+  }
+  public function getZero()
+  {
+    return $this->zero;
+  }
+}
+
+class Forminator_Google_Service_GamesConfiguration_GamesNumberFormatConfiguration extends Forminator_Google_Model
+{
+  protected $internal_gapi_mappings = array(
+  );
+  public $currencyCode;
+  public $numDecimalPlaces;
+  public $numberFormatType;
+  protected $suffixType = 'Forminator_Google_Service_GamesConfiguration_GamesNumberAffixConfiguration';
+  protected $suffixDataType = '';
+
+
+  public function setCurrencyCode($currencyCode)
+  {
+    $this->currencyCode = $currencyCode;
+  }
+  public function getCurrencyCode()
+  {
+    return $this->currencyCode;
+  }
+  public function setNumDecimalPlaces($numDecimalPlaces)
+  {
+    $this->numDecimalPlaces = $numDecimalPlaces;
+  }
+  public function getNumDecimalPlaces()
+  {
+    return $this->numDecimalPlaces;
+  }
+  public function setNumberFormatType($numberFormatType)
+  {
+    $this->numberFormatType = $numberFormatType;
+  }
+  public function getNumberFormatType()
+  {
+    return $this->numberFormatType;
+  }
+  public function setSuffix(Forminator_Google_Service_GamesConfiguration_GamesNumberAffixConfiguration $suffix)
+  {
+    $this->suffix = $suffix;
+  }
+  public function getSuffix()
+  {
+    return $this->suffix;
+  }
+}
+
+class Forminator_Google_Service_GamesConfiguration_ImageConfiguration extends Forminator_Google_Model
+{
+  protected $internal_gapi_mappings = array(
+  );
+  public $imageType;
+  public $kind;
+  public $resourceId;
+  public $url;
+
+
+  public function setImageType($imageType)
+  {
+    $this->imageType = $imageType;
+  }
+  public function getImageType()
+  {
+    return $this->imageType;
+  }
+  public function setKind($kind)
+  {
+    $this->kind = $kind;
+  }
+  public function getKind()
+  {
+    return $this->kind;
+  }
+  public function setResourceId($resourceId)
+  {
+    $this->resourceId = $resourceId;
+  }
+  public function getResourceId()
+  {
+    return $this->resourceId;
+  }
+  public function setUrl($url)
+  {
+    $this->url = $url;
+  }
+  public function getUrl()
+  {
+    return $this->url;
+  }
+}
+
+class Forminator_Google_Service_GamesConfiguration_LeaderboardConfiguration extends Forminator_Google_Model
+{
+  protected $internal_gapi_mappings = array(
+  );
+  protected $draftType = 'Forminator_Google_Service_GamesConfiguration_LeaderboardConfigurationDetail';
+  protected $draftDataType = '';
+  public $id;
+  public $kind;
+  protected $publishedType = 'Forminator_Google_Service_GamesConfiguration_LeaderboardConfigurationDetail';
+  protected $publishedDataType = '';
+  public $scoreMax;
+  public $scoreMin;
+  public $scoreOrder;
+  public $token;
+
+
+  public function setDraft(Forminator_Google_Service_GamesConfiguration_LeaderboardConfigurationDetail $draft)
+  {
+    $this->draft = $draft;
+  }
+  public function getDraft()
+  {
+    return $this->draft;
+  }
+  public function setId($id)
+  {
+    $this->id = $id;
+  }
+  public function getId()
+  {
+    return $this->id;
+  }
+  public function setKind($kind)
+  {
+    $this->kind = $kind;
+  }
+  public function getKind()
+  {
+    return $this->kind;
+  }
+  public function setPublished(Forminator_Google_Service_GamesConfiguration_LeaderboardConfigurationDetail $published)
+  {
+    $this->published = $published;
+  }
+  public function getPublished()
+  {
+    return $this->published;
+  }
+  public function setScoreMax($scoreMax)
+  {
+    $this->scoreMax = $scoreMax;
+  }
+  public function getScoreMax()
+  {
+    return $this->scoreMax;
+  }
+  public function setScoreMin($scoreMin)
+  {
+    $this->scoreMin = $scoreMin;
+  }
+  public function getScoreMin()
+  {
+    return $this->scoreMin;
+  }
+  public function setScoreOrder($scoreOrder)
+  {
+    $this->scoreOrder = $scoreOrder;
+  }
+  public function getScoreOrder()
+  {
+    return $this->scoreOrder;
+  }
+  public function setToken($token)
+  {
+    $this->token = $token;
+  }
+  public function getToken()
+  {
+    return $this->token;
+  }
+}
+
+class Forminator_Google_Service_GamesConfiguration_LeaderboardConfigurationDetail extends Forminator_Google_Model
+{
+  protected $internal_gapi_mappings = array(
+  );
+  public $iconUrl;
+  public $kind;
+  protected $nameType = 'Forminator_Google_Service_GamesConfiguration_LocalizedStringBundle';
+  protected $nameDataType = '';
+  protected $scoreFormatType = 'Forminator_Google_Service_GamesConfiguration_GamesNumberFormatConfiguration';
+  protected $scoreFormatDataType = '';
+  public $sortRank;
+
+
+  public function setIconUrl($iconUrl)
+  {
+    $this->iconUrl = $iconUrl;
+  }
+  public function getIconUrl()
+  {
+    return $this->iconUrl;
+  }
+  public function setKind($kind)
+  {
+    $this->kind = $kind;
+  }
+  public function getKind()
+  {
+    return $this->kind;
+  }
+  public function setName(Forminator_Google_Service_GamesConfiguration_LocalizedStringBundle $name)
+  {
+    $this->name = $name;
+  }
+  public function getName()
+  {
+    return $this->name;
+  }
+  public function setScoreFormat(Forminator_Google_Service_GamesConfiguration_GamesNumberFormatConfiguration $scoreFormat)
+  {
+    $this->scoreFormat = $scoreFormat;
+  }
+  public function getScoreFormat()
+  {
+    return $this->scoreFormat;
+  }
+  public function setSortRank($sortRank)
+  {
+    $this->sortRank = $sortRank;
+  }
+  public function getSortRank()
+  {
+    return $this->sortRank;
+  }
+}
+
+class Forminator_Google_Service_GamesConfiguration_LeaderboardConfigurationListResponse extends Forminator_Google_Collection
+{
+  protected $collection_key = 'items';
+  protected $internal_gapi_mappings = array(
+  );
+  protected $itemsType = 'Forminator_Google_Service_GamesConfiguration_LeaderboardConfiguration';
+  protected $itemsDataType = 'array';
+  public $kind;
+  public $nextPageToken;
+
+
+  public function setItems($items)
+  {
+    $this->items = $items;
+  }
+  public function getItems()
+  {
+    return $this->items;
+  }
+  public function setKind($kind)
+  {
+    $this->kind = $kind;
+  }
+  public function getKind()
+  {
+    return $this->kind;
+  }
+  public function setNextPageToken($nextPageToken)
+  {
+    $this->nextPageToken = $nextPageToken;
+  }
+  public function getNextPageToken()
+  {
+    return $this->nextPageToken;
+  }
+}
+
+class Forminator_Google_Service_GamesConfiguration_LocalizedString extends Forminator_Google_Model
+{
+  protected $internal_gapi_mappings = array(
+  );
+  public $kind;
+  public $locale;
+  public $value;
+
+
+  public function setKind($kind)
+  {
+    $this->kind = $kind;
+  }
+  public function getKind()
+  {
+    return $this->kind;
+  }
+  public function setLocale($locale)
+  {
+    $this->locale = $locale;
+  }
+  public function getLocale()
+  {
+    return $this->locale;
+  }
+  public function setValue($value)
+  {
+    $this->value = $value;
+  }
+  public function getValue()
+  {
+    return $this->value;
+  }
+}
+
+class Forminator_Google_Service_GamesConfiguration_LocalizedStringBundle extends Forminator_Google_Collection
+{
+  protected $collection_key = 'translations';
+  protected $internal_gapi_mappings = array(
+  );
+  public $kind;
+  protected $translationsType = 'Forminator_Google_Service_GamesConfiguration_LocalizedString';
+  protected $translationsDataType = 'array';
+
+
+  public function setKind($kind)
+  {
+    $this->kind = $kind;
+  }
+  public function getKind()
+  {
+    return $this->kind;
+  }
+  public function setTranslations($translations)
+  {
+    $this->translations = $translations;
+  }
+  public function getTranslations()
+  {
+    return $this->translations;
+  }
+}

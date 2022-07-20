@@ -5,7 +5,6 @@
   "use strict";
 
   $('#navbar ul li a').addClass('nav-link scrollto');
-  //$('#navbar ul li:first-child a').addClass('active');
   $('#navbar ul li.menu-item-has-children').addClass('dropdown');
   $('#navbar').show();
 
@@ -14,10 +13,11 @@
     $('.display').show();
   })
 
-  /*$(document).on('click', '.btn-accordion', {}, function (e) {       
+  $('.block').hide();
+  $(document).on('click', '.btn-accordion', {}, function (e) {       
       var sec = $(this).attr('data-section');
-      var acc = $(this).attr('data-accordion');
-      if (!$('.block' + sec + acc).is(":visible")) {         
+      var acc = $(this).attr('data-accordion');      
+      if (!$('.block' + sec + acc).is(":visible")) {    
           $('.block' + sec).slideUp(500);
           $('.btn-accordion' + sec).removeClass('btn-accordion-active');
           $('.btn-accordion' + sec + acc).addClass('btn-accordion-active');         
@@ -26,7 +26,7 @@
           $('.btn-accordion' + sec + acc).removeClass('btn-accordion-active'); 
           $('.block' + sec + acc).slideUp(500);             
       }
-  });*/
+  });
 
   /**
    * Easy selector helper function

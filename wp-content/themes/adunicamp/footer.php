@@ -21,7 +21,7 @@
 
           <div class="col-lg-3 col-md-6 footer-newsletter">
             <h4>Inscreva-se</h4>
-            <?php echo do_shortcode('[contact-form-7 id="213" title="Newsletter"]') ?>
+            <?php echo do_shortcode('[forminator_form id="23799"]') ?>
           </div>
 
         </div>
