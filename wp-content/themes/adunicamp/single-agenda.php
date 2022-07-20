@@ -23,21 +23,20 @@ $agenda_fim = get_post_meta($post->ID, 'agenda_data_fim', true);
   </section><!-- End Breadcrumbs -->
 
   <!-- ======= Blog Single Section ======= -->
-  <section id="news" class="new-posts">
+  <section id="news" class="new-posts agenda">
     <div class="container" data-aos="fade-up">
 
       <div class="row">
 
         <div class="col-lg-12 entries">
 
-          <article class="entry entry-single">
+          <article class="entry entry-single agenda">
 
             <?php
             if ($imagem != "") { ?>
               <div class="entry-img">
                 <img src="<?php echo $imagem; ?>" title="<?php echo $titulo ?>" alt="" class="img-fluid">
               </div>
-              <hr>
             <?php }
             ?>
             <div class="entry-content">
@@ -58,7 +57,6 @@ $agenda_fim = get_post_meta($post->ID, 'agenda_data_fim', true);
               </div>
             <?php }
             ?>
-            <hr>
             <?php echo $conteudo ?>
             </div>
           </article><!-- End blog entry -->
