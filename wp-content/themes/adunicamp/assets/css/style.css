@@ -823,6 +823,20 @@ section {
   line-height: 24px;
   font-size: 14px;
 }
+@media(max-width:900px){
+  .services{
+    height: 1100px;
+  }
+  .services .calendar #calendar{
+    transform: scale(0.95);
+  }
+  .services .calendar #calendar .fc-header-title h2{
+    font-size: 20px;
+  }
+  .services .buttons{
+    margin-top: 50px;
+  }
+}
 
 /*--------------------------------------------------------------
 # Agreement
