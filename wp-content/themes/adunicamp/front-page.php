@@ -191,6 +191,12 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
         <div class="swiper-pagination"></div>
       </div>
 
+      <div class="row">
+        <div class="col-lg-12 more">
+          <a class="getstarted" href="/convenio">Veja todos</a>
+        </div>
+      </div>
+
     </div>
   </section><!-- End Convênios Section -->
 
@@ -425,6 +431,13 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
         </div>
         <div class="swiper-pagination"></div>
       </div>
+
+      <div class="row">
+        <div class="col-lg-12 more">
+          <a class="getstarted" href="/equipe">Veja todos</a>
+        </div>
+      </div>
+
     </div>
   </section><!-- End Team Section -->
 

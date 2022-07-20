@@ -18,7 +18,7 @@ $agenda_fim = get_post_meta($post->ID, 'agenda_data_fim', true);
         <li>
           <a href="/<?php echo url_active()[1] ?>"><?php echo url_active()[1] ?></a>
         </li>
-      </ol>      
+      </ol>
     </div>
   </section><!-- End Breadcrumbs -->
 
@@ -30,7 +30,7 @@ $agenda_fim = get_post_meta($post->ID, 'agenda_data_fim', true);
 
         <div class="col-lg-12 entries">
 
-          <article class="entry entry-single agenda">
+          <article class="entry entry-single agenda equipe">
 
             <?php
             if ($imagem != "") { ?>
@@ -40,24 +40,20 @@ $agenda_fim = get_post_meta($post->ID, 'agenda_data_fim', true);
             <?php }
             ?>
             <div class="entry-content">
-            <?php
-            if ($agenda_inicio != "" && $agenda_fim != "") {
-
-              $campo_agenda_inicio = explode('T',$agenda_inicio);
-              $hora_inicio = $campo_agenda_inicio[1];
-              $array_agenda_inicio = explode('-', $campo_agenda_inicio[0]);
-
-              $campo_agenda_fim = explode('T',$agenda_fim);
-              $hora_fim = $campo_agenda_fim[1];
-              $array_agenda_fim = explode('-', $campo_agenda_fim[0]);
-            ?>
+              <?php
+              $equipe_funcao = get_post_meta($post->ID, 'equipe_funcao', true);
+              $equipe_local = get_post_meta($post->ID, 'equipe_local', true);
+              $equipe_contato = get_post_meta($post->ID, 'equipe_contato', true);
+              ?>
               <div class="entry-info">
-                <h5>Início:&nbsp;<?php echo $array_agenda_inicio[2] . "/" . $array_agenda_inicio[1] . "/" . $array_agenda_inicio[0]  . " - " . $hora_inicio; ?></h5>
-                <h5>Fim:&emsp;<?php echo $array_agenda_fim[2] . "/" . $array_agenda_fim[1] . "/" . $array_agenda_fim[0]  . " - " . $hora_fim; ?></h5>
+              <h4><?php echo get_the_terms($post->ID,'equipe_categories')[0]->name; ?></h4>
+                <h5><b>Função:</b>&ensp;<?php echo $equipe_funcao ?></h5>
+                <?php if ($equipe_local != "") { ?>
+                  <h5><b>Local:</b>&nbsp;&emsp;<?php echo $equipe_local ?></h5>
+                <?php } else if ($equipe_contato != "") { ?>
+                  <h5><b>Contato:</b>&nbsp;<?php echo $equipe_contato ?></h5>
+                <?php } ?>
               </div>
-            <?php }
-            ?>
-            <?php echo $conteudo ?>
             </div>
           </article><!-- End blog entry -->
 
