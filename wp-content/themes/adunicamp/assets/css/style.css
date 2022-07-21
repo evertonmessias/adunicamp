@@ -155,6 +155,27 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 1s;
 }
 
+#header .logo-andes{
+display: flex;
+width: 60px;
+height: 100%;
+margin: 0;padding: 0;
+justify-content: center;
+align-items: center;
+text-align: center;
+margin-right: 50px;
+margin-left: -110px; 
+}
+
+#header .logo-andes img {
+  width: 60px;
+  transition: all 0.3s;
+}
+
+#header .logo-andes img:hover {
+  transform: scale(1.1);
+}
+
 .fixed-top {
   height: 60px !important;
 }

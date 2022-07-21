@@ -73,6 +73,6 @@ $post_color = get_option('portal_input_3');
         <?php wp_nav_menu(array('menu' => 'NAV-ADUnicamp')); ?>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
-
     </div>
+    <a class="logo-andes" target="_blank" href="https://www.andes.org.br/"><img src="/wp-content/uploads/2022/07/logo_andes-83x56-1.png"></a>
   </header><!-- End Header -->
