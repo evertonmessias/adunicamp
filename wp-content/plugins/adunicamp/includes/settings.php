@@ -76,9 +76,7 @@ function portal_page_html()
 				<h3 class="title">Número de Slides: </h3><input type="number" onKeyDown="return false" min="0" max="10" id="portal_input_42" name="portal_input_42" value="<?php echo get_option('portal_input_42'); ?>" />
 			</label>
 
-
-			<br><br><!-- Categoria dos Slides******************************* -->
-			<hr>
+			<br><!-- Categoria dos Slides******************************* -->
 			<label>
 				<h3 class="title">Categoria dos Slides: </h3>
 				<select id="portal_input_43" name="portal_input_43">
@@ -106,8 +104,8 @@ function portal_page_html()
 			</label>
 
 
-			<br><br><!-- Categoria dos Destaques******************************* -->
-			<hr>
+			<br><!-- Categoria dos Destaques******************************* -->
+
 			<label>
 				<h3 class="title">Categoria dos Destaques: </h3>
 				<select id="portal_input_45" name="portal_input_45">
@@ -128,10 +126,40 @@ function portal_page_html()
 			<br><span>(Altera qual a <b>Categoria</b> do Post é exibida nos Destaques)</span>
 
 
-
-
-
-
+			<br><br><!-- Seções ******************************* -->
+			<hr>
+			<?php
+			$portal_input_46 = get_option('portal_input_46');
+			if ($portal_input_46 == 'on') {
+				$pi46 = "checked";
+			} else {
+				$pi46 = "";
+			}
+			$portal_input_47 = get_option('portal_input_47');
+			if ($portal_input_47 == 'on') {
+				$pi47 = "checked";
+			} else {
+				$pi47 = "";
+			}
+			$portal_input_48 = get_option('portal_input_48');
+			if ($portal_input_48 == 'on') {
+				$pi48 = "checked";
+			} else {
+				$pi48 = "";
+			}
+			$portal_input_49 = get_option('portal_input_49');
+			if ($portal_input_49 == 'on') {
+				$pi49 = "checked";
+			} else {
+				$pi49 = "";
+			}
+			?>
+			<h3 class="title">Seções: </h3>
+			<label><input type="checkbox" name="portal_input_46" <?php echo $pi46; ?>> Convênios</label><br>
+			<label><input type="checkbox" name="portal_input_47" <?php echo $pi47; ?>> Podcast</label><br>
+			<label><input type="checkbox" name="portal_input_48" <?php echo $pi48; ?>> Galeria</label><br>
+			<label><input type="checkbox" name="portal_input_49" <?php echo $pi49; ?>> Equipe</label>
+			<br><span>(Altera qual <b>Seção</b> do site será exibida)</span>
 
 
 			<br><br><!-- Botões de Acesso (Serviços) ********************************** -->
@@ -290,6 +318,18 @@ function portal_settings()
 
 	add_option('portal_input_45');
 	register_setting('portal_option_grupo', 'portal_input_45');
+
+	add_option('portal_input_46');
+	register_setting('portal_option_grupo', 'portal_input_46');
+
+	add_option('portal_input_47');
+	register_setting('portal_option_grupo', 'portal_input_47');
+
+	add_option('portal_input_48');
+	register_setting('portal_option_grupo', 'portal_input_48');
+
+	add_option('portal_input_49');
+	register_setting('portal_option_grupo', 'portal_input_49');
 
 	add_option('portal_input_51');
 	register_setting('portal_option_grupo', 'portal_input_51');

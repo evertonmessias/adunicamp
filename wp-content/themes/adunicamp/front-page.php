@@ -6,6 +6,8 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
 ?>
 
 <!-- ======= Hero Section ======= -->
+<div id="home"></div>
+<?php if(get_option('portal_input_42') != 0){ ?>
 <section id="hero">
   <div class="hero-container">
     <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
@@ -56,10 +58,12 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
     </div>
   </div>
 </section><!-- End Hero -->
+<?php } ?>
 
 <main id="main">
 
   <!-- ======= Last News ======= -->
+<?php if(get_option('portal_input_44') != 0) { ?>
   <section id="top-news" class="gallery section-bg">
     <div class="container" data-aos="fade-up">
 
@@ -116,6 +120,8 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
 
     </div>
   </section><!-- End Gallery -->
+<?php } ?>
+
 
   <!-- ======= Services Section ======= -->
   <section id="services" class="services">
@@ -150,6 +156,7 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
   </section><!-- End Services Section -->
 
   <!-- ======= Convênios Section ======= -->
+  <?php if(get_option('portal_input_46') == "on") { ?>
   <section id="agreement" class="agreement" style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('<?php echo get_option('portal_input_2') ?>') center center;background-size: cover;padding: 50px 0;background-attachment: fixed;">
     <div class="container" data-aos="fade-up">
 
@@ -199,9 +206,10 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
 
     </div>
   </section><!-- End Convênios Section -->
+<?php } ?>
 
   <!-- ======= News Section ======= -->
-  <section id="news" class="new-posts">
+  <section id="news" class="new-posts section-bg">
     <div class="container">
 
       <div class="section-title" data-aos="fade-up">
@@ -266,8 +274,8 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
     </div>
   </section><!-- End News Section -->
 
-  <div id="media">
     <!-- ======= Video Section ======= -->
+    <?php if(get_option('portal_input_47') == "on") { ?>
     <section id="podcast" class="podcast" style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('<?php echo get_option('portal_input_2') ?>') center center;background-size: cover;background-attachment: fixed;">>
       <div class="container" data-aos="fade-up">
 
@@ -307,8 +315,10 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
 
       </div>
     </section><!-- End Gallery Section -->
+    <?php } ?>
 
     <!-- ======= Portfolio Section ======= -->
+    <?php if(get_option('portal_input_48') == "on") { ?>
     <section id="gallery" class="portfolio section-bg">
       <div class="container" data-aos="fade-up">
 
@@ -373,9 +383,11 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
         </div>
       </div>
     </section><!-- End Portfolio Section -->
-  </div>
+  <?php } ?>
+
 
   <!-- ======= Team Section ======= -->
+  <?php if(get_option('portal_input_49') == "on") { ?>
   <section id="team" class="team" style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('<?php echo get_option('portal_input_2') ?>') center center;background-size: cover;background-attachment: fixed;">>
     <div class="container" data-aos="fade-up">
 
@@ -440,6 +452,8 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
 
     </div>
   </section><!-- End Team Section -->
+  <?php } ?>
+
 
   <!-- ======= Contact Section ======= -->
   <section id="contact" class="contact">

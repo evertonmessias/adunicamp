@@ -54,6 +54,11 @@
     font-weight: 400;
 }
 
+.settings-adunicamp input[type=checkbox] {
+    width: 13px;
+    height: 13px;
+}
+
 .settings-adunicamp input[type=email], .settings-adunicamp input[type=text] {
     width: 40em;
     font-weight: 400;
