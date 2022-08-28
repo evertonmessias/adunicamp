@@ -172,7 +172,11 @@ class Forminator_Addon_Hubspot_Form_Settings extends Forminator_Addon_Form_Setti
 
 				$list_id = isset( $submitted_data['list_id'] ) ? $submitted_data['list_id'] : '';
 
-				$list_name = $lists[ $list_id ];
+				if ( ! empty( $lists[ $list_id ] ) ) {
+					$list_name = $lists[ $list_id ];
+				} else {
+					$list_name = '';
+				}
 
 				$this->save_multi_id_form_setting_values(
 					$multi_id,

@@ -225,7 +225,7 @@ class Forminator_Form_Model extends Forminator_Base_Form_Model {
 					}
 				} elseif ( 'date' === $form_settings['form-expire'] ) {
 					if ( isset( $form_settings['expire_date'] ) && ! empty( $form_settings['expire_date'] ) ) {
-						$expire_date  = strtotime( $form_settings['expire_date'] );
+						$expire_date  = $this->get_expiry_date( $form_settings['expire_date'] );
 						$current_date = strtotime( 'now' );
 						if ( $current_date > $expire_date ) {
 							$can_show = array(
@@ -280,7 +280,7 @@ class Forminator_Form_Model extends Forminator_Base_Form_Model {
 					}
 				} elseif ( 'date' === $form_settings['form-expire'] ) {
 					if ( isset( $form_settings['expire_date'] ) && ! empty( $form_settings['expire_date'] ) ) {
-						$expire_date  = strtotime( $form_settings['expire_date'] );
+						$expire_date  = $this->get_expiry_date( $form_settings['expire_date'] );
 						$current_date = strtotime( 'now' );
 						if ( $current_date > $expire_date && ! $is_preview ) {
 							$can_show = false;
@@ -462,5 +462,18 @@ class Forminator_Form_Model extends Forminator_Base_Form_Model {
 		}
 
 		return false;
+	}
+
+	/**
+	 * Get expiry date
+	 *
+	 * Before 1.15.4 expiry date is being saved like: 1 Mar 2022
+	 * Since we changed it to save as Unix timestamp, we need to process it
+	 *
+	 * @since
+	 * @return string
+	 */
+	public function get_expiry_date( $expire_date ) {
+		return is_numeric( $expire_date ) ? (int) $expire_date / 1000 : strtotime( $expire_date );
 	}
 }

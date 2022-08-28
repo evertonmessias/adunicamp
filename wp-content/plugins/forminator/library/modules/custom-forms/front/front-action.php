@@ -39,6 +39,13 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 	public static $entry_type = 'custom-forms';
 
 	/**
+	 * Registration object
+	 *
+	 * @var string
+	 */
+	public static $registration = null;
+
+	/**
 	 * Plugin instance
 	 *
 	 * @var null
@@ -48,7 +55,7 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 	public function __construct() {
 		parent::__construct();
 
-		//Save entries
+		// Save entries
 		if ( ! empty( self::$entry_type ) ) {
 			add_action( 'wp_ajax_forminator_pp_create_order', array( $this, 'create_paypal_order' ) );
 			add_action( 'wp_ajax_nopriv_forminator_pp_create_order', array( $this, 'create_paypal_order' ) );
@@ -251,14 +258,14 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 	}
 
 	/**
-	 * Handle registration if it's registration form.
+	 * Handle registration form validation separately
 	 *
-	 * @param object $entry Entry.
-	 * @param array  $field_data_array Field data.
+	 * @since 1.17.2
+	 *
 	 * @return \WP_Error|boolean
 	 */
-	private static function maybe_registration( $entry, $field_data_array ) {
-		if ( self::$is_draft ) {
+	private static function validate_registration() {
+		if ( self::$is_draft || self::$is_spam ) {
 			return;
 		}
 
@@ -277,18 +284,51 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 			if ( ! $can_creat_user ) {
 				return;
 			}
-			$forminator_user_registration = new Forminator_CForm_Front_User_Registration();
-			$registration_error           = $forminator_user_registration->process_validation( self::$module_object, $field_data_array );
+
+			self::$registration = new Forminator_CForm_Front_User_Registration();
+			$registration_error = self::$registration->process_validation( self::$module_object, self::$info['field_data_array'] );
 			if ( true !== $registration_error ) {
 				throw new Exception( $registration_error );
 			}
 
-			$custom_error = apply_filters( 'forminator_custom_registration_form_errors', $registration_error, self::$module_id, $field_data_array );
+			$custom_error = apply_filters( 'forminator_custom_registration_form_errors', $registration_error, self::$module_id, self::$info['field_data_array'] );
 			if ( true !== $custom_error ) {
 				throw new Exception( $custom_error );
 			}
 
-			$new_user_data = $forminator_user_registration->process_registration( self::$module_object, $entry );
+			return true;
+		}
+	}
+
+	/**
+	 * Handle registration if it's registration form.
+	 *
+	 * @param object $entry Entry.
+	 *
+	 * @return \WP_Error|boolean
+	 */
+	private static function maybe_registration( $entry ) {
+		if ( self::$is_draft || self::$is_spam ) {
+			return;
+		}
+
+		if ( isset( self::$module_settings['form-type'] ) && 'registration' === self::$module_settings['form-type'] ) {
+			// Check who can register new users.
+			if ( ! is_user_logged_in() ) {
+				$can_creat_user = true;
+			} elseif ( isset( self::$module_settings['hide-registration-form'] )
+					&& '' === self::$module_settings['hide-registration-form']
+			) {
+				$can_creat_user = true;
+			} else {
+				$can_creat_user = false;
+			}
+
+			if ( ! $can_creat_user ) {
+				return;
+			}
+
+			$new_user_data = self::$registration->process_registration( self::$module_object, $entry );
 
 			if ( ! is_array( $new_user_data ) ) {
 				throw new Exception( $new_user_data );
@@ -311,6 +351,12 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 		$fields = self::get_fields();
 		foreach ( $fields as $field_index => $field ) {
 			self::set_field_data_array( $field_index, $field );
+		}
+
+		// Validate User Registration first before any payments
+		$registration = self::validate_registration();
+		if ( is_wp_error( $registration ) ) {
+			return self::return_error( $registration->get_error_message() );
 		}
 
 		self::check_errors();
@@ -511,9 +557,9 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 					throw new Exception( $stripe_entry_data['value']['error'] );
 				}
 
-                return $stripe_entry_data;
+				return $stripe_entry_data;
 
-            } catch ( Exception $e ) {
+			} catch ( Exception $e ) {
 				// Delete entry if paymentIntent confirmation is not successful
 				$entry->delete();
 
@@ -574,7 +620,7 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 		 */
 		do_action( 'forminator_custom_form_after_stripe_charge', self::$module_object, $field, $stripe_entry_data, self::$prepared_data, self::$info['field_data_array'] );
 
-        // Try to get Payment Intent from submitted date
+		// Try to get Payment Intent from submitted date
 		try {
 			$intent = $field_object->get_paymentIntent( $field );
 
@@ -618,14 +664,14 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 			return new WP_Error( 'forminator_stripe_error', __( 'Payment failed, please try again!', 'forminator' ) );
 		}
 
-        $result = array(
-	        'status'           => 'COMPLETED',
-	        'transaction_id'   => $intent->id,
-	        'transaction_link' => $field_object::get_transanction_link( $mode, $intent->id ),
-        );
-		$stripe_entry_data['value'] =  array_merge( $stripe_entry_data['value'], $result );
+		$result                     = array(
+			'status'           => 'COMPLETED',
+			'transaction_id'   => $intent->id,
+			'transaction_link' => $field_object::get_transanction_link( $mode, $intent->id ),
+		);
+		$stripe_entry_data['value'] = array_merge( $stripe_entry_data['value'], $result );
 
-        return $stripe_entry_data;
+		return $stripe_entry_data;
 	}
 
 	/**
@@ -635,7 +681,7 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 	 * @return array
 	 */
 	private static function handle_stripe( $entry ) {
-		if ( self::$is_draft ) {
+		if ( self::$is_draft || self::$is_spam ) {
 			return;
 		}
 
@@ -655,7 +701,7 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 	 * @return array
 	 */
 	private static function handle_paypal( $entry ) {
-		if ( self::$is_draft ) {
+		if ( self::$is_draft || self::$is_spam ) {
 			return;
 		}
 
@@ -707,6 +753,7 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 
 			if ( self::is_spam() ) {
 				$entry->is_spam = 1;
+				self::$is_spam  = true;
 			}
 
 			// If preview, skip integrations.
@@ -748,7 +795,7 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 	 * @param object $entry Entry.
 	 */
 	private static function send_email( $entry ) {
-		if ( ! self::$is_leads && ! self::$is_draft ) {
+		if ( ! self::$is_leads && ! self::$is_draft && ! self::$is_spam ) {
 			$forminator_mail_sender = new Forminator_CForm_Front_Mail();
 			$forminator_mail_sender->process_mail( self::$module_object, $entry );
 		}
@@ -777,13 +824,13 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 		// @since 1.2 Add field_data_array to param.
 		$added_data_array = self::$info['field_data_array'];
 		if ( ! self::$is_draft ) {
-			$added_data_array = self::attach_addons_add_entry_fields( $added_data_array );
+			$added_data_array = self::attach_addons_add_entry_fields( $added_data_array, $entry );
 			$added_data_array = self::replace_values_to_labels( $added_data_array, $entry );
 		} else {
 			// remove IP for drafts
-			$ip_key = array_search( '_forminator_user_ip', array_column( $added_data_array, 'name') );
+			$ip_key = array_search( '_forminator_user_ip', array_column( $added_data_array, 'name' ) );
 			if ( false !== $ip_key ) {
-				unset( $added_data_array[$ip_key] );
+				unset( $added_data_array[ $ip_key ] );
 			}
 		}
 
@@ -819,7 +866,7 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 	 * Maybe create post
 	 */
 	private static function maybe_create_post() {
-		if ( self::$is_draft ) {
+		if ( self::$is_draft || self::$is_spam ) {
 			return;
 		}
 
@@ -893,13 +940,13 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 			self::$response_attrs['first_email'] = $first_email;
 		}
 
-		self::$response_attrs['draft_id'] 			= $entry->draft_id;
-		self::$response_attrs['page_id'] 			= self::$prepared_data['page_id'];
-		self::$response_attrs['enable_email_link'] 	= isset( $setting['sc_email_link'] ) ? filter_var( $setting['sc_email_link'], FILTER_VALIDATE_BOOLEAN ) : true;
-		self::$response_attrs['email_label'] 		= isset( $setting['sc_email_input_label'] ) ? $setting['sc_email_input_label'] : __( 'Send draft link to', 'forminator' );
-		self::$response_attrs['email_placeholder'] 	= isset( $setting['sc_email_placeholder'] ) ? $setting['sc_email_placeholder'] : __( 'E.g., johndoe@gmail.com', 'forminator' );
+		self::$response_attrs['draft_id']           = $entry->draft_id;
+		self::$response_attrs['page_id']            = self::$prepared_data['page_id'];
+		self::$response_attrs['enable_email_link']  = isset( $setting['sc_email_link'] ) ? filter_var( $setting['sc_email_link'], FILTER_VALIDATE_BOOLEAN ) : true;
+		self::$response_attrs['email_label']        = isset( $setting['sc_email_input_label'] ) ? $setting['sc_email_input_label'] : __( 'Send draft link to', 'forminator' );
+		self::$response_attrs['email_placeholder']  = isset( $setting['sc_email_placeholder'] ) ? $setting['sc_email_placeholder'] : __( 'E.g., johndoe@gmail.com', 'forminator' );
 		self::$response_attrs['email_button_label'] = isset( $setting['sc_email_button_label'] ) ? $setting['sc_email_button_label'] : __( 'Send draft link', 'forminator' );
-		self::$response_attrs['retention_period'] 	= isset( $setting['sc_draft_retention'] ) ? $setting['sc_draft_retention'] : 30;
+		self::$response_attrs['retention_period']   = isset( $setting['sc_draft_retention'] ) ? $setting['sc_draft_retention'] : 30;
 
 		return self::return_success( $setting['sc_message'] );
 	}
@@ -1211,7 +1258,7 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 		$post_render_id = isset( self::$prepared_data['render_id'] ) ? sanitize_text_field( self::$prepared_data['render_id'] ) : 0;
 		$response       = self::$response;
 
-		//only show to related form
+		// only show to related form
 		if ( ! empty( $response ) && is_array( $response ) && (int) $form_id === (int) self::$module_id && (int) $render_id === (int) $post_render_id ) {
 			$label_class = $response['success'] ? 'forminator-success' : 'forminator-error';
 			?>
@@ -1292,7 +1339,7 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 	 * @return bool true on success|string error message from addon otherwise
 	 */
 	private static function attach_addons_on_form_submit() {
-		if ( self::$is_draft ) {
+		if ( self::$is_draft || self::$is_spam ) {
 			return;
 		}
 
@@ -1519,7 +1566,7 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 						$visible_fields[ $field_id ] = $calculable_value === $field_object::FIELD_NOT_CALCULABLE ? $submitted_field_data : $calculable_value;
 
 						$visible_fields = self::prepare_subfields( $visible_fields, $field_settings, $field_object );
-						$method = 'handle_' . $field_type . '_field';
+						$method         = 'handle_' . $field_type . '_field';
 						if ( method_exists( self::class, $method ) ) {
 							self::$method( $field_settings );
 						}
@@ -1762,6 +1809,24 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 	}
 
 	/**
+	 * Handle Time field
+	 *
+	 * @param array $field_settings Field settings.
+	 */
+	private static function handle_time_field( $field_settings ) {
+		$time_type = Forminator_Field::get_property( 'time_type', $field_settings, 'twelve' );
+
+		if ( 'twelve' === $time_type ) {
+			$field_id = Forminator_Field::get_property( 'element_id', $field_settings );
+			$time     = self::$prepared_data[ $field_id ];
+
+			if ( empty( $time['hours'] ) && empty( $time['minutes'] ) ) {
+				unset( self::$prepared_data[ $field_id ] );
+			}
+		}
+	}
+
+	/**
 	 * Handle url field
 	 *
 	 * @param array $field_settings Field settings.
@@ -1958,8 +2023,8 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 	}
 
 	/**
-     * Retrieve the backup code if lost phone.
-     *
+	 * Retrieve the backup code if lost phone.
+	 *
 	 * @return void
 	 */
 	public function fallback_email() {
@@ -1969,20 +2034,26 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 		$token            = isset( $post_data['token'] ) ? $post_data['token'] : '';
 		$ret              = $two_fa_component->send_otp_to_email( $token );
 		if ( false === $ret ) {
-			wp_send_json_error( array(
-				'message' => __( 'Please try again.', 'forminator' ),
-			) );
+			wp_send_json_error(
+				array(
+					'message' => __( 'Please try again.', 'forminator' ),
+				)
+			);
 		}
 
 		if ( is_wp_error( $ret ) ) {
-			wp_send_json_error( array(
-				'message' => $ret->get_error_message(),
-			) );
+			wp_send_json_error(
+				array(
+					'message' => $ret->get_error_message(),
+				)
+			);
 		}
 
-        wp_send_json_success( array(
-	        'message' => __( 'Your code has been sent to your email.', 'forminator' ),
-        ) );
+		wp_send_json_success(
+			array(
+				'message' => __( 'Your code has been sent to your email.', 'forminator' ),
+			)
+		);
 	}
 
 	/**
@@ -2007,7 +2078,7 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 	 */
 	public function create_draft_id( $form_id ) {
 		// Must guarantee alphanumeric
-		$draft_id = rand( 0, 9);
+		$draft_id  = rand( 0, 9 );
 		$draft_id .= substr( str_shuffle( 'abcdefghijklmnopqrstvwxyz' ), 0, 1 );
 		$draft_id .= substr( str_replace( '-', '', wp_generate_uuid4() ), 0, 10 );
 
@@ -2016,14 +2087,13 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 
 	/**
 	 * Set the Draft ID
-	 *
 	 */
 	public function set_entry_draft_id() {
 		// 1st draft save
 		if ( self::$is_draft && is_null( self::$previous_draft_id ) ) {
 			return $this->create_draft_id( self::$module_id );
 
-		// Succeeding draft saves
+			// Succeeding draft saves
 		} elseif ( self::$is_draft && ! is_null( self::$previous_draft_id ) ) {
 			return self::$previous_draft_id;
 		}
@@ -2035,15 +2105,15 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 	 * @since 1.17.0
 	 */
 	public function get_draft_notification( $notifications, $data ) {
-		foreach( $notifications as $key => $notif ) {
+		foreach ( $notifications as $key => $notif ) {
 			if ( false !== array_search( 'save_draft', $notif ) ) {
-				$notifications[$key]['recipients']   = str_replace( '{save_and_continue_email}', $data['email-1'], $notif['recipients'] );
-				$email_msg = $notif['email-editor'];
-				$email_msg = str_replace( '{form_link}', $data['draft_link'], $email_msg );
-				$email_msg = str_replace( '{retention_period}', $data['retention_period'], $email_msg );
-				$notifications[$key]['email-editor'] = $email_msg;
+				$notifications[ $key ]['recipients']   = str_replace( '{save_and_continue_email}', $data['email-1'], $notif['recipients'] );
+				$email_msg                             = $notif['email-editor'];
+				$email_msg                             = str_replace( '{form_link}', $data['draft_link'], $email_msg );
+				$email_msg                             = str_replace( '{retention_period}', $data['retention_period'], $email_msg );
+				$notifications[ $key ]['email-editor'] = $email_msg;
 
-				return $notifications[$key];
+				return $notifications[ $key ];
 			}
 		}
 
@@ -2057,38 +2127,38 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 	 */
 	public function submit_email_draft_link() {
 		$draft_id = filter_input( INPUT_POST, 'draft_id', FILTER_DEFAULT );
-		$nonce 	  = 'forminator_nonce_email_draft_link_' . $draft_id;
+		$nonce    = 'forminator_nonce_email_draft_link_' . $draft_id;
 		if ( ! check_ajax_referer( $nonce, $nonce ) ) {
 			wp_send_json_error( __( 'Invalid request, you are not allowed to do that action.', 'forminator' ) );
 		}
 
 		$submitted_data = Forminator_Core::sanitize_array( $_POST );
-		$form_id 		= $submitted_data['form_id'];
-		$email 			= $submitted_data['email-1'];
+		$form_id        = $submitted_data['form_id'];
+		$email          = $submitted_data['email-1'];
 
 		if ( empty( $email ) ) {
 
 			wp_send_json_error(
-				[
-					'field'	  => 'email-1',
+				array(
+					'field'   => 'email-1',
 					'message' => apply_filters(
-									'forminator_draft_email_required',
-									esc_html__( 'Email is required.', 'forminator' ),
-									$form_id
-								),
-				]
+						'forminator_draft_email_required',
+						esc_html__( 'Email is required.', 'forminator' ),
+						$form_id
+					),
+				)
 			);
 		} elseif ( ! filter_var( $email, FILTER_VALIDATE_EMAIL ) ) {
 
 			wp_send_json_error(
-				[
-					'field'	  => 'email-1',
+				array(
+					'field'   => 'email-1',
 					'message' => apply_filters(
-									'forminator_draft_email_invalid',
-									esc_html__( 'Please enter a valid email.', 'forminator' ),
-									$form_id
-								),
-				]
+						'forminator_draft_email_invalid',
+						esc_html__( 'Please enter a valid email.', 'forminator' ),
+						$form_id
+					),
+				)
 			);
 		}
 
@@ -2096,21 +2166,21 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 		$custom_form = Forminator_Form_Model::model()->load( $form_id );
 		if ( ! is_object( $custom_form ) ) {
 			wp_send_json_error(
-				[
+				array(
 					'message' => apply_filters(
-									'forminator_draft_invalid_form_id',
-									esc_html__( 'Invalid form ID.', 'forminator' ),
-									$form_id
-								),
-				]
+						'forminator_draft_invalid_form_id',
+						esc_html__( 'Invalid form ID.', 'forminator' ),
+						$form_id
+					),
+				)
 			);
 		}
 
 		$draft_notifications = $this->get_draft_notification( $custom_form->notifications, $submitted_data );
 		unset( $custom_form->notifications );
 		$custom_form->notifications[] = $draft_notifications;
-		$forminator_mail_sender = new Forminator_CForm_Front_Mail();
-		$mail_sent = $forminator_mail_sender->process_mail( $custom_form, self::get_entry(), $submitted_data );
+		$forminator_mail_sender       = new Forminator_CForm_Front_Mail();
+		$mail_sent                    = $forminator_mail_sender->process_mail( $custom_form, self::get_entry(), $submitted_data );
 		// $mail_sent = true;
 		$response['draft_mail_sent'] = $mail_sent;
 
@@ -2118,13 +2188,13 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 			$response['draft_mail_message'] = sprintf(
 				'<p>%s</p><a href="#" class="draft-resend-mail">%s</a>',
 				esc_html__( "We've sent the resume form link to your email address. Please check your spam folder if you can't find the link in your inbox.", 'forminator' ),
-				esc_html__( "Change email", 'forminator' )
+				esc_html__( 'Change email', 'forminator' )
 			);
 		} else {
 			$response['draft_mail_message'] = sprintf(
 				'<p>%s</p><a href="#" class="draft-resend-mail">%s</a>',
 				esc_html__( "We couldn't send the form resume link to your email at this time. Click on the link below to resend it or manually copy and save the link in a safe place.", 'forminator' ),
-				esc_html__( "Resend link", 'forminator' )
+				esc_html__( 'Resend link', 'forminator' )
 			);
 		}
 

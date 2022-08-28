@@ -52,7 +52,7 @@ class Forminator_Addon_Trello_Form_Hooks extends Forminator_Addon_Form_Hooks_Abs
 	 *
 	 * @return array
 	 */
-	public function add_entry_fields( $submitted_data, $form_entry_fields = array() ) {
+	public function add_entry_fields( $submitted_data, $form_entry_fields = array(), $entry = null ) {
 
 		$form_id                = $this->form_id;
 		$form_settings_instance = $this->form_settings_instance;
@@ -116,7 +116,7 @@ class Forminator_Addon_Trello_Form_Hooks extends Forminator_Addon_Form_Hooks_Abs
 				// exec only on completed connection.
 				$data[] = array(
 					'name'  => 'status-' . $key,
-					'value' => $this->get_status_on_create_card( $key, $submitted_data, $addon_setting_value, $form_entry_fields ),
+					'value' => $this->get_status_on_create_card( $key, $submitted_data, $addon_setting_value, $form_entry_fields, $entry ),
 				);
 			}
 		}
@@ -158,12 +158,13 @@ class Forminator_Addon_Trello_Form_Hooks extends Forminator_Addon_Form_Hooks_Abs
 	 *
 	 * @return array `is_sent` true means its success send data to Trello, false otherwise
 	 */
-	private function get_status_on_create_card( $connection_id, $submitted_data, $connection_settings, $form_entry_fields ) {
+	private function get_status_on_create_card( $connection_id, $submitted_data, $connection_settings, $form_entry_fields, $entry = null ) {
 		// initialize as null.
 		$api = null;
 
 		$form_id                = $this->form_id;
 		$form_settings_instance = $this->form_settings_instance;
+		$uploads				= $this->get_uploads( $form_entry_fields );
 
 		//check required fields
 		try {
@@ -180,7 +181,7 @@ class Forminator_Addon_Trello_Form_Hooks extends Forminator_Addon_Form_Hooks_Abs
 				$card_name = $connection_settings['card_name'];
 				// disable all_fields here.
 				$card_name = str_ireplace( '{all_fields}', '', $card_name );
-				$card_name = forminator_addon_replace_custom_vars( $card_name, $submitted_data, $this->custom_form, $form_entry_fields, false );
+				$card_name = forminator_addon_replace_custom_vars( $card_name, $submitted_data, $this->custom_form, $form_entry_fields, false, $entry );
 
 				/**
 				 * Filter Card Name to passed on to Create Trello Card API
@@ -215,7 +216,7 @@ class Forminator_Addon_Trello_Form_Hooks extends Forminator_Addon_Form_Hooks_Abs
 				$card_description       = $connection_settings['card_description'];
 				$all_fields_to_markdown = $this->all_fields_to_markdown();
 				$card_description       = str_ireplace( '{all_fields}', $all_fields_to_markdown, $card_description );
-				$card_description       = forminator_addon_replace_custom_vars( $card_description, $submitted_data, $this->custom_form, $form_entry_fields, false );
+				$card_description       = forminator_addon_replace_custom_vars( $card_description, $submitted_data, $this->custom_form, $form_entry_fields, false, $entry );
 
 				/**
 				 * Filter Card Description to passed on to Create Trello Card API
@@ -246,7 +247,7 @@ class Forminator_Addon_Trello_Form_Hooks extends Forminator_Addon_Form_Hooks_Abs
 			}
 
 			if ( isset( $connection_settings['due_date'] ) && ! empty( $connection_settings['due_date'] ) ) {
-				$due_date            = forminator_addon_replace_custom_vars( $connection_settings['due_date'], $submitted_data, $this->custom_form, $form_entry_fields, false );
+				$due_date            = forminator_addon_replace_custom_vars( $connection_settings['due_date'], $submitted_data, $this->custom_form, $form_entry_fields, false, $entry );
 				$args['due']         = $due_date;
 			}
 
@@ -294,6 +295,7 @@ class Forminator_Addon_Trello_Form_Hooks extends Forminator_Addon_Form_Hooks_Abs
 			);
 
 			$api->create_card( $args );
+			$this->add_attachments( $api, $uploads );
 
 			forminator_addon_maybe_log( __METHOD__, 'Success Send Data' );
 
@@ -923,5 +925,45 @@ class Forminator_Addon_Trello_Form_Hooks extends Forminator_Addon_Form_Hooks_Abs
 			$form_id,
 			$form_settings_instance
 		);
+	}
+
+	/**
+	 * Get uploads to be added as attachments
+	 *
+	 */
+	private function get_uploads( $fields ) {
+		$uploads = [];
+
+		foreach( $fields as $i => $val ) {
+			if ( 0 === stripos( $val['name'], 'upload-' ) ) {
+				if ( ! empty( $val['value'] ) ) {
+					$file_url = $val['value']['file']['file_url'];
+
+					if ( is_array( $file_url ) ) {
+						foreach( $file_url as $url ) {
+							$uploads[] = $url;
+						}
+					} else {
+						$uploads[] = $file_url;
+					}
+				}
+			}
+		}
+
+		return $uploads;
+	}
+
+	/**
+	 * Add attachments to created card
+	 *
+	 */
+	private function add_attachments( $api, $uploads ) {
+		$card_id = $api->get_card_id();
+
+		if ( ! empty( $uploads ) ) {
+			foreach( $uploads as $upload ) {
+				$api->add_attachment( $card_id, $upload );
+			}
+		}
 	}
 }

@@ -233,7 +233,7 @@ class Forminator_Addon_Googlesheet_Form_Hooks extends Forminator_Addon_Form_Hook
 			foreach ( $header_fields as $element_id => $header_field ) {
 				$field_type = Forminator_Core::get_field_type( $element_id );
 
-				$meta_value = array();
+				$meta_value = '';
 				// take from entry fields (to be saved).
 				if ( isset( $form_entry_fields[ $element_id ] ) ) {
 					$meta_value = $form_entry_fields[ $element_id ]['value'];
@@ -247,7 +247,11 @@ class Forminator_Addon_Googlesheet_Form_Hooks extends Forminator_Addon_Form_Hook
 
 				$value     = new Forminator_Google_Service_Sheets_ExtendedValue();
 				$cell_data = new Forminator_Google_Service_Sheets_CellData();
-				$value->setStringValue( $form_value );
+				if ( is_numeric( $form_value ) ) {
+					$value->setNumberValue( $form_value );
+				} else {
+					$value->setStringValue( $form_value );
+				}
 				$cell_data->setUserEnteredValue( $value );
 				$values[] = $cell_data;
 			}

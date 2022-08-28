@@ -436,7 +436,7 @@ class Forminator_Address extends Forminator_Field {
 
 				$country_data = array(
 					'name'             => $id . '-country',
-					'id'               => 'forminator-form-' . $this->form_settings['form_id'] . '__field--' . $id,
+					'id'               => 'forminator-form-' . $this->form_settings['form_id'] . '__field--' . $id . '_' . Forminator_CForm_Front::$uid,
 					'class'            => 'forminator-select2',
 					'data-search'      => 'true',
 					'data-placeholder' => __( 'Select country', 'forminator' ),

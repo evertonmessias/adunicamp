@@ -236,7 +236,7 @@ class Forminator_Name extends Forminator_Field {
 
 			$prefix_data = array(
 				'name'       => $id . '-prefix',
-				'id'         => 'forminator-form-' . $this->form_settings['form_id'] . '__field--' . $id,
+				'id'         => 'forminator-form-' . $this->form_settings['form_id'] . '__field--' . $id . '_' . Forminator_CForm_Front::$uid,
 				'class'      => 'forminator-select2',
 				'data-multi' => true,
 			);

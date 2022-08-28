@@ -406,6 +406,11 @@ abstract class Forminator_Admin_Page {
 
 		$classes .= $this->get_sui_body_class();
 
+		// if accessibility enabled add sui select accessible class
+		if(get_option( 'forminator_enable_accessibility', false )){
+			$classes .= ' sui-elements-accessible';
+		}
+
 		return $classes;
 
 	}

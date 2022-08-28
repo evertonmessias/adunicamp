@@ -108,19 +108,6 @@ class Forminator_Quiz_View_Page extends Forminator_Admin_View_Page {
 	}
 
 	/**
-	 * Get fields table
-	 *
-	 * @since 1.0
-	 * @return array
-	 */
-	public function get_table() {
-		$per_page = $this->get_per_page();
-		$entries  = Forminator_Form_Entry_Model::list_entries( $this->form_id, $per_page, ( $this->get_paged() - 1 ) * $per_page );
-
-		return $entries;
-	}
-
-	/**
 	 * Get paged
 	 *
 	 * @since 1.0

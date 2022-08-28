@@ -16,18 +16,16 @@ class Forminator_Shortcode_Generator {
 	public function __construct() {
 		global $pagenow;
 
-		$page = filter_input( INPUT_GET, 'page' );
-		// Hide Shortcode Generator for pages with Smartcrawl until SUI is updated to latest version.
-		if (
-			( defined( 'SMARTCRAWL_VERSION' ) && ( 'post.php' === $pagenow || 'post-new.php' === $pagenow ) ) ||
-			'hustle_popup' !== $page
-		) {
+		$is_hustle_wizard = $this->is_hustle_wizard();
+
+		// If page different than Post or Page, abort.
+		if ( 'post.php' !== $pagenow && 'post-new.php' !== $pagenow && ! $is_hustle_wizard ) {
 			return;
 		}
 
 		add_action( 'media_buttons', array( $this, 'attach_button' ) );
 		add_action( 'admin_footer', array( $this, 'enqueue_js_scripts' ) );
-		if ( function_exists( 'hustle_activated' ) ) {
+		if ( $is_hustle_wizard ) {
 			add_action( 'admin_footer', array( $this, 'enqueue_preview_scripts_for_hustle' ) );
 		}
 	}
@@ -40,32 +38,18 @@ class Forminator_Shortcode_Generator {
 	 * @return bool
 	 */
 	public function is_hustle_wizard() {
-		// Some plugins throw error of get_current_screen as undefined.
-		if ( ! function_exists( 'get_current_screen' ) ) {
-			return false;
-		}
-
-		$screen = get_current_screen();
-
-		// If no screen id, abort.
-		if ( ! isset( $screen->id ) ) {
-			return false;
-		}
+		$page = filter_input( INPUT_GET, 'page' );
 
 		// Hustle wizard pages.
 		$pages = array(
-			'hustle_page_hustle_popup',
-			'hustle_page_hustle_slidein',
-			'hustle_page_hustle_embedded',
-			'hustle_page_hustle_sshare',
-			'hustle-pro_page_hustle_popup',
-			'hustle_pro_page_hustle_slidein',
-			'hustle_pro_page_hustle_embedded',
-			'hustle_pro_page_hustle_sshare',
+			'hustle_popup',
+			'hustle_slidein',
+			'hustle_embedded',
+			'hustle_sshare',
 		);
 
 		// Check if current page is hustle wizard page.
-		if ( in_array( $screen->id, $pages, true ) ) {
+		if ( $page && in_array( $page, $pages, true ) ) {
 			return true;
 		}
 
@@ -78,13 +62,6 @@ class Forminator_Shortcode_Generator {
 	 * @since 1.0
 	 */
 	public function attach_button() {
-		global $pagenow;
-
-		// If page different than Post or Page, abort.
-		if ( 'post.php' !== $pagenow && 'post-new.php' !== $pagenow && ! $this->is_hustle_wizard() ) {
-			return;
-		}
-
 		// Button markup.
 		printf(
 			'<button type="button" id="%s" class="button" data-editor="content" data-a11y-dialog-show="forminator-popup">%s<span>%s</span></button>',
@@ -101,28 +78,11 @@ class Forminator_Shortcode_Generator {
 	 * @return mixed
 	 */
 	public function enqueue_js_scripts( $content ) {
-
-		global $pagenow;
-
 		$sui_version = FORMINATOR_SUI_VERSION;
-		$page        = filter_input( INPUT_GET, 'page' );
-		if (
-			defined( 'HUSTLE_SUI_VERSION' ) &&
-			version_compare( HUSTLE_SUI_VERSION, '2.8.0', '>' ) &&
-			version_compare( FORMINATOR_SUI_VERSION, '2.8.0', '<' ) &&
-			'hustle_popup' === $page
-		) {
-			$sui_version = HUSTLE_SUI_VERSION;
-		}
 
 		// $sanitize_version = str_replace( '.', '-', FORMINATOR_SUI_VERSION );.
 		$sanitize_version = str_replace( '.', '-', $sui_version );
 		$sui_body_class   = "sui-$sanitize_version";
-
-		// If page different than Post or Page, abort.
-		if ( 'post.php' !== $pagenow && 'post-new.php' !== $pagenow && ! $this->is_hustle_wizard() ) {
-			return $content;
-		}
 
 		wp_enqueue_script( 'jquery-ui-core' );
 		wp_enqueue_script( 'jquery-ui-widget' );
@@ -184,12 +144,6 @@ class Forminator_Shortcode_Generator {
 	 * @return mixed
 	 */
 	public function enqueue_preview_scripts_for_hustle( $content ) {
-
-		// If page is not Hustle module settings page, abort.
-		if ( ! $this->is_hustle_wizard() ) {
-			return $content;
-		}
-
 		/**
 		 * Forminator UI
 		 * These stylesheets currently works with "forms" only.

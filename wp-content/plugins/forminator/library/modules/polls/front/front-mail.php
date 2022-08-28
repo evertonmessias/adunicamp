@@ -27,7 +27,7 @@ class Forminator_Poll_Front_Mail extends Forminator_Mail {
 		if ( ! isset( $settings[ $option_name ] ) ) {
 			return '';
 		}
-		$text = forminator_replace_variables( $settings[ $option_name ], $module->id );
+		$text = forminator_replace_variables( $settings[ $option_name ], $module->id, $entry );
 		$text = forminator_replace_poll_form_data( $text, $module, Forminator_Front_Action::$prepared_data, $entry );
 
 		return $text;

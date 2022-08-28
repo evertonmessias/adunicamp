@@ -27,7 +27,7 @@ $custom_field_map = isset( $vars['custom_fields_map'] ) ? array_filter( $vars['c
 	</h3>
 
 	<p id="forminator-integration-popup__description" class="sui-description">
-		<?php esc_html_e( 'Let\'s start with choosing a HubSpot list and matching up your form fields with the default HubSpot contact fields to make sure weâ€™re sending data to the right place.', 'forminator' ); ?>
+		<?php esc_html_e( 'Let\'s start with choosing a HubSpot list and matching up your form fields with the default HubSpot contact fields to make sure we\'re sending data to the right place.', 'forminator' ); ?>
 	</p>
 
 	<?php if ( ! empty( $vars['error_message'] ) ) : ?>

@@ -130,7 +130,8 @@
 					formData = new FormData( this ),
 					$target_message = $this.find('.forminator-response-message'),
 					$captcha_field = self.$el.find('.forminator-g-recaptcha, .forminator-hcaptcha'),
-					$saveDraft = 'true' === self.$el.find( 'input[name="save_draft"]' ).val() ? true : false
+					$saveDraft = 'true' === self.$el.find( 'input[name="save_draft"]' ).val() ? true : false,
+					$datepicker = $('body').find( '#ui-datepicker-div.forminator-custom-form-' + self.$el.data( 'form-id' ) )
 					;
 
 				if( self.settings.inline_validation && self.$el.find('.forminator-uploaded-files').length > 0 && ! $saveDraft ) {
@@ -146,6 +147,10 @@
 					if( submitBtn.length === 0 || $( submitBtn ).closest('.forminator-col').hasClass('forminator-hidden') ) {
 						return false;
 					}
+				}
+				// Check if datepicker is open, prevent submit
+				if ( 0 !== $datepicker.length && self.$el.datepicker( "widget" ).is(":visible") ) {
+					return false;
 				}
 
 				if ( self.$el.data( 'forminatorFrontPayment' ) && ! $saveDraft ) {
@@ -783,14 +788,15 @@
 				if ( 0 !== self.$el.find( 'input[type="hidden"][value="forminator_submit_preview_form_quizzes"]' ).length ) {
 					return false;
 				}
-				var form      = $(this),
-					ajaxData  = [],
-					formData  = new FormData( this ),
-					answer    = form.find( '.forminator-answer' ),
-					button    = self.$el.find('.forminator-button').last(),
-					loadLabel = button.data( 'loading' ),
-					placement = 'undefined' !== typeof self.settings.form_placement ? self.settings.form_placement : '',
-					skip_form = 'undefined' !== typeof self.settings.skip_form ? self.settings.skip_form : ''
+				var form       = $(this),
+					ajaxData   = [],
+					formData   = new FormData( this ),
+					answer     = form.find( '.forminator-answer' ),
+					button	   = self.$el.find('.forminator-button').last(),
+					quizResult = self.$el.find( '.forminator-quiz--result' ),
+					loadLabel  = button.data( 'loading' ),
+					placement  = 'undefined' !== typeof self.settings.form_placement ? self.settings.form_placement : '',
+					skip_form  = 'undefined' !== typeof self.settings.skip_form ? self.settings.skip_form : ''
 					;
 
 				e.preventDefault();
@@ -812,7 +818,7 @@
 					}
 					if( 'end' === placement && entry_id === '' ) {
 						self.showForm( $('#forminator-module-' + leads_id ) );
-						self.$el.find( '.forminator-quiz--result' ).addClass( 'forminator-hidden' );
+						quizResult.addClass( 'forminator-hidden' );
 						$('#forminator-quiz-leads-' + quiz_id + ' .forminator-lead-form-skip' ).show();
 
 						return false;
@@ -861,13 +867,13 @@
 						if ( data.success ) {
 							var resultText = '';
 
-                            self.$el.find( '.forminator-quiz--result' ).removeClass( 'forminator-hidden' );
+                            quizResult.removeClass( 'forminator-hidden' );
 							window.history.pushState( 'forminator', 'Forminator', data.data.result_url );
 
 							if ( data.data.type === 'nowrong' ) {
 								resultText = data.data.result;
 
-								self.$el.find( '.forminator-quiz--result' ).html( resultText );
+								quizResult.html( resultText );
 								if ( ! pagination ) {
 									self.$el.find( '.forminator-answer input' ).attr( 'disabled', 'disabled' );
 								}
@@ -875,8 +881,8 @@
 							} else if ( data.data.type === 'knowledge' ) {
 								resultText = data.data.finalText;
 
-								if ( self.$el.find( '.forminator-quiz--result' ).length > 0 ) {
-									self.$el.find( '.forminator-quiz--result' ).html( resultText );
+								if ( quizResult.length > 0 ) {
+									quizResult.html( resultText );
 								}
 
 								Object.keys( data.data.result ).forEach( function( key ) {
@@ -947,6 +953,10 @@
 							}
 
 							form.trigger( 'forminator:quiz:submit:success', [ ajaxData, formData, resultText ] ) ;
+
+							if ( 0 !== quizResult.find( '.forminator-quiz--summary' ).length && ! quizResult.parent().hasClass( 'forminator-pagination--content' ) ) {
+								self.focus_to_element( quizResult.find( '.forminator-quiz--summary' ) );
+							}
 
 						} else {
 							self.$el.find( 'button' ).removeAttr( 'disabled' );
@@ -1303,6 +1313,17 @@
 			fadeout = fadeout || false;
 			fadeout_time = fadeout_time || 0;
 			not_scroll = not_scroll || false;
+			var parent_selector = 'html,body';
+
+			// check inside sui modal
+			if ( $element.closest( '.sui-dialog' ).length > 0 ) {
+				parent_selector = '.sui-dialog';
+			}
+
+			// check inside hustle modal (prioritize)
+			if ( $element.closest( '.wph-modal' ).length > 0 ) {
+				parent_selector = '.wph-modal';
+			}
 
 			// if element is not forminator textarea, force show in case its hidden of fadeOut
 			if ( ! $element.hasClass( 'forminator-textarea' ) && ! $element.parent( '.wp-editor-container' ).length ) {
@@ -1328,7 +1349,7 @@
 			if ( not_scroll ) {
 				focusElement($element);
 			} else {
-				$('html,body').animate({scrollTop: ($element.offset().top - ($(window).height() - $element.outerHeight(true)) / 2)}, 500, function () {
+				$( parent_selector ).animate({scrollTop: ($element.offset().top - ($(window).height() - $element.outerHeight(true)) / 2)}, 500, function () {
 					focusElement($element);
 				});
 			}

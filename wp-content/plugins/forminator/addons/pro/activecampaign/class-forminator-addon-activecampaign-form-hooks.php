@@ -201,6 +201,9 @@ class Forminator_Addon_Activecampaign_Form_Hooks extends Forminator_Addon_Form_H
 			foreach ( $fields_map as $field_id => $element_id ) {
 				if ( ! empty( $element_id ) && isset( $submitted_data[ $element_id ] ) ) {
 					$args[ 'field[' . $field_id . ',0]' ] = $submitted_data[ $element_id ];
+					if ( 0 === strpos( $element_id, 'checkbox-' ) && false !== strpos( $submitted_data[ $element_id ], ', ' ) ) {
+						$args[ 'field[' . $field_id . ',0]' ] = str_replace( ', ', '||', $submitted_data[ $element_id ] );
+					}
 				}
 			}
 

@@ -28,8 +28,9 @@ class Forminator_Quiz_Front_Mail extends Forminator_Mail {
 			return '';
 		}
 
-		$text = forminator_replace_variables( $settings[ $option_name ], $module->id );
+		$text = forminator_replace_variables( $settings[ $option_name ], $module->id, $entry );
 		$text = forminator_replace_quiz_form_data( $text, $module, $entry );
+
 		if ( $lead_model ) {
 			$text = forminator_replace_form_data( $text, $lead_model, $entry );
 			$text = forminator_replace_custom_form_data( $text, $lead_model, $entry );

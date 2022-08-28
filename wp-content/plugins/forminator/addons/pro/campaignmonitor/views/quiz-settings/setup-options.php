@@ -61,9 +61,9 @@ foreach ( $template_vars as $key => $val ) {
 
 			<span class="sui-toggle-slider" aria-hidden="true"></span>
 
-		</label>
+			<span class="sui-toggle-label"><?php esc_html_e( 'Re-subscribe', 'forminator' ); ?></span>
 
-		<label for="resubscribe" class="sui-toggle-label"><?php esc_html_e( 'Re-subscribe', 'forminator' ); ?></label>
+		</label>
 
 		<?php if ( ! empty( $vars['resubscribe_error'] ) ) : ?>
 			<span class="sui-error-message"><?php echo esc_html( $vars['resubscribe_error'] ); ?></span>
@@ -84,10 +84,8 @@ foreach ( $template_vars as $key => $val ) {
 				<?php checked( true, $vars['restart_subscription_based_autoresponders'] ); ?> />
 
 			<span class="sui-toggle-slider" aria-hidden="true"></span>
-
+			<span class="sui-toggle-label"><?php esc_html_e( 'Restart Subscription based Autoresponders', 'forminator' ); ?></span>
 		</label>
-
-		<label class="sui-toggle-label" for="restart_subscription_based_autoresponders"><?php esc_html_e( 'Restart Subscription based Autoresponders', 'forminator' ); ?></label>
 
 		<?php if ( ! empty( $vars['restart_subscription_based_autoresponders_error'] ) ) : ?>
 			<span class="sui-error-message"><?php echo esc_html( $vars['restart_subscription_based_autoresponders_error'] ); ?></span>

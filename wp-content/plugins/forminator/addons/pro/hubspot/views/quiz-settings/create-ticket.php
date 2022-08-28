@@ -70,9 +70,8 @@ foreach ( $template_vars as $key => $val ) {
 				<?php checked( $vars['create_ticket'], 1 ); ?>
 			/>
 			<span class="sui-toggle-slider"></span>
+			<span id="create-ticket-label" class="sui-toggle-label"><?php esc_html_e( 'Create a HubSpot ticket for each submission', 'forminator' ); ?></span>
 		</label>
-
-		<label for="create-ticket" id="create-ticket-label" class="sui-toggle-label"><?php esc_html_e( 'Create a HubSpot ticket for each submission', 'forminator' ); ?></label>
 
 	</div>
 

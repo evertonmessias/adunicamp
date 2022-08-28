@@ -1,13 +1,13 @@
 === Forminator - Contact Form, Payment Form & Custom Form Builder ===
 Plugin Name: Forminator - Contact Form, Payment Form & Custom Form Builder
-Version: 1.17.1
+Version: 1.17.2
 Author: WPMU DEV
 Author URI: https://wpmudev.com/
 Contributors: WPMUDEV
 Tags: forms, contact form, wordpress form plugin, payment form, custom form, form builder, paypal form wordpress, form maker, quiz, quiz builder, order form, stripe payments, paypal payments, stripe form, paypal form
 Requires at least: 5.2
 Tested up to: 6.0
-Stable tag: 1.17.1
+Stable tag: 1.17.2
 Requires PHP: 5.6.20
 License: GPL v2 - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -210,6 +210,58 @@ Find out all you need to know by checking out our API documentation [here](https
 9. Allow simple drag and drop multi-file uploads for users.
 
 == Changelog ==
+
+= 1.17.2 ( 2022-07-27 ) =
+
+- Add: Email body merge tag added with {submission_id}
+- Improvement: Nonce is not validated by default upon submit
+- Improvement: Scrolling quiz results
+- Fix: Adding the same form twice to the same page causes an error
+- Fix: PHP notice while activating Hubspot in the Integration tab for a specific form
+- Fix: Spam trigger in email and Zapier integration submissions
+- Fix: Redirect_uri_mismatch when you authorize Google sheets
+- Fix: An invalid redirect_uri in Hubspot integration
+- Fix: Aweber is not showing the entire list
+- Fix: Newly added tags are not visible in Mailchimp
+- Fix: Consent is not sent to Mailchimp
+- Fix: ActiveCampaign checkboxes issue
+- Fix: Adding square brackets to Google sheets
+- Fix: Issue with Zapier integration
+- Fix: Fatal Error on MailChimp
+- Fix: An apostrophe is added to numbers in Google Sheets integration
+- Fix: Fortress DB fatal error when submitting a form
+- Fix: Timepicker 00 hour and minutes issue
+- Fix: Slack Re-authorize buttons are not aligned
+- Fix: Submission date filter is not working for quizzes
+- Fix: Incorrect validation message when the upload limit is exceeded
+- Fix: Empty registration form value in submission
+- Fix: Fatal error when viewing submissions of Lead Quiz Knowledge
+- Fix: Calculation and checkbox visibility bug
+- Fix: Disable Search on Select field doesn't work
+- Fix: A Hustle pop-up infinite scroll
+- Fix: Close/Deactivate button alignment issue on the Integrations screen
+- Fix: UI issue in Behavior Lifespan field
+- Fix: Improve email validation
+- Fix: Adding a link after a file field results in removing a character
+- Fix: Trello design issue between label and dropdown
+- Fix: {submission_id} merge tag doesn't work in Trello integration
+- Fix: Form Data doesn't work in HTML field text editor
+- Fix: Form Email routing is not working correctly
+- Fix: Timepicker limits are not working
+- Fix: HTML field does not display the time value after submission
+- Fix: Material Design issue in textarea
+- Fix: Can't edit checkbox and radio options
+- Fix: Border style is not working for the selected answer image
+- Fix: If there are spaces in select field values, emails contain 0 instead of the actual value
+- Fix: Missing form button on the post editing screen when using the Classic Editor
+- Fix: Select dropdown doesn't recognize keystrokes
+- Fix: Displaying several instances of ActiveCampaign
+- Fix: Lifespan Expiry Date doesn't work when site language is Spanish
+- Fix: Multiple image file attachments don't display correctly in Trello integration
+- Fix: Failing to check registered user
+- Fix: Input fields color issue on Safari
+- Fix: Error using the offset value on the Datepicker field
+- Fix: Field visibility cannot be set based on the day
 
 = 1.17.1 ( 2022-07-04 ) =
 

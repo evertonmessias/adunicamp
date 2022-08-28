@@ -167,6 +167,8 @@ class Forminator_Addon_Admin_Ajax {
 		unset( $sanitized_post_data['step'] );
 		unset( $sanitized_post_data['current_step'] );
 
+		add_filter( 'forminator_addon_forminatorfortressdb_wizard', array( $this, 'css_fix_for_fortressdb' ) );
+
 		$wizard = $addon->get_settings_wizard( $sanitized_post_data, $form_id, $current_step, $step );
 
 		$this->send_json_success(
@@ -175,6 +177,20 @@ class Forminator_Addon_Admin_Ajax {
 		);
 
 	}//end settings()
+
+	/**
+	 * Temporary fix center alignment for fortressDB.
+	 *
+	 * @param array $wizard Popup data.
+	 * @return array
+	 */
+	public function css_fix_for_fortressdb( $wizard ) {
+		if ( ! empty( $wizard['html'] ) && strpos( $wizard['html'], 'sui-button forminator-addon-close' ) ) {
+			$wizard['html'] = '<div class="sui-box-body sui-content-center">' . $wizard['html'] . '</div>';
+		}
+
+		return $wizard;
+	}
 
 	/**
 	 * Disconnect module from addon

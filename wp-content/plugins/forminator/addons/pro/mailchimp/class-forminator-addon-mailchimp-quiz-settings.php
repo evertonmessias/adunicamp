@@ -219,8 +219,8 @@ class Forminator_Addon_Mailchimp_Quiz_Settings extends Forminator_Addon_Quiz_Set
 				$html .= '<label class="sui-toggle">';
 					$html .= '<input type="checkbox" name="enable_double_opt_in" value="1" id="forminator_addon_mailchimp_enable_double_opt_in" ' . checked( 1, $current_data['enable_double_opt_in'], false ) . ' />';
 					$html .= '<span class="sui-toggle-slider"></span>';
+					$html .= '<span class="sui-toggle-label">' . __( 'Use Double Opt in', 'forminator' ) . '</span>';
 				$html .= '</label>';
-				$html .= '<span class="sui-toggle-label" for="forminator_addon_mailchimp_enable_double_opt_in">' . __( 'Use Double Opt in', 'forminator' ) . '</span>';
 			$html .= '</div>';
 			$html .= $gdpr_fields;
 		$html .= '</form>';
