@@ -61,13 +61,13 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
     </div>
   </section><!-- End Hero -->
 
-<?php }else if (get_option('portal_input_46') == "tabs") { ?>
+<?php } else if (get_option('portal_input_46') == "tabs") { ?>
 
-<section id="heroTab">
+  <section id="heroTab">
     <div class="container">
       <div id="heroTabCarousel" data-bs-interval="5000" class="row carousel slide carousel-fade" data-bs-ride="carousel">
 
-        <div class="col-lg-9">
+        <div class="col-lg-9 slides">
           <div class="carousel-inner" role="listbox">
             <?php
             $x = 0;
@@ -85,12 +85,12 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
               } else {
                 $imagem = SITEPATH . "assets/img/semimagem.png";
               }
-              if($x == 0){
+              if ($x == 0) {
                 $active = "class='active'";
-              }else{
+              } else {
                 $active = "";
               }
-              $string_li .= "<li data-bs-target='#heroTabCarousel' data-bs-slide-to='".$x."' ".$active."><br><a href='".get_the_permalink()."'><small>".get_the_category()[0]->name."</small><hr>".get_the_title()."</a></li>";
+              $string_li .= "<li data-bs-target='#heroTabCarousel' data-bs-slide-to='" . $x . "' " . $active . "><a href='" . get_the_permalink() . "'><small>" . get_the_category()[0]->name . "</small><hr>" . get_the_title() . "</a></li>";
             ?>
               <!-- Slide -->
               <div class="carousel-item <?php if ($x == 0) echo 'active'; ?>" style="background-image: url(<?php echo $imagem; ?>)">
@@ -119,64 +119,83 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
     </div>
   </section><!-- End Hero -->
 
-  <?php } ?>
+<?php } ?>
 
 <main id="main">
 
   <!-- ======= Last News ======= -->
   <?php if (get_option('portal_input_44') != 0) { ?>
-    <section id="top-news" class="gallery section-bg">
+    <section id="top-news" class="gallery">
+
+      <div class="section-title" data-aos="fade-up">
+        <h2>Destaques</h2>
+      </div>
+
       <div class="container" data-aos="fade-up">
 
-        <div class="section-title" data-aos="fade-up">
-          <h2>Destaques</h2>
-        </div>
+        <div class="row">
 
-        <div class="gallery-slider swiper">
-          <div class="swiper-wrapper icon-boxes">
+          <div class="col-lg-8">
 
-            <?php
-            $x = 1;
-            $args = array(
-              'post_type' => 'post',
-              'posts_per_page' =>  get_option('portal_input_44'),
-              'category_name' => get_option('portal_input_45'),
-              'order' => 'DESC'
-            );
-            $loop = new WP_Query($args);
-            foreach ($loop->posts as $post) {
-              if (has_post_thumbnail()) {
-                $imagem = get_the_post_thumbnail_url(get_the_ID(), 'full');
-              } else {
-                $imagem = SITEPATH . "assets/img/semimagem.png";
-              }
-            ?>
+            <div class="gallery-slider swiper">
+              <div class="swiper-wrapper icon-boxes">
 
-              <div class="swiper-slide">
+                <?php
+                $x = 1;
+                $args = array(
+                  'post_type' => 'post',
+                  'posts_per_page' =>  get_option('portal_input_44'),
+                  'category_name' => get_option('portal_input_45'),
+                  'order' => 'DESC'
+                );
+                $loop = new WP_Query($args);
+                foreach ($loop->posts as $post) {
+                  if (has_post_thumbnail()) {
+                    $imagem = get_the_post_thumbnail_url(get_the_ID(), 'full');
+                  } else {
+                    $imagem = SITEPATH . "assets/img/semimagem.png";
+                  }
+                ?>
 
-                <div class="post-entry-1">
-                  <a href="<?php the_permalink() ?>"><img src="<?php echo $imagem; ?>" alt="" class="img-fluid"></a>
-                  <div class="post-meta"><span class="date"><?php echo get_the_category()[0]->name; ?></span>
-                    <span class="mx-1">&bullet;</span> <span><?php echo get_the_date('d M Y', $post->ID); ?></span>
+                  <div class="swiper-slide">
+
+                    <div class="post-entry-1">
+                      <a href="<?php the_permalink() ?>"><img src="<?php echo $imagem; ?>" alt="" class="img-fluid"></a>
+                      <div class="post-meta"><span class="date"><?php echo get_the_category()[0]->name; ?></span>
+                        <span class="mx-1">&bullet;</span> <span><?php echo get_the_date('d M Y', $post->ID); ?></span>
+                      </div>
+                      <h2><a href="<?php the_permalink() ?>"><?php echo get_the_title() ?></a></h2>
+                    </div>
+
                   </div>
-                  <h2><a href="<?php the_permalink() ?>"><?php echo get_the_title() ?></a></h2>
-                </div>
+
+                <?php $x++;
+                }
+                wp_reset_postdata();
+                ?>
 
               </div>
+              <div class="swiper-pagination"></div>
+            </div>
 
-            <?php $x++;
+            <!--<div class="row">
+              <div class="col-lg-12 more">
+                <a class="getstarted" href="/arquivos">Veja todos</a>
+              </div>
+            </div>-->
+
+          </div>
+
+          <div class="col-lg-4 buttons" data-aos="fade-up">
+            <?php
+            $valor = array();
+            for ($i = 1; $i <= 8; $i++) {
+              $valor = explode(',', get_option('portal_input_5' . $i), 3);
+              echo '<a href="' . $valor[0] . '"><div class="icon-box"><div class="icon"><i class="' . $valor[1] . '"></i></div><h4 class="title">' . $valor[2] . '</h4></div></a>';
             }
-            wp_reset_postdata();
             ?>
-
           </div>
-          <div class="swiper-pagination"></div>
-        </div>
 
-        <div class="row">
-          <div class="col-lg-12 more">
-            <a class="getstarted" href="/arquivos">Veja todos</a>
-          </div>
         </div>
 
       </div>
@@ -187,11 +206,11 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
   <!-- ======= Services Section ======= -->
   <section id="services" class="services">
 
-    <div class="container">
+    <div class="section-title" data-aos="fade-up">
+      <h2>Agenda</h2>
+    </div>
 
-      <div class="section-title" data-aos="fade-up">
-        <h2>Serviços</h2>
-      </div>
+    <div class="container">
 
       <div class="row">
 
@@ -199,14 +218,8 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
           <div id='calendar'></div>
         </div>
 
-        <div class="col-lg-4 buttons" data-aos="fade-up">
-          <?php
-          $valor = array();
-          for ($i = 1; $i <= 8; $i++) {
-            $valor = explode(',', get_option('portal_input_5' . $i), 3);
-            echo '<a href="' . $valor[0] . '"><div class="icon-box"><div class="icon"><i class="' . $valor[1] . '"></i></div><h4 class="title">' . $valor[2] . '</h4></div></a>';
-          }
-          ?>
+        <div class="col-lg-4" data-aos="fade-up">
+          Lista Posts Calendario
         </div>
 
       </div>
@@ -219,11 +232,11 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
   <!-- ======= Convênios Section ======= -->
   <?php if (get_option('portal_input_47') == "on") { ?>
     <section id="agreement" class="agreement" style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('<?php echo get_option('portal_input_2') ?>') center center;background-size: cover;padding: 50px 0;background-attachment: fixed;">
-      <div class="container" data-aos="fade-up">
+      <div class="section-title" data-aos="fade-up">
+        <h2 class="white">Convênios</h2>
+      </div>
 
-        <div class="section-title" data-aos="fade-up">
-          <h2 class="white">Convênios</h2>
-        </div>
+      <div class="container" data-aos="fade-up">
 
         <div class="agreement-slider swiper">
           <div class="swiper-wrapper align-items-center">
@@ -270,12 +283,13 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
   <?php } ?>
 
   <!-- ======= News Section ======= -->
-  <section id="news" class="new-posts section-bg">
-    <div class="container">
+  <section id="news" class="new-posts">
 
-      <div class="section-title" data-aos="fade-up">
-        <h2>Arquivos</h2>
-      </div>
+    <div class="section-title" data-aos="fade-up">
+      <h2>Notícias</h2>
+    </div>
+
+    <div class="container">
 
       <?php
       $x = 1;
@@ -338,11 +352,12 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
   <!-- ======= Video Section ======= -->
   <?php if (get_option('portal_input_48') == "on") { ?>
     <section id="podcast" class="podcast" style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('<?php echo get_option('portal_input_2') ?>') center center;background-size: cover;background-attachment: fixed;">>
-      <div class="container" data-aos="fade-up">
 
-        <div class="section-title" data-aos="fade-up">
-          <h2 class="white">Podcast</h2>
-        </div>
+      <div class="section-title" data-aos="fade-up">
+        <h2 class="white">Podcast</h2>
+      </div>
+
+      <div class="container" data-aos="fade-up">
 
         <div class="podcast-slider swiper">
           <div class="swiper-wrapper align-items-center">
@@ -380,12 +395,13 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
 
   <!-- ======= Portfolio Section ======= -->
   <?php if (get_option('portal_input_49') == "on") { ?>
-    <section id="gallery" class="portfolio section-bg">
-      <div class="container" data-aos="fade-up">
+    <section id="gallery" class="portfolio">
 
-        <div class="section-title">
-          <h2>Galeria</h2>
-        </div>
+      <div class="section-title">
+        <h2>Galeria</h2>
+      </div>
+
+      <div class="container" data-aos="fade-up">
 
         <div class="row" data-aos="fade-up" data-aos-delay="100">
           <div class="col-lg-12 d-flex justify-content-center">
@@ -450,11 +466,12 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
   <!-- ======= Team Section ======= -->
   <?php if (get_option('portal_input_50') == "on") { ?>
     <section id="team" class="team" style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('<?php echo get_option('portal_input_2') ?>') center center;background-size: cover;background-attachment: fixed;">>
-      <div class="container" data-aos="fade-up">
 
-        <div class="section-title" data-aos="fade-up">
-          <h2 class="white">Equipe</h2>
-        </div>
+      <div class="section-title" data-aos="fade-up">
+        <h2 class="white">Equipe</h2>
+      </div>
+
+      <div class="container" data-aos="fade-up">
 
         <div class="team-slider swiper">
           <div class="swiper-wrapper align-items-center">
@@ -518,11 +535,12 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
 
   <!-- ======= Contact Section ======= -->
   <section id="contact" class="contact">
-    <div class="container">
 
-      <div class="section-title">
-        <h2>Contato</h2>
-      </div>
+    <div class="section-title">
+      <h2>Contato</h2>
+    </div>
+
+    <div class="container">
 
       <div class="row">
         <div class="col-lg-6">
