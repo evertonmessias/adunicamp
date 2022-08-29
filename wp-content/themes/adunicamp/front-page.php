@@ -125,7 +125,7 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
 
   <!-- ======= Last News ======= -->
   <?php if (get_option('portal_input_44') != 0) { ?>
-    <section id="top-news" class="gallery">
+    <section id="top-news" class="gallery section-bg">
 
       <div class="section-title" data-aos="fade-up">
         <h2>Destaques</h2>

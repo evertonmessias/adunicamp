@@ -840,8 +840,16 @@ section {
 # Top News Posts
 --------------------------------------------------------------*/
 #top-news{
-  padding-top: 4em;
-  height: 650px;
+  padding-top: 2em;
+  height: 600px;
+}
+
+#top-news .gallery-slider{
+  margin-top: -20px;
+}
+
+#top-news .swiper-pagination{
+  margin-top: 50px;
 }
 
 #top-news .post-entry-1 {
@@ -856,10 +864,10 @@ section {
 }
 #top-news .post-entry-1 img {
   position: relative;
-  margin: 0 auto;
-  margin-bottom: 30px;
+  margin: 0 auto;  
   width: auto !important;
-  height: 150px;
+  margin-top: 30px;
+  margin-bottom: 30px;  
 }
 #top-news .post-entry-1 h2 {
   margin-bottom: 20px;
