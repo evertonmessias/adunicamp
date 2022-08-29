@@ -178,12 +178,6 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
               <div class="swiper-pagination"></div>
             </div>
 
-            <!--<div class="row">
-              <div class="col-lg-12 more">
-                <a class="getstarted" href="/arquivos">Veja todos</a>
-              </div>
-            </div>-->
-
           </div>
 
           <div class="col-lg-4 buttons" data-aos="fade-up">
@@ -218,8 +212,44 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
           <div id='calendar'></div>
         </div>
 
-        <div class="col-lg-4" data-aos="fade-up">
-          Lista Posts Calendario
+        <div class="col-lg-4 list-agenda" data-aos="fade-up">
+
+          <?php
+          $x = 1;
+          $string_li_agenda = "";
+          $args = array(
+            'post_type' => 'agenda',
+            'posts_per_page' =>  4,
+            'order' => 'DESC'
+          );
+          $loop = new WP_Query($args);
+          foreach ($loop->posts as $post) {
+            if (has_post_thumbnail()) {
+              $imagem = get_the_post_thumbnail_url(get_the_ID(), 'full');
+            } else {
+              $imagem = SITEPATH . "assets/img/semimagem.png";
+            }
+          ?>
+
+            <div class="row post-agenda">
+
+              <div class="col-lg-3 img-agenda">
+                <a href="<?php the_permalink() ?>"><img src="<?php echo $imagem; ?>" alt="" class="img-fluid"></a>
+              </div>
+
+              <div class="col-lg-9 title-agenda">
+                <a href="<?php echo get_the_permalink(); ?>">
+                  <h5><?php echo get_the_title(); ?></h5>
+                </a>
+              </div>
+
+            </div>
+
+          <?php $x++;
+          }
+          wp_reset_postdata();
+          ?>
+
         </div>
 
       </div>

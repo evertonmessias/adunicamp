@@ -529,7 +529,7 @@ margin-left: -110px;
   height: 15vh !important;
   border-radius: 0;
   opacity: 1;
-  background: #e9e9e9;
+  background: #efefef;
   border-bottom: 2px solid #fff;
 }
 
@@ -1146,6 +1146,21 @@ section {
   line-height: 24px;
   font-size: 14px;
 }
+
+.services .calendar, .services .list-agenda{
+  height: auto;
+}
+
+.services .list-agenda .post-agenda{
+  height: 25%;
+  background: #efefef;
+  margin-bottom: 2px;
+}
+
+.services .list-agenda .post-agenda .img-agenda,.services .list-agenda .post-agenda .title-agenda{
+  padding: 20px;
+}
+
 @media(max-width:900px){
   .services{
     height: 1100px;
