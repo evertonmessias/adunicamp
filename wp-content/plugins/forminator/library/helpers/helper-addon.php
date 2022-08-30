@@ -817,15 +817,15 @@ function forminator_format_submitted_data_for_addon( $form_fields, $current_entr
 					}
 				}
 
-			// For ajax multi-upload
+				// For ajax multi-upload
 			} elseif (
 				'upload' === $form_field['type'] &&
 				'multiple' === $form_field['file-type'] &&
 				( ! isset( $form_field['upload-method'] ) || 'ajax' === $form_field['upload-method'] )
 			) {
-				$entry_key = array_search( $form_field['element_id'], array_column( $current_entry_fields, 'name') );
-				if ( false !== $entry_key && ! empty( $current_entry_fields[$entry_key] ) ) {
-					$formatted_post_data[ $form_field['element_id'] ] = implode( ',', $current_entry_fields[$entry_key]['value']['file']['file_url'] );
+				$entry_key = array_search( $form_field['element_id'], array_column( $current_entry_fields, 'name' ) );
+				if ( false !== $entry_key && ! empty( $current_entry_fields[ $entry_key ] ) ) {
+					$formatted_post_data[ $form_field['element_id'] ] = implode( ',', $current_entry_fields[ $entry_key ]['value']['file']['file_url'] );
 				}
 			}
 		}
@@ -1023,7 +1023,7 @@ function forminator_addon_maybe_log() {
  *
  * @return mixed|string
  */
-function forminator_addon_replace_custom_vars( $content, $submitted_data, Forminator_Form_Model $custom_form, $entry_meta, $allow_html = false ) {
+function forminator_addon_replace_custom_vars( $content, $submitted_data, Forminator_Form_Model $custom_form, $entry_meta, $allow_html = false, $entry = null ) {
 	$entry_model = new Forminator_Form_Entry_Model( null );
 	foreach ( $entry_meta as $meta ) {
 		if ( isset( $meta['name'] ) ) {
@@ -1034,7 +1034,7 @@ function forminator_addon_replace_custom_vars( $content, $submitted_data, Formin
 		}
 	}
 
-	$content = forminator_replace_variables( $content, $custom_form->id );
+	$content = forminator_replace_variables( $content, $custom_form->id, $entry );
 	$content = forminator_replace_custom_form_data( $content, $custom_form, $entry_model );
 
 	$field_types = Forminator_Core::get_field_types();
@@ -1101,17 +1101,12 @@ function forminator_addon_integration_section_admin_url( $addon, $section, $with
 
 	if ( $addon->is_multi_global ) {
 		$query_args['global_id']  = $addon->multi_global_id;
-		$query_args['identifier'] = $identifier;
+		$query_args['identifier'] = rawurlencode( $identifier );
 	}
 
 	if ( $with_nonce ) {
 		$nonce               = Forminator_Integrations_Page::get_addon_page_nonce();
 		$query_args['nonce'] = $nonce;
-	}
-
-	if ( $addon->is_multi_global ) {
-		$query_args['global_id']  = $addon->multi_global_id;
-		$query_args['identifier'] = $identifier;
 	}
 
 	return add_query_arg(

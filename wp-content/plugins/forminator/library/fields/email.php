@@ -269,7 +269,7 @@ class Forminator_Email extends Forminator_Field {
 
 		if ( $is_validate && ! empty( $data ) ) {
 			$validation_message = htmlentities( $validation_message );
-			if ( 320 < strlen( $data ) || ! is_email( $data ) ) {
+			if ( 320 < strlen( $data ) || ! is_email( $data ) || ! filter_var( $data, FILTER_VALIDATE_EMAIL ) ) {
 				$this->validation_message[ $id ] = $validation_message;
 			}
 		}
@@ -288,7 +288,7 @@ class Forminator_Email extends Forminator_Field {
 	public function sanitize( $field, $data ) {
 		$original_data = $data;
 		// Sanitize email.
-		$data = sanitize_email( $data );
+		$data = is_string( $data ) ? sanitize_email( $data ) : '';
 
 		return apply_filters( 'forminator_field_email_sanitize', $data, $field, $original_data );
 	}

@@ -421,6 +421,26 @@ class Forminator_Addon_Trello_Wp_Api {
 	}
 
 	/**
+	 * Add Attachment
+	 *
+	 * @since 1.15.? Trello Addon
+	 *
+	 * @param       $card_id
+	 * @param array $args
+	 *
+	 * @return array|mixed|object
+	 * @throws Forminator_Addon_Trello_Wp_Api_Exception
+	 * @throws Forminator_Addon_Trello_Wp_Api_Not_Found_Exception
+	 */
+	public function add_attachment( $card_id, $upload ) {
+		$arg			 = [];
+		$arg['name'] 	 = basename( parse_url( $upload, PHP_URL_PATH ) );
+		$arg['url']	 	 = $upload;
+
+		return $this->post_( 'cards/' . trim( $card_id ) . '/attachments', $arg );
+	}
+
+	/**
 	 * Delete Card (not reversible)
 	 *
 	 * @since 1.0 Trello Addon
@@ -529,5 +549,16 @@ class Forminator_Addon_Trello_Wp_Api {
 	 */
 	public function get_last_url_request() {
 		return $this->_last_url_request;
+	}
+
+	/**
+	 * Get card ID
+	 *
+	 * @since 1.0 Trello Addon
+	 *
+	 * @return array
+	 */
+	public function get_card_id() {
+		return $this->get_last_data_received()->id;
 	}
 }

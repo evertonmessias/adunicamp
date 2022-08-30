@@ -131,8 +131,8 @@ foreach ( $template_vars as $key => $val ) {
 							value="1"
 						<?php checked( 1, $vars['instantresponders'] ); ?>>
 					<span class="sui-toggle-slider"></span>
+					<span class="sui-toggle-label"><?php esc_html_e( 'Enable Instant Responders', 'forminator' ); ?></span>
 				</label>
-				<label class="sui-toggle-label" for="instantresponders"><?php esc_html_e( 'Enable Instant Responders', 'forminator' ); ?></label>
 				<?php if ( ! empty( $vars['instantresponders_error'] ) ) : ?>
 					<span class="sui-error-message"><?php echo esc_html( $vars['instantresponders_error'] ); ?></span>
 				<?php endif; ?>
@@ -158,8 +158,8 @@ foreach ( $template_vars as $key => $val ) {
 							value="1"
 						<?php checked( 1, $vars['lastmessage'] ); ?>>
 					<span class="sui-toggle-slider"></span>
+					<span class="sui-toggle-label"><?php esc_html_e( 'Send last broadcast campaign', 'forminator' ); ?></span>
 				</label>
-				<label class="sui-toggle-label" for="lastmessage"><?php esc_html_e( 'Send last broadcast campaign', 'forminator' ); ?></label>
 				<?php if ( ! empty( $vars['lastmessage_error'] ) ) : ?>
 					<span class="sui-error-message"><?php echo esc_html( $vars['lastmessage_error'] ); ?></span>
 				<?php endif; ?>

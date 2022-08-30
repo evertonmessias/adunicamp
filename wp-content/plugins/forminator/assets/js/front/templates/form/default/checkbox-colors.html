@@ -76,6 +76,21 @@
 		<?php } ?>
 	}
 
+	@media screen and ( max-width: 782px ) {
+		.forminator-ui#forminator-module-<?php echo $properties['form_id'] ?>.forminator-design--<?php echo $theme; ?> .forminator-checkbox:hover .forminator-checkbox-image {
+			<?php if ( forminator_array_value_exists( $properties, 'radio-image-border-static' ) && !empty( $properties['radio-image-border-static'] ) ) { ?>
+				border-color: <?php echo $properties['radio-image-border-static'] ?>;
+			<?php } else { ?>
+				border-color: #777771;
+			<?php } ?>
+			<?php if ( forminator_array_value_exists( $properties, 'radio-image-background-static' ) && !empty( $properties['radio-image-background-static'] ) ) { ?>
+				background-color: <?php echo $properties['radio-image-background-static'] ?>;
+			<?php } else { ?>
+				background-color: #EDEDED;
+			<?php } ?>
+		}
+	}
+
 <?php } else { ?>
 
 	.forminator-ui#forminator-module-<?php echo $properties['form_id'] ?>.forminator-design--<?php echo $theme; ?> .forminator-checkbox,
@@ -108,6 +123,13 @@
 
 	.forminator-ui#forminator-module-<?php echo $properties['form_id'] ?>.forminator-design--<?php echo $theme; ?> .forminator-has_error .forminator-checkbox .forminator-checkbox-box {
 		border-color: #E04562;
+	}
+
+	@media screen and ( max-width: 782px ) {
+		.forminator-ui#forminator-module-<?php echo $properties['form_id'] ?>.forminator-design--<?php echo $theme; ?> .forminator-checkbox:hover .forminator-checkbox-image {
+			border-color: #777771;
+			background-color: #EDEDED;
+		}
 	}
 
 <?php } ?>

@@ -364,6 +364,7 @@ function forminator_get_vars( $add_query = false ) {
 		'user_ip'      	  => esc_html__( 'User IP Address', 'forminator' ),
 		'date_mdy'     	  => esc_html__( 'Date (mm/dd/yyyy)', 'forminator' ),
 		'date_dmy'     	  => esc_html__( 'Date (dd/mm/yyyy)', 'forminator' ),
+		'submission_id'   => esc_html__( 'Submission ID', 'forminator' ),
 		'submission_time' => esc_html__( 'Submission Time (hh:mm:ss am/pm, timezone)', 'forminator' ),
 		'embed_id'     	  => esc_html__( 'Embed Post/Page ID', 'forminator' ),
 		'embed_title'  	  => esc_html__( 'Embed Post/Page Title', 'forminator' ),
@@ -548,6 +549,11 @@ function forminator_replace_form_data( $content, Forminator_Form_Model $custom_f
 				if ( strpos( $element_id, 'number' ) !== false ) {
 					$field = $custom_form->get_field( $element_id, true );
 					$value = Forminator_Field::forminator_number_formatting( $field, $data[ $element_id ] );
+				} elseif (
+					false !== stripos( $element_id, 'time' ) &&
+					( false !== stripos( $element_id, '-hours' ) || false !== stripos( $element_id, '-minutes' ) )
+				) {
+					$value = str_pad( $data[ $element_id ], 2, '0', STR_PAD_LEFT );
 				} else {
 					$value = $data[ $element_id ];
 				}
@@ -798,8 +804,8 @@ function forminator_get_formatted_form_name( Forminator_Form_Model $custom_form,
  *
  * @return string
  */
-function forminator_get_submission_id( Forminator_Form_Model $custom_form, Forminator_Form_Entry_Model $entry ) {
-	return esc_html( $entry->entry_id );
+function forminator_get_submission_id( Forminator_Form_Model $custom_form, $entry = null ) {
+	return is_object( $entry ) && isset( $entry->entry_id ) ? esc_html( $entry->entry_id ) : 0;
 }
 
 /**
@@ -913,7 +919,7 @@ function forminator_get_formatted_line_break() {
  *
  * @return string
  */
-function forminator_replace_variables( $content, $id = false ) {
+function forminator_replace_variables( $content, $id = false, $entry = null ) {
 	$content_before_replacement = $content;
 
 	// If we have no variables, skip.
@@ -936,6 +942,8 @@ function forminator_replace_variables( $content, $id = false ) {
 			'{date_mdy}'           => date_i18n( 'm/d/Y', forminator_local_timestamp(), true ),
 			// Handle Date (dd/mm/yyyy) variable.
 			'{date_dmy}'           => date_i18n( 'd/m/Y', forminator_local_timestamp(), true ),
+			// Submission ID.
+			'{submission_id}'	   => forminator_get_submission_id( new Forminator_Form_Model(), $entry ),
 			// Submission time.
 			'{submission_time}'    => date_i18n( 'g:i:s a, T', forminator_local_timestamp(), true ),
 			// Handle Embed Post/Page ID variable.
@@ -1027,10 +1035,12 @@ function render_entry( $item, $column_name, $field = null, $type = '', $remove_e
 					if ( is_array( $value ) ) {
 						if ( 'file' === $key && isset( $value['file_url'] ) ) {
 							$file_urls = is_array( $value['file_url'] ) ? $value['file_url'] : array( $value['file_url'] );
-							foreach ( $file_urls as $file_url ) {
+							$files_count = count( $file_urls );
+							foreach ( $file_urls as $index => $file_url ) {
 								$file_name = basename( $file_url );
-								$file_name = "<a href='" . esc_url( $file_url ) . "' target='_blank' rel='noreferrer' title='" . __( 'View File', 'forminator' ) . "'>$file_name</a><br/>";
+								$file_name = "<a href='" . esc_url( $file_url ) . "' target='_blank' rel='noreferrer' title='" . __( 'View File', 'forminator' ) . "'>$file_name</a>";
 								$output   .= $file_name;
+								$output   .= $index < $files_count - 1 ? '<br/>' : '';
 							}
 						}
 					} else {
@@ -1221,7 +1231,6 @@ function render_entry( $item, $column_name, $field = null, $type = '', $remove_e
 							false !== strpos( $column_name, 'name' ) ||
 							false !== strpos( $column_name, 'address' ) ||
 							false !== strpos( $column_name, 'upload' ) ||
-							false !== strpos( $column_name, 'time' ) ||
 							false !== strpos( $column_name, 'postdata' ) ||
 							false !== strpos( $column_name, 'signature' )
 						)
@@ -1239,8 +1248,12 @@ function render_entry( $item, $column_name, $field = null, $type = '', $remove_e
 						$output	= Forminator_Form_Entry_Model::meta_value_to_string( 'date', $meta_value, true ) . '<br/>';
 						$output .= sprintf( esc_html__( 'Format%s %s %s', 'forminator' ), ':', $data['format'], '<br/>' );
 
+					} elseif ( false !== strpos( $column_name, 'time' ) ) {
+						$output	= Forminator_Form_Entry_Model::meta_value_to_string( 'time', $data, true ) . '<br/>';
+
 					} else {
 						$output = substr( trim( $output ), 0, - 1 );
+
 					}
 				} else {
 					$output = implode( ', ', $data );

@@ -115,6 +115,11 @@ abstract class Forminator_Render_Form {
 	protected $draft_data = array();
 
 	/**
+	 * @var string
+	 */
+	public static $uid = '';
+
+	/**
 	 * Return class instance
 	 *
 	 * @since 1.0
@@ -134,6 +139,7 @@ abstract class Forminator_Render_Form {
 	 * @since 1.0
 	 */
 	public function __construct() {
+		self::$uid = uniqid();
 		$this->is_admin = is_admin();
 		$this->init();
 	}
@@ -273,6 +279,7 @@ abstract class Forminator_Render_Form {
 		$track_views       = $this->can_track_views();
 		$fields_type_class = $this->get_fields_type_class();
 		$design_class      = $this->get_form_design_class();
+		$form_uid      	   = 'data-uid="' . esc_attr( self::$uid ) . '"';
 
 		// If rendered on Preview, the array is empty and sometimes PHP notices show up.
 		if ( $this->is_admin && ( empty( self::$render_ids ) || ! $id ) ) {
@@ -309,7 +316,7 @@ abstract class Forminator_Render_Form {
 
 		// Markup Loader.
 		$loader = sprintf(
-			'<div class="%sforminator-%s forminator-%s-%s %s %s %s" data-forminator-render="%s" data-form="forminator-module-%s"><br/></div>',
+			'<div class="%sforminator-%s forminator-%s-%s %s %s %s" data-forminator-render="%s" data-form="forminator-module-%s" %s><br/></div>',
 			$forminator_ui,
 			$form_type,
 			$form_type,
@@ -318,7 +325,8 @@ abstract class Forminator_Render_Form {
 			$fields_type_class,
 			$extra_classes,
 			$render_id,
-			$id
+			$id,
+			$form_uid
 		);
 
 		// To-Do: Remove when live preview for Poll & Quiz implemented.
@@ -392,6 +400,7 @@ abstract class Forminator_Render_Form {
 				%s
 				%s
 				%s
+				%s
 			>',
 			$id,
 			$forminator_ui,
@@ -412,7 +421,8 @@ abstract class Forminator_Render_Form {
 			$form_enctype,
 			$aria_live,
 			$hidden,
-			$draft_page
+			$draft_page,
+			$form_uid
 		);
 
 		if ( ! $has_lead ) {
@@ -504,14 +514,16 @@ abstract class Forminator_Render_Form {
 		}
 
 		$render_id = self::$render_ids[ $id ];
+		$form_uid  = 'data-uid="' . esc_attr( self::$uid ) . '"';
 
 		$html .= sprintf(
-			'<form id="forminator-module-%s" class="forminator-%s forminator-%s-%s" action="" method="post" data-forminator-render="%s">',
+			'<form id="forminator-module-%s" class="forminator-%s forminator-%s-%s" action="" method="post" data-forminator-render="%s" %s>',
 			$id,
 			$form_type,
 			$form_type,
 			$id,
-			$render_id
+			$render_id,
+			$form_uid
 		);
 
 			$html .= $this->render_form_header();

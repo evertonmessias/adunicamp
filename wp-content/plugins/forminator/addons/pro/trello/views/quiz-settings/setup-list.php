@@ -55,18 +55,17 @@ $vars['step_description'] = sprintf(
 
 <form>
 	<div class="sui-form-field <?php echo esc_attr( ! empty( $vars['list_id_error'] ) ? 'sui-form-field-error' : '' ); ?>" style="margin: 0;">
-		<label class="sui-label"><?php esc_html_e( 'List', 'forminator' ); ?>
+		<label class="sui-label"><?php esc_html_e( 'List', 'forminator' ); ?></label>
 		<?php // DEV NOTE: Select without JS. ?>
-			<select name="list_id" style="max-width: none;">
-				<option><?php esc_html_e( 'Please select a list', 'forminator' ); ?></option>
-				<?php foreach ( $vars['lists'] as $list_id => $list_name ) : ?>
-					<option value="<?php echo esc_attr( $list_id ); ?>" <?php selected( $vars['list_id'], $list_id ); ?>><?php echo esc_html( $list_name ); ?></option>
-				<?php endforeach; ?>
-			</select>
-			<?php if ( ! empty( $vars['list_id_error'] ) ) : ?>
-				<span class="sui-error-message"><?php echo esc_html( $vars['list_id_error'] ); ?></span>
-			<?php endif; ?>
-		</label>
+		<select name="list_id" style="max-width: none;">
+			<option><?php esc_html_e( 'Please select a list', 'forminator' ); ?></option>
+			<?php foreach ( $vars['lists'] as $list_id => $list_name ) : ?>
+				<option value="<?php echo esc_attr( $list_id ); ?>" <?php selected( $vars['list_id'], $list_id ); ?>><?php echo esc_html( $list_name ); ?></option>
+			<?php endforeach; ?>
+		</select>
+		<?php if ( ! empty( $vars['list_id_error'] ) ) : ?>
+			<span class="sui-error-message"><?php echo esc_html( $vars['list_id_error'] ); ?></span>
+		<?php endif; ?>
 	</div>
 	<input type="hidden" name="multi_id" value="<?php echo esc_attr( $vars['multi_id'] ); ?>">
 </form>

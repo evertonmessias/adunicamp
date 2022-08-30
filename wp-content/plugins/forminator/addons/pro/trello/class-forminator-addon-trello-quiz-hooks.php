@@ -52,7 +52,7 @@ class Forminator_Addon_Trello_Quiz_Hooks extends Forminator_Addon_Quiz_Hooks_Abs
 	 *
 	 * @return array
 	 */
-	public function add_entry_fields( $submitted_data, $current_entry_fields = array() ) {
+	public function add_entry_fields( $submitted_data, $current_entry_fields = array(), $entry = null ) {
 
 		$quiz_id                = $this->quiz_id;
 		$quiz_settings_instance = $this->quiz_settings_instance;
@@ -114,7 +114,7 @@ class Forminator_Addon_Trello_Quiz_Hooks extends Forminator_Addon_Quiz_Hooks_Abs
 				// exec only on completed connection.
 				$data[] = array(
 					'name'  => 'status-' . $key,
-					'value' => $this->get_status_on_create_card( $key, $submitted_data, $addon_setting_value, $current_entry_fields ),
+					'value' => $this->get_status_on_create_card( $key, $submitted_data, $addon_setting_value, $current_entry_fields, $entry ),
 				);
 			}
 		}
@@ -156,7 +156,7 @@ class Forminator_Addon_Trello_Quiz_Hooks extends Forminator_Addon_Quiz_Hooks_Abs
 	 *
 	 * @return array `is_sent` true means its success send data to Trello, false otherwise
 	 */
-	private function get_status_on_create_card( $connection_id, $submitted_data, $connection_settings, $current_entry_fields ) {
+	private function get_status_on_create_card( $connection_id, $submitted_data, $connection_settings, $current_entry_fields, $entry = null ) {
 		// initialize as null.
 		$api = null;
 
@@ -182,12 +182,12 @@ class Forminator_Addon_Trello_Quiz_Hooks extends Forminator_Addon_Quiz_Hooks_Abs
 			if ( isset( $connection_settings['card_name'] ) ) {
 				$card_name = $connection_settings['card_name'];
 				// disable all_fields here.
-				$card_name = forminator_replace_variables( $card_name );
+				$card_name = forminator_replace_variables( $card_name, $quiz_id, $entry );
 				// {quizname_replace}.
 				$card_name = str_ireplace( '{quiz_name}', forminator_get_name_from_model( $this->quiz ), $card_name );
 
 				if ( isset( $quiz_settings['hasLeads'] ) && $quiz_settings['hasLeads'] ) {
-					$card_name = forminator_addon_replace_custom_vars( $card_name, $lead_submitted_data, $this->lead_model, $form_entry_fields );
+					$card_name = forminator_addon_replace_custom_vars( $card_name, $lead_submitted_data, $this->lead_model, $form_entry_fields, $entry );
 				}
 
 				/**
@@ -226,9 +226,9 @@ class Forminator_Addon_Trello_Quiz_Hooks extends Forminator_Addon_Quiz_Hooks_Abs
 				$card_description         = str_ireplace( '{quiz_name}', '#' . forminator_get_name_from_model( $this->quiz ), $card_description );
 				$card_description         = str_ireplace( '{quiz_answer}', $quiz_answers_to_markdown, $card_description );
 				$card_description         = str_ireplace( '{quiz_result}', $quiz_result_to_markdown, $card_description );
-				$card_description         = forminator_replace_variables( $card_description );
+				$card_description         = forminator_replace_variables( $card_description, $quiz_id, $entry );
 				if ( isset( $quiz_settings['hasLeads'] ) && $quiz_settings['hasLeads'] ) {
-					$card_description = forminator_addon_replace_custom_vars( $card_description, $lead_submitted_data, $this->lead_model, $form_entry_fields );
+					$card_description = forminator_addon_replace_custom_vars( $card_description, $lead_submitted_data, $this->lead_model, $form_entry_fields, false, $entry );
 				}
 
 				/**

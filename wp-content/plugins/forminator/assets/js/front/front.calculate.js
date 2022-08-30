@@ -227,8 +227,9 @@
 		// taken from forminatorFrontCondition
 		get_form_field: function (element_id) {
 			//find element by suffix -field on id input (default behavior)
-			var $form_id = this.$el.data( 'form-id' );
-			var $element = this.$el.find('#forminator-form-' + $form_id + '__field--' + element_id );
+			var $form_id = this.$el.data( 'form-id' ),
+				$uid 	 = this.$el.data( 'uid' ),
+				$element = this.$el.find('#forminator-form-' + $form_id + '__field--' + element_id + '_' + $uid );
 			if ( $element.length === 0 ) {
 				var $element = this.$el.find('#' + element_id + '-field' );
 				if ($element.length === 0) {

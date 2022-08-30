@@ -133,6 +133,7 @@ class Forminator_Date extends Forminator_Field {
 		$start_of_week   = self::get_property( 'start_of_week', $field, get_option( 'start_of_week' ) );
 		$disabled_dates  = self::get_property( 'disabled-dates', $field, array() );
 		$disabled_range  = self::get_property( 'disable-date-range', $field, array() );
+		$uniq_id		 = '_' . Forminator_CForm_Front::$uid;
 
 		if ( false !== strpos( $date_format, '-' ) ) {
 			$sep = '-';
@@ -282,7 +283,7 @@ class Forminator_Date extends Forminator_Field {
 					'name'               => $name,
 					'value'              => $default_value,
 					'placeholder'        => $placeholder,
-					'id'                 => 'forminator-field-' . $id . '-picker-' . uniqid(),
+					'id'                 => 'forminator-field-' . $id . '-picker-' . $uniq_id,
 					'class'              => 'forminator-input forminator-datepicker',
 					'data-required'      => $required,
 					'data-format'        => $date_format,
@@ -381,7 +382,7 @@ class Forminator_Date extends Forminator_Field {
 
 						$day_data = array(
 							'name'        => $id . '-day',
-							'id'          => 'forminator-form-' . $settings['form_id'] . '__field--' . $id . '-day',
+							'id'          => 'forminator-form-' . $settings['form_id'] . '__field--' . $id . '-day' . $uniq_id,
 							'class'       => 'forminator-select2',
 							'data-format' => $date_format,
 							'data-parent' => $id,
@@ -431,7 +432,7 @@ class Forminator_Date extends Forminator_Field {
 
 						$month_data = array(
 							'name'        => $id . '-month',
-							'id'          => 'forminator-form-' . $settings['form_id'] . '__field--' . $id . '-month',
+							'id'          => 'forminator-form-' . $settings['form_id'] . '__field--' . $id . '-month' . $uniq_id,
 							'class'       => 'forminator-select2',
 							'data-format' => $date_format,
 							'data-parent' => $id,
@@ -481,7 +482,7 @@ class Forminator_Date extends Forminator_Field {
 
 						$year_data = array(
 							'name'        => $id . '-year',
-							'id'          => 'forminator-form-' . $settings['form_id'] . '__field--' . $id . '-year',
+							'id'          => 'forminator-form-' . $settings['form_id'] . '__field--' . $id . '-year' . $uniq_id,
 							'class'       => 'forminator-select2',
 							'data-format' => $date_format,
 							'data-parent' => $id,
@@ -1178,7 +1179,19 @@ class Forminator_Date extends Forminator_Field {
 		// strtotime does not recognize all of our date formats so we need to convert all dates to 1 accepted format before processing.
 		if ( 'Y-m-d' !== datepicker_default_format( $date_format ) && ! is_array( $data ) ) {
 			$format_date = date_create_from_format( datepicker_default_format( $date_format ), $data );
-			$data        = date_format( $format_date, 'Y-m-d' );
+			if ( $format_date ) {
+				$data = date_format( $format_date, 'Y-m-d' );
+			} else {
+				$this->validation_message[ $id ] = apply_filters(
+					'forminator_field_date_valid_date_validation_message',
+					__( 'Please enter a valid date.', 'forminator' ),
+					$id,
+					$data,
+					$date_format,
+					$this
+				);
+				return;
+			}
 		}
 
 		if (
@@ -1188,7 +1201,7 @@ class Forminator_Date extends Forminator_Field {
 
 
 			$year_id = $id . '-year';
-			if ( strlen( $date['year'] ) !== 4 ) {
+			if ( strlen( $date['year'] ) !== 4 && 'picker' !== $date_type ) {
 
 				$this->validation_message[ $year_id ] = apply_filters(
 					'forminator_field_date_valid_year_validation_message',

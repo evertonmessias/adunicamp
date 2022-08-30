@@ -928,7 +928,7 @@ class Forminator_Quiz_Front_Action extends Forminator_Front_Action {
 			);
 
 			// ADDON add_entry_fields.
-			$added_data_array = self::attach_addons_add_entry_fields( $field_data_array );
+			$added_data_array = self::attach_addons_add_entry_fields( $field_data_array, $entry );
 
 			/**
 			 * Action called before setting fields to database

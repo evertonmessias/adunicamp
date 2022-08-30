@@ -357,7 +357,7 @@ class Forminator_Postdata extends Forminator_Field {
 		$html          = '';
 		$field_enabled = self::get_property( $field_name, $field, '' );
 		$type          = trim( $type );
-		$full_id       = 'forminator-field-' . $input_suffix . '-' . $id;
+		$full_id       = 'forminator-field-' . $input_suffix . '-' . $id . '_' . Forminator_CForm_Front::$uid;
 		$is_preview    = filter_input( INPUT_POST, 'is_preview', FILTER_VALIDATE_BOOLEAN );
 		$draft_value   = isset( $this->draft_values[$input_suffix] ) ? $this->draft_values[$input_suffix] : '';
 
@@ -538,7 +538,7 @@ class Forminator_Postdata extends Forminator_Field {
 				}
 
 				$html .= self::create_file_upload(
-					$input_suffix . '-' . $id,
+					$input_suffix . '-' . $id . '_' . Forminator_CForm_Front::$uid,
 					$name . '-' . $input_suffix,
 					$description,
 					$required,

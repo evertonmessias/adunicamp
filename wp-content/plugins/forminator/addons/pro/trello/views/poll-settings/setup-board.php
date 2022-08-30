@@ -45,18 +45,17 @@ foreach ( $template_vars as $key => $val ) {
 
 <form>
 	<div class="sui-form-field <?php echo esc_attr( ! empty( $vars['board_id_error'] ) ? 'sui-form-field-error' : '' ); ?>" style="margin: 0;">
-		<label class="sui-label"><?php esc_html_e( 'Board', 'forminator' ); ?>
-			<?php // DEV NOTE: Select without JS. ?>
-			<select name="board_id" style="max-width: none;">
-				<option><?php esc_html_e( 'Please select a board', 'forminator' ); ?></option>
-				<?php foreach ( $vars['boards'] as $board_id => $board_name ) : ?>
-					<option value="<?php echo esc_attr( $board_id ); ?>" <?php selected( $vars['board_id'], $board_id ); ?>><?php echo esc_html( $board_name ); ?></option>
-				<?php endforeach; ?>
-			</select>
-			<?php if ( ! empty( $vars['board_id_error'] ) ) : ?>
-				<span class="sui-error-message"><?php echo esc_html( $vars['board_id_error'] ); ?></span>
-			<?php endif; ?>
-		</label>
+		<label class="sui-label"><?php esc_html_e( 'Board', 'forminator' ); ?></label>
+		<?php // DEV NOTE: Select without JS. ?>
+		<select name="board_id" style="max-width: none;">
+			<option><?php esc_html_e( 'Please select a board', 'forminator' ); ?></option>
+			<?php foreach ( $vars['boards'] as $board_id => $board_name ) : ?>
+				<option value="<?php echo esc_attr( $board_id ); ?>" <?php selected( $vars['board_id'], $board_id ); ?>><?php echo esc_html( $board_name ); ?></option>
+			<?php endforeach; ?>
+		</select>
+		<?php if ( ! empty( $vars['board_id_error'] ) ) : ?>
+			<span class="sui-error-message"><?php echo esc_html( $vars['board_id_error'] ); ?></span>
+		<?php endif; ?>
 	</div>
 	<input type="hidden" name="multi_id" value="<?php echo esc_attr( $vars['multi_id'] ); ?>">
 </form>

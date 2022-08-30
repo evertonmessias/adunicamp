@@ -976,24 +976,41 @@ function forminator_var_type_cast( $var, $type ) {
  *
  * @return array
  */
-function forminator_get_poll_chart_colors( $poll_id = null ) {
+function forminator_get_poll_chart_colors( $poll_id = null, $accessibility_enabled = false ) {
 
-	$chart_colors = array(
-		'rgba(54, 162, 235, 0.2)', // Blue.
-		'rgba(255, 99, 132, 0.2)', // Red.
-		'rgba(255, 206, 86, 0.2)', // Yellow.
-		'rgba(75, 192, 192, 0.2)', // Green.
-		'rgba(255, 159, 64, 0.2)', // Orange.
-		'rgba(153, 102, 255, 0.2)', // Purple.
-		'rgba(102, 137, 161, 0.2)', // Blue Alt.
-		'rgba(234, 86, 118, 0.2)', // Red Alt.
-		'rgba(216, 220, 106, 0.2)', // Yellow Alt.
-		'rgba(107, 193, 146, 0.2)', // Green Alt.
-		'rgba(235, 130, 88, 0.2)', // Orange Alt.
-		'rgba(153, 93, 129, 0.2)', // Purple Alt.
-		'rgba(0, 0, 0, 0.2)', // Black.
-		'rgba(136, 136, 136, 0.2)', // Black Alt.
-	);
+	$chart_colors = $accessibility_enabled ? 
+		array(
+			'rgba(137, 137, 137, 0.2)', // Monochrome Blue
+			'rgba(149, 149, 149, 0.2)', // Monochrome Red
+			'rgba(207 ,207 , 207, 0.2)', // Monochrome Yellow.
+			'rgba(156, 156, 156, 0.2)', // Monochrome Green.
+			'rgba(177 ,177 , 177, 0.2)', // Monochrome Orange.
+			'rgba(134 ,134 , 134, 0.2)', // Monochrome Purple.
+			'rgba(129 ,129 , 129, 0.2)', // Monochrome Blue Alt.
+			'rgba(133 ,133 , 133, 0.2)', // Monochrome Red Alt.
+			'rgba(206 ,206 , 206, 0.2)', // Monochrome Yellow Alt.
+			'rgba(162 ,162 , 162, 0.2)', // Monochrome Green Alt.
+			'rgba(156 ,156 , 156, 0.2)', // Monochrome Orange Alt.
+			'rgba(114 ,114 , 114, 0.2)', // Monochrome Purple Alt.
+			'rgba(0, 0, 0, 0.2)', // Monochrome Black.
+			'rgba(136, 136, 136, 0.2)', // Monochrome Black Alt.
+		) :
+		array(
+			'rgba(54, 162, 235, 0.2)', // Blue.
+			'rgba(255, 99, 132, 0.2)', // Red.
+			'rgba(255, 206, 86, 0.2)', // Yellow.
+			'rgba(75, 192, 192, 0.2)', // Green.
+			'rgba(255, 159, 64, 0.2)', // Orange.
+			'rgba(153, 102, 255, 0.2)', // Purple.
+			'rgba(102, 137, 161, 0.2)', // Blue Alt.
+			'rgba(234, 86, 118, 0.2)', // Red Alt.
+			'rgba(216, 220, 106, 0.2)', // Yellow Alt.
+			'rgba(107, 193, 146, 0.2)', // Green Alt.
+			'rgba(235, 130, 88, 0.2)', // Orange Alt.
+			'rgba(153, 93, 129, 0.2)', // Purple Alt.
+			'rgba(0, 0, 0, 0.2)', // Black.
+			'rgba(136, 136, 136, 0.2)', // Black Alt.
+		);
 
 	/**
 	 * Filter chart colors to be used for polls

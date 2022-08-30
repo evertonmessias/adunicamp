@@ -923,7 +923,9 @@ function forminator_get_social_message( $settings, $title, $result ) {
  * @return array
  */
 function forminator_get_chart_data( Forminator_Poll_Model $poll ) {
-	$chart_colors         = forminator_get_poll_chart_colors( $poll->id );
+	
+	$accessibility_enabled = get_option( 'forminator_enable_accessibility', false );
+	$chart_colors         = forminator_get_poll_chart_colors( $poll->id, $accessibility_enabled );
 	$default_chart_colors = $chart_colors;
 	$chart_datas          = array();
 

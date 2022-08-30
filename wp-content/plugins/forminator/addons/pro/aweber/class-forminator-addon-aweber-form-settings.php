@@ -206,7 +206,20 @@ class Forminator_Addon_Aweber_Form_Settings extends Forminator_Addon_Form_Settin
 				throw new Forminator_Addon_Aweber_Exception( __( 'No lists found on your AWeber. Please create one.', 'forminator' ) );
 			}
 
-			foreach ( $lists_request->entries as $entry ) {
+			$lists_entries = $lists_request->entries;
+			$lists_count   = count( $lists_entries );
+			$list_start    = 0;
+
+			if ( 0 !== $lists_count ) {
+				while ( $lists_count < $lists_request->total_size ) {
+					$list_start        = $list_start + 100;
+					$lists_request_new = $api->get_account_lists( $setting_values['account_id'], array( 'ws.start' => $list_start ) );
+					$lists_entries     = array_merge( $lists_entries, $lists_request_new->entries );
+					$lists_count       = count( $lists_entries );
+				}
+			}
+
+			foreach ( $lists_entries as $entry ) {
 				$lists[ $entry->id ] = $entry->name;
 			}
 

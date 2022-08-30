@@ -181,7 +181,7 @@ abstract class Forminator_Field {
 
 		$property_value = $fallback;
 
-		if ( isset( $field[ $property ] ) && ! empty( $field[ $property ] ) ) {
+		if ( isset( $field[ $property ] ) ) {
 			$property_value = $field[ $property ];
 		}
 
@@ -463,10 +463,10 @@ abstract class Forminator_Field {
 				'textarea_name' => isset( $attr['name'] ) ? $attr['name'] : '',
 				'media_buttons' => false,
 				'editor_class'  => $wp_editor_class,
-				'editor_height'	=> $default_height,
-				//'tinymce'     => array(
-				//	'content_css' => '/forminator-{theme}-editor.min.css'
-				//),
+				'editor_height' => $default_height,
+				// 'tinymce'     => array(
+				// 'content_css' => '/forminator-{theme}-editor.min.css'
+				// ),
 			)
 		);
 
@@ -608,7 +608,7 @@ abstract class Forminator_Field {
 	 * @since 1.5.2
 	 *
 	 * @param        $options
-	 * @param string $selected_value
+	 * @param string  $selected_value
 	 *
 	 * @return string
 	 */
@@ -638,10 +638,10 @@ abstract class Forminator_Field {
 	 *
 	 * @since 1.0
 	 *
-	 * @param string $id
-	 * @param string $name
+	 * @param string      $id
+	 * @param string      $name
 	 * @param        $description
-	 * @param bool   $required
+	 * @param bool        $required
 	 *
 	 * @param        $design
 	 * @param        $file_type
@@ -911,11 +911,11 @@ abstract class Forminator_Field {
 
 		$all_matched = ( $condition_fulfilled > 0 && 'any' === $condition_rule ) || ( $conditions_count === $condition_fulfilled && 'all' === $condition_rule );
 
-		//initialized as hidden
+		// initialized as hidden
 		if ( 'show' === $condition_action ) {
 			return ! $all_matched;
 		} else {
-			//initialized as shown
+			// initialized as shown
 			return $all_matched;
 		}
 	}
@@ -953,12 +953,12 @@ abstract class Forminator_Field {
 			isset( $form_data[ $element_id . '-day' ] ) &&
 			isset( $form_data[ $element_id . '-year' ] )
 		) {
-			$field_value = $form_data[ $element_id . '-year' ] . '-' . $form_data[ $element_id . '-month' ] . '-' . $form_data[ $element_id . '-day' ];
+			$field_value       = $form_data[ $element_id . '-year' ] . '-' . $form_data[ $element_id . '-month' ] . '-' . $form_data[ $element_id . '-day' ];
 			$date_format       = Forminator_API::get_form_field( $form_id, $element_id, false )->date_format;
 			$normalized_format = new Forminator_Date();
 			$normalized_format = $normalized_format->normalize_date_format( $date_format );
-			$date        = date_create_from_format( 'Y-m-d', $field_value );
-			$field_value = date_format( $date, $normalized_format );
+			$date              = date_create_from_format( 'Y-m-d', $field_value );
+			$field_value       = date_format( $date, $normalized_format );
 		}
 
 		if ( stripos( $element_id, 'signature-' ) !== false ) {
@@ -1006,7 +1006,15 @@ abstract class Forminator_Field {
 			$form_field_value = wp_unslash( trim( $form_field_value ) );
 		}
 
+		$form_field_value = wp_unslash( $form_field_value );
 		$condition_value  = trim( $condition['value'] );
+
+		if ( is_string( $form_field_value ) ) {
+			$form_field_value = strtolower( $form_field_value );
+		}
+		if ( is_string( $condition_value ) ) {
+			$condition_value = strtolower( $condition_value );
+		}
 
 		switch ( $condition['rule'] ) {
 			case 'is':
@@ -1054,45 +1062,45 @@ abstract class Forminator_Field {
 			case 'day_is':
 				if ( null !== $form_id && ! empty( $form_field_value ) ) {
 					$day = self::get_day_or_month( $form_field_value, $condition['element_id'], $form_id, 'D' );
-					return $day === $condition_value;
+					return strtolower( $day ) === $condition_value;
 				}
 
 				return false;
 			case 'day_is_not':
 				if ( null !== $form_id && ! empty( $form_field_value ) ) {
 					$day = self::get_day_or_month( $form_field_value, $condition['element_id'], $form_id, 'D' );
-					return $day !== $condition_value;
+					return strtolower( $day ) !== $condition_value;
 				}
 
-                return false;
+				return false;
 			case 'month_is':
 				if ( null !== $form_id && ! empty( $form_field_value ) ) {
 					$month = self::get_day_or_month( $form_field_value, $condition['element_id'], $form_id, 'M' );
-					return $month === $condition_value;
+					return strtolower( $month ) === $condition_value;
 				}
 
-                return false;
+				return false;
 			case 'month_is_not':
 				if ( null !== $form_id && ! empty( $form_field_value ) ) {
 					$month = self::get_day_or_month( $form_field_value, $condition['element_id'], $form_id, 'M' );
-					return $month !== $condition_value;
+					return strtolower( $month ) !== $condition_value;
 				}
 
-                return false;
+				return false;
 			case 'is_before':
 				if ( null !== $form_id && ! empty( $form_field_value ) ) {
 					$date = self::get_day_or_month( $form_field_value, $condition['element_id'], $form_id, 'j F Y' );
 					return strtotime( $date ) < strtotime( $condition_value );
 				}
 
-                return false;
+				return false;
 			case 'is_after':
 				if ( null !== $form_id && ! empty( $form_field_value ) ) {
 					$date = self::get_day_or_month( $form_field_value, $condition['element_id'], $form_id, 'j F Y' );
 					return strtotime( $date ) > strtotime( $condition_value );
 				}
 
-                return false;
+				return false;
 			case 'is_before_n_or_more_days':
 				if ( null !== $form_id && ! empty( $form_field_value ) ) {
 					$date = self::get_day_or_month( $form_field_value, $condition['element_id'], $form_id, 'Y-m-d' );
@@ -1109,7 +1117,7 @@ abstract class Forminator_Field {
 					return $rule_date < strtotime( $date ) && strtotime( $date ) <= $current_date;
 				}
 
-                return false;
+				return false;
 			case 'is_after_n_or_more_days':
 				if ( null !== $form_id && ! empty( $form_field_value ) ) {
 					$date = self::get_day_or_month( $form_field_value, $condition['element_id'], $form_id, 'Y-m-d' );

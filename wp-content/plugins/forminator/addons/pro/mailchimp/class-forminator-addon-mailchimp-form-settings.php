@@ -279,8 +279,8 @@ class Forminator_Addon_Mailchimp_Form_Settings extends Forminator_Addon_Form_Set
 				$html .= '<label class="sui-toggle">';
 					$html .= '<input type="checkbox" name="enable_double_opt_in" value="1" id="forminator_addon_mailchimp_enable_double_opt_in" ' . checked( 1, $current_data['enable_double_opt_in'], false ) . ' />';
 					$html .= '<span class="sui-toggle-slider"></span>';
+					$html .= '<span class="sui-toggle-label">' . __( 'Use Double Opt in', 'forminator' ) . '</span>';
 				$html .= '</label>';
-				$html .= '<span class="sui-toggle-label" for="forminator_addon_mailchimp_enable_double_opt_in">' . __( 'Use Double Opt in', 'forminator' ) . '</span>';
 			$html .= '</div>';
 			$html .= $gdpr_fields;
 		$html .= '</form>';
@@ -661,6 +661,8 @@ class Forminator_Addon_Mailchimp_Form_Settings extends Forminator_Addon_Form_Set
 	 */
 	private function get_second_step_options_tags( $selected_ids ) {
 		ob_start();
+		// Reset cache.
+		$this->set_tags( true );
 		?>
 			<div class="sui-form-field">
                 <label class="sui-label" for="tags"><strong><?php echo esc_html__( 'Tags', 'forminator' ) . '</strong>&nbsp;(' . esc_html__( 'Optional', 'forminator' ) . ')'; ?></label>
@@ -691,6 +693,8 @@ class Forminator_Addon_Mailchimp_Form_Settings extends Forminator_Addon_Form_Set
 	 * @return array
 	 */
 	private function get_third_step_options_groups( $selected_id ) {
+		// Reset cache.
+		$this->set_groups( true );
 		$lists = wp_list_pluck( $this->groups_data, 'name', 'id' );
 
 		$html  = '<div class="sui-form-field">';
@@ -1016,10 +1020,11 @@ class Forminator_Addon_Mailchimp_Form_Settings extends Forminator_Addon_Form_Set
 	/**
 	 * Set the tags of the given list.
 	 *
+	 * @param bool $force Optional. If true - don't use cache.
 	 * @since 1.15.3
 	 */
-	private function set_tags() {
-		if ( isset( $this->addon_form_settings['tags_data'] ) ) {
+	private function set_tags( $force = false ) {
+		if ( ! $force && isset( $this->addon_form_settings['tags_data'] ) ) {
 			$tags = $this->addon_form_settings['tags_data'];
 		} else {
 			$list_id = $this->addon_form_settings['mail_list_id'];
@@ -1056,10 +1061,11 @@ class Forminator_Addon_Mailchimp_Form_Settings extends Forminator_Addon_Form_Set
 	/**
 	 * Init the list groups.
 	 *
+	 * @param bool $force Optional. If true - don't use cache.
 	 * @since 1.15.3
 	 */
-	private function set_groups() {
-		if ( isset( $this->addon_form_settings['groups_data'] ) ) {
+	private function set_groups( $force = false ) {
+		if ( ! $force && isset( $this->addon_form_settings['groups_data'] ) ) {
 			$groups_data = $this->addon_form_settings['groups_data'];
 		} else {
 			$list_id = $this->addon_form_settings['mail_list_id'];

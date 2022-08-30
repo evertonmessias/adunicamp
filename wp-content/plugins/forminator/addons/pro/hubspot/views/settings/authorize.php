@@ -92,7 +92,7 @@ foreach ( $template_vars as $key => $val ) {
 					if ( index ) {
 						href = href.slice(0, index);
 					}
-					href += encodeURIComponent( 'identifier=' + val );
+					href += encodeURIComponent( 'identifier=' + encodeURIComponent( val ) );
 					link.prop('href', href);
 				}
 			});

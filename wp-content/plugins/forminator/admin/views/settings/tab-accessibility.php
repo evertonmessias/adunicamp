@@ -36,9 +36,8 @@ $accessibility_enabled = filter_var( $accessibility_enabled, FILTER_VALIDATE_BOO
 								value="true"
 								id="forminator-color-accessibility" <?php checked( $accessibility_enabled ); ?>/>
 							<span class="sui-toggle-slider" aria-hidden="true"></span>
+							<span class="sui-toggle-label"><?php esc_html_e( 'Enable high contrast mode', 'forminator' ); ?></span>
 						</label>
-
-						<label for="forminator-color-accessibility"><?php esc_html_e( 'Enable high contrast mode', 'forminator' ); ?></label>
 
 					</div>
 

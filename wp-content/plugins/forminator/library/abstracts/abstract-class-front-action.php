@@ -83,6 +83,13 @@ abstract class Forminator_Front_Action {
 	protected static $is_draft = false;
 
 	/**
+	 * Is spam submission.
+	 *
+	 * @var bool
+	 */
+	protected static $is_spam = false;
+
+	/**
 	 * Fields info
 	 *
 	 * @var array
@@ -143,18 +150,19 @@ abstract class Forminator_Front_Action {
 	 * @since 1.0
 	 */
 	public function maybe_handle_submit() {
+		$action = Forminator_Core::sanitize_text_field( 'action' );
+		if ( ! $action || 'forminator_submit_form_' . static::$entry_type !== $action ) {
+			return;
+		}
+
 		if ( $this->is_force_validate_submissions_nonce() ) {
 			$forminator_nonce = Forminator_Core::sanitize_text_field( 'forminator_nonce' );
-			if ( $forminator_nonce && wp_verify_nonce( $forminator_nonce, 'forminator_submit_form' )
-			) {
-				$this->handle_submit();
-			}
-		} else {
-			$action = Forminator_Core::sanitize_text_field( 'action' );
-			if ( $action && 'forminator_submit_form_' . static::$entry_type === $action ) {
-				$this->handle_submit();
+			if ( ! $forminator_nonce || ! wp_verify_nonce( $forminator_nonce, 'forminator_submit_form' ) ) {
+				return;
 			}
 		}
+
+		$this->handle_submit();
 	}
 
 	/**
@@ -606,7 +614,11 @@ abstract class Forminator_Front_Action {
 	 *
 	 * @return array added fields to entry
 	 */
-	protected static function attach_addons_add_entry_fields( $current_entry_fields ) {
+	protected static function attach_addons_add_entry_fields( $current_entry_fields, $entry = null ) {
+		if ( self::$is_spam ) {
+			return $current_entry_fields;
+		}
+
 		$additional_fields_data = array();
 		$submitted_data         = static::get_prepared_submitted_data_for_addons( $current_entry_fields );
 
@@ -622,7 +634,7 @@ abstract class Forminator_Front_Action {
 					$hooks = $connected_addon->$method( static::$module_id );
 				}
 				if ( isset( $hooks ) && $hooks instanceof Forminator_Addon_Hooks_Abstract ) {
-					$addon_fields = $hooks->add_entry_fields( $submitted_data, $current_entry_fields );
+					$addon_fields = $hooks->add_entry_fields( $submitted_data, $current_entry_fields, $entry );
 					// reformat additional fields.
 					$addon_fields           = self::format_addon_additional_fields( $connected_addon, $addon_fields );
 					$additional_fields_data = array_merge( $additional_fields_data, $addon_fields );
@@ -691,7 +703,7 @@ abstract class Forminator_Front_Action {
 	 * @param Forminator_Form_Entry_Model $entry_model
 	 */
 	protected static function attach_addons_after_entry_saved( Forminator_Form_Entry_Model $entry_model ) {
-		if ( self::$is_draft ) {
+		if ( self::$is_draft || self::$is_spam ) {
 			return;
 		}
 
@@ -890,6 +902,15 @@ abstract class Forminator_Front_Action {
 			return array();
 		}
 
+		if ( 'forminatorfortressdb' === $addon->get_slug() && isset( $additional_fields['is_sent'] ) ) {
+			return array(
+				array(
+					'name'  => 'forminator_addon_' . $addon->get_slug() . '_data',
+					'value' => $additional_fields,
+				),
+			);
+		}
+
 		foreach ( $additional_fields as $additional_field ) {
 			if ( ! isset( $additional_field['name'] ) || ! isset( $additional_field['value'] ) ) {
 				continue;
@@ -909,9 +930,13 @@ abstract class Forminator_Front_Action {
 	 * @return bool
 	 */
 	protected function is_force_validate_submissions_nonce() {
-		// default is disabled unless `FORMINATOR_FORCE_VALIDATE_SUBMISSIONS_NONCE` = true,.
-		// this behavior is to support full page cache.
-		$enabled = ( defined( 'FORMINATOR_FORCE_VALIDATE_SUBMISSIONS_NONCE' ) && FORMINATOR_FORCE_VALIDATE_SUBMISSIONS_NONCE );
+		/*
+		By default nonce validation is active unless `FORMINATOR_FORCE_VALIDATE_SUBMISSIONS_NONCE` is defined and
+		set to false.
+		This behaviour might cause submissions to fail when page cache is active. In such cases we can advise to
+		use ajax form load or define the following const or filter.
+		*/
+		$enabled = defined( 'FORMINATOR_FORCE_VALIDATE_SUBMISSIONS_NONCE' ) ? boolval( FORMINATOR_FORCE_VALIDATE_SUBMISSIONS_NONCE ) : true;
 
 		/**
 		 * Filter the status of nonce submissions

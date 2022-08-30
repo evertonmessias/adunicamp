@@ -125,8 +125,8 @@ class Forminator_Select extends Forminator_Field {
 		$html          = '';
 		$id            = self::get_property( 'element_id', $field );
 		$name          = $id;
-		$uniq_id       = uniqid();
-		$id            = 'forminator-form-' . $settings['form_id'] . '__field--' . $id;
+		$uniq_id       = Forminator_CForm_Front::$uid;
+		$id            = 'forminator-form-' . $settings['form_id'] . '__field--' . $id . '_' . $uniq_id;
 		$required      = self::get_property( 'required', $field, false, 'bool' );
 		$options       = self::get_property( 'options', $field, array() );
 		$post_value    = self::get_post_data( $name, false );
@@ -179,7 +179,7 @@ class Forminator_Select extends Forminator_Field {
 				$value             = $option['value'] ? esc_html( strip_tags( $option['value'] ) ) : wp_kses_post( strip_tags( $option['label'] ) );
 				$label             = $option['label'] ? wp_kses_post( strip_tags( $option['label'] ) ) : '';
 				$limit             = ( isset( $option['limit'] ) && $option['limit'] ) ? esc_html( $option['limit'] ) : '';
-				$input_id          = $id . '-' . $i . '-' . $uniq_id;
+				$input_id          = $id . '-' . $i;
 				$option_default    = isset( $option['default'] ) ? filter_var( $option['default'], FILTER_VALIDATE_BOOLEAN ) : false;
 				$calculation_value = $calc_enabled && isset( $option['calculation'] ) ? $option['calculation'] : 0.0;
 				if ( 0 === $key ) {
@@ -191,7 +191,6 @@ class Forminator_Select extends Forminator_Field {
 					if ( in_array( trim( $value ), $draft_value ) ) { // phpcs:ignore WordPress.PHP.StrictInArray.MissingTrueStrict
 						$option_default = true;
 					}
-
 				} elseif ( $this->has_prefill( $field ) ) {
 					// We have pre-fill parameter, use its value or $value.
 					$prefill        = $this->get_prefill( $field, false );
@@ -291,7 +290,6 @@ class Forminator_Select extends Forminator_Field {
 					if ( trim( $draft_value['value'] ) === trim( $value ) ) {
 						$option_default = true;
 					}
-
 				} elseif ( $this->has_prefill( $field ) ) {
 					// We have pre-fill parameter, use its value or $value.
 					$prefill        = $this->get_prefill( $field, false );
@@ -419,8 +417,8 @@ class Forminator_Select extends Forminator_Field {
 	 * @param array|string $data
 	 */
 	public function validate( $field, $data ) {
-		$select_type = isset( $field['value_type'] ) ? $field['value_type'] : 'single';
-		$id = self::get_property( 'element_id', $field );
+		$select_type  = isset( $field['value_type'] ) ? $field['value_type'] : 'single';
+		$id           = self::get_property( 'element_id', $field );
 		$value_exists = true;
 
 		if ( is_array( $data ) ) {
@@ -511,7 +509,8 @@ class Forminator_Select extends Forminator_Field {
 		}
 
 		foreach ( $options as $option ) {
-			$option_value      = isset( $option['value'] ) ? addslashes( $option['value'] ) : ( isset( $option['label'] ) ? addslashes( $option['label'] ) : '' );
+			$option_value      = isset( $option['value'] ) ? $option['value'] : ( isset( $option['label'] ) ? $option['label'] : '' );
+			$option_value      = trim( addslashes( $option_value ) );
 			$calculation_value = isset( $option['calculation'] ) ? $option['calculation'] : 0.0;
 
 			// strict array compare disabled to allow non-coercion type compare.

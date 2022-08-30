@@ -1,5 +1,5 @@
 <?php
-$entries          = $this->get_table();
+$entries          = $this->get_entries();
 $form_type        = $this->get_form_type();
 $count            = $this->get_total_entries();
 $entries_per_page = $this->get_per_page();

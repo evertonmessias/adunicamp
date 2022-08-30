@@ -309,7 +309,16 @@ class Forminator_Addon_Mailchimp_Form_Hooks extends Forminator_Addon_Form_Hooks_
 
         // Check if there is a date field-type then modify it to a format that mailchimp accepts.
         foreach ( $submitted_data as $field => $value ) {
-            if ( false !== strpos( $field, 'date' ) && ! empty( $value ) ) {
+			// Also Check the date field doesn't include the '-year', '-month' or '-day'.
+			if (
+				false !== stripos( $field, 'date-' ) &&
+				false === stripos( $field, '-year' ) &&
+				false === stripos( $field, '-month' ) &&
+				false === stripos( $field, '-day' ) &&
+				! empty( $value )
+				)
+			{
+
                 $date_format            = Forminator_API::get_form_field( $form_id, $field, false )->date_format;
                 $normalized_format      = new Forminator_Date();
                 $normalized_format      = $normalized_format->normalize_date_format( $date_format );

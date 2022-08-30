@@ -147,6 +147,7 @@ class Forminator_Poll_Front_Action extends Forminator_Front_Action {
 
 			if ( self::is_spam() ) {
 				$entry->is_spam = 1;
+				self::$is_spam  = true;
 			}
 		}
 
@@ -185,7 +186,7 @@ class Forminator_Poll_Front_Action extends Forminator_Front_Action {
 		do_action( 'forminator_polls_submit_before_set_fields', $entry, self::$module_id, $field_data_array );
 
 		// ADDON add_entry_fields.
-		$added_data_array = self::attach_addons_add_entry_fields( $field_data_array );
+		$added_data_array = self::attach_addons_add_entry_fields( $field_data_array, $entry );
 
 		$entry->set_fields( $added_data_array );
 	}
@@ -196,6 +197,9 @@ class Forminator_Poll_Front_Action extends Forminator_Front_Action {
 	 * @param object $entry Entry.
 	 */
 	private static function send_email( $entry ) {
+		if ( self::$is_spam ) {
+			return;
+		}
 		$forminator_mail_sender = new Forminator_Poll_Front_Mail();
 		$forminator_mail_sender->process_mail( self::$module_object, $entry );
 
