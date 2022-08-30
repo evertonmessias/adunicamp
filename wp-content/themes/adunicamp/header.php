@@ -48,26 +48,32 @@ $post_color = get_option('portal_input_3');
 <body>
 
   <!-- ======= Top Bar ======= -->
-  <section id="topbar" class="d-flex align-items-center <?php if(is_user_logged_in())echo "user-logged"; ?>">
+  <section id="topbar" class="d-flex align-items-center <?php if (is_user_logged_in()) echo "user-logged"; ?>">
     <div class="container d-flex justify-content-center justify-content-md-between">
-      <div class="contact-info d-flex align-items-center">        
+      <div class="contact-info d-flex align-items-center">
         <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:<?php echo get_option('portal_input_9'); ?>"><?php echo get_option('portal_input_10'); ?></a></i>
-        <i class="bi bi-phone d-flex align-items-center ms-4"><span><?php echo get_option('portal_input_9'); ?></span></i>        
-      </div>      
+        <i class="bi bi-phone d-flex align-items-center ms-4"><span><?php echo get_option('portal_input_9'); ?></span></i>
+      </div>
+      <div class="top-search">
+        <form action="/" method="get">
+          <input type="text" placeholder="Pesquisar" required name="s" id="search" value="<?php the_search_query(); ?>" />
+          <button type="submit"><i class="bi bi-search"></i></button>
+        </form>
+      </div>
       <div class="cta d-none d-md-flex align-items-center">
         <div class="portal-desc"><?php echo get_option('portal_input_4'); ?></div>
-        <a href="<?php echo explode(',',get_option('portal_input_41'))[0]; ?>" class="scrollto"><?php echo explode(',',get_option('portal_input_41'))[1]; ?></a>
+        <a href="<?php echo explode(',', get_option('portal_input_41'))[0]; ?>" class="scrollto"><?php echo explode(',', get_option('portal_input_41'))[1]; ?></a>
       </div>
     </div>
   </section>
 
   <!-- ======= Header ======= -->
-  <header id="header" class="d-flex align-items-center <?php if(is_user_logged_in())echo "user-logged"; ?>">
+  <header id="header" class="d-flex align-items-center <?php if (is_user_logged_in()) echo "user-logged"; ?>">
     <div class="container d-flex align-items-center justify-content-between">
 
       <div class="logo">
         <a href="/"><img src="<?php echo get_option('portal_input_1'); ?>" title="<?php echo get_option('portal_input_0'); ?>"></a>
-      </div>     
+      </div>
 
       <nav id="navbar" class="navbar">
         <?php wp_nav_menu(array('menu' => 'NAV-ADUnicamp')); ?>

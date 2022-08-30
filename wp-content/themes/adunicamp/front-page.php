@@ -353,7 +353,7 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.153" && $_SERVER['REMOTE_ADDR'] != "1
         if ($imagem == "") $imagem = SITEPATH . "assets/img/semimagem.png";
 
         if ($x <= 2) {
-          $excerpt = '<p class="mb-4 d-block">' . get_excerpt(300) . '</p>';
+          $excerpt = '<p class="mb-4 d-block">' . get_excerpt(220) . '</p>';
         } else {
           $excerpt = "";
         }
@@ -369,11 +369,13 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.153" && $_SERVER['REMOTE_ADDR'] != "1
 
 
       <div class="row">
-        <div class="col-lg-4">
+        <div class="col-lg-4 left">
+          <h5 class="title-cat">Mais Recentes</h5>
           <?php echo $postentry[0] . $postentry[1]; ?>
         </div>
 
-        <div class="col-lg-8">
+        <div class="col-lg-8 right">
+          <h5 class="title-cat">Outras Notícias</h5>
           <div class="row">
             <div class="col-lg-4 border-start custom-border">
               <?php echo $postentry[2] . $postentry[3] . $postentry[4]; ?>

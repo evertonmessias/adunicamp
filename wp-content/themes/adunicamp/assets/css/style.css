@@ -117,6 +117,41 @@ h1, h2, h3, h4, h5, h6 {
   color: #2682A8;
 }
 
+#topbar form {
+  margin-top: 5px;
+  padding: 3px 10px;
+  position: relative;
+}
+
+#topbar form input[type=text] {
+  border: 0;
+  padding: 4px;
+  width: calc(100% - 40px);
+  height: 28px;
+}
+#topbar form button {
+  position: absolute;
+  height: 28px;
+  top: 4px;
+  right: 5px;
+  bottom: 0;
+  border: 0;
+  background: none;
+  font-size: 16px;
+  padding: 0 15px;
+  margin: -1px;
+  background: #2682A8;
+  color: #fff;
+  transition: 0.3s;
+  line-height: 0;
+}
+#topbar form button i {
+  line-height: 0;
+}
+#topbar form button:hover {
+  background: #1e6583;
+}
+
 #topbar .portal-desc {
   margin-right: 20px;
   padding: 10px 0;
@@ -531,6 +566,10 @@ margin-left: -110px;
   opacity: 1;
   background: #efefef;
   border-bottom: 2px solid #fff;
+}
+
+#heroTab .carousel-indicators li:hover {
+  background: #e9e9e9;
 }
 
 #heroTab .carousel-indicators li.active {
@@ -994,6 +1033,21 @@ section {
 # News Posts
 --------------------------------------------------------------*/
 
+#news .title-cat{
+  background: #2682A8;
+  padding: 5px;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+#news .left .post-entry-2{
+  height: 46%;
+}
+
+#news .right .post-entry-2{
+  height: 31%;
+}
+
 #news .post-entry-2 {
   margin-bottom: 30px;
   border-bottom: 1px solid #ddd;
@@ -1004,7 +1058,8 @@ section {
   position: relative;
   margin: 0 auto;
   margin-bottom: 30px;
-  height: 100%;
+  width: 100%;
+  height: 45%;
 }
 
 #news .post-entry-2 h2 {
@@ -1163,6 +1218,10 @@ section {
   margin-bottom: 1px;
 }
 
+.services .list-agenda .post-agenda:hover{
+  background: #e9e9e9;
+}
+
 .services .list-agenda .post-agenda .img-agenda,.services .list-agenda .post-agenda .title-agenda{
   padding: 10px;
   border-left: 1px solid #fff;
@@ -1181,6 +1240,10 @@ section {
 .services .list-agenda .title-agenda hr{
   margin-top: 0;
   margin-bottom: 10px;
+}
+
+.services .list-agenda .title-agenda h5{
+  font-weight: 700;
 }
 
 @media(max-width:900px){
