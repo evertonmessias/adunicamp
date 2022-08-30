@@ -50,10 +50,13 @@
               $campo_agenda_fim = explode('T', $agenda_fim);
               $hora_fim = $campo_agenda_fim[1];
               $array_agenda_fim = explode('-', $campo_agenda_fim[0]);
+              
+              $string_agenda_inicio = $array_agenda_inicio[2] . "/" . $array_agenda_inicio[1] . "/" . $array_agenda_inicio[0]  . " - " . $hora_inicio;
+              $string_agenda_fim = $array_agenda_fim[2] . "/" . $array_agenda_fim[1] . "/" . $array_agenda_fim[0]  . " - " . $hora_fim;
             ?>
               <div class="entry-info">
-                <h5><b>Início:</b>&nbsp;<?php echo $array_agenda_inicio[2] . "/" . $array_agenda_inicio[1] . "/" . $array_agenda_inicio[0]  . " - " . $hora_inicio; ?></h5>
-                <h5><b>Fim:</b>&emsp;<?php echo $array_agenda_fim[2] . "/" . $array_agenda_fim[1] . "/" . $array_agenda_fim[0]  . " - " . $hora_fim; ?></h5>
+                <h5><b>Início:</b>&nbsp;<?php echo $string_agenda_inicio; ?></h5>
+                <h5><b>Fim:</b>&emsp;<?php echo $string_agenda_fim; ?></h5>
               </div>
             <?php }
             ?>

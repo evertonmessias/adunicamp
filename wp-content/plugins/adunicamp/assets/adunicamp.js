@@ -13,7 +13,22 @@ function show_anexos(str_anexos) {
     }
 }
 
+function prop_checked(){
+    if($(".portal_input_46.full").is(':checked')){
+        $(".nslide").show();
+    }else{
+        $(".nslide").hide();
+    }
+}
+
 window.onload = function () {
+
+    prop_checked();
+
+    $(".portal_input_46").change(()=>{
+        prop_checked();
+    })
+
 
     show_anexos($('#post_upload_0').val());
 
