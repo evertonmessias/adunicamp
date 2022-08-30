@@ -216,7 +216,6 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
 
           <?php
           $x = 1;
-          $string_li_agenda = "";
           $args = array(
             'post_type' => 'agenda',
             'posts_per_page' =>  4,

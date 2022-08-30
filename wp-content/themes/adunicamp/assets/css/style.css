@@ -807,7 +807,7 @@ section {
   font-size: 32px;
   font-weight: 500;
   margin-bottom: 20px;
-  padding-bottom: 0;
+  padding-bottom: 5px;
   font-family: "Poppins", sans-serif;
   color: #fff;
 }
@@ -1164,7 +1164,7 @@ section {
 }
 
 .services .list-agenda .post-agenda .img-agenda,.services .list-agenda .post-agenda .title-agenda{
-  padding: 20px;
+  padding: 10px;
   border-left: 1px solid #fff;
 }
 
