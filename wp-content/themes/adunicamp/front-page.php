@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 <?php
-if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "177.55.129.61" && $_SERVER['REMOTE_ADDR'] != "192.168.0.3") {
+if ($_SERVER['REMOTE_ADDR'] != "143.106.16.153" && $_SERVER['REMOTE_ADDR'] != "177.55.129.61" && $_SERVER['REMOTE_ADDR'] != "192.168.0.3") {
   registerdb($_SERVER['REMOTE_ADDR']);
 }
 ?>
