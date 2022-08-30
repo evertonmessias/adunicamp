@@ -558,9 +558,13 @@ margin-left: -110px;
   color: #eee !important;
 }
 
+#heroTab .carousel-indicators li small{
+  font-weight: 400;
+}
+
 #heroTab .carousel-indicators li hr{
   margin-top: 0;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 #heroTab .btn-get-started {
@@ -596,12 +600,18 @@ margin-left: -110px;
     margin-bottom: 0;
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   #heroTab {
     height: 90vh;
   }
   #heroTab .carousel-item {
     height: 90vh;
+  }
+  #heroTab .slides{
+    width: 100%;
+  }
+  #heroTab .tabs{
+    display: none;
   }
 }
 @media (min-width: 1024px) {
@@ -1147,23 +1157,35 @@ section {
   font-size: 14px;
 }
 
-.services .calendar, .services .list-agenda{
-  height: auto;
-}
-
 .services .list-agenda .post-agenda{
   height: 25%;
   background: #efefef;
-  margin-bottom: 2px;
+  margin-bottom: 1px;
 }
 
 .services .list-agenda .post-agenda .img-agenda,.services .list-agenda .post-agenda .title-agenda{
   padding: 20px;
+  border-left: 1px solid #fff;
+}
+
+.services .list-agenda .img-agenda{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.services .list-agenda .img-agenda img{
+    width: 100%;
+}
+
+.services .list-agenda .title-agenda hr{
+  margin-top: 0;
+  margin-bottom: 10px;
 }
 
 @media(max-width:900px){
   .services{
-    height: 1100px;
+    height: auto !important;
   }
   .services .calendar #calendar{
     transform: scale(0.95);
@@ -1173,6 +1195,9 @@ section {
   }
   .services .buttons{
     margin-top: 50px;
+  }
+  .services .list-agenda{
+    display: none;
   }
 }
 

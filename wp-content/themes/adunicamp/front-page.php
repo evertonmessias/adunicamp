@@ -90,7 +90,7 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
               } else {
                 $active = "";
               }
-              $string_li .= "<li data-bs-target='#heroTabCarousel' data-bs-slide-to='" . $x . "' " . $active . "><a href='" . get_the_permalink() . "'><small>" . get_the_category()[0]->name . "</small><hr>" . get_the_title() . "</a></li>";
+              $string_li .= "<li data-bs-target='#heroTabCarousel' data-bs-slide-to='" . $x . "' " . $active . "><a href='" . get_the_permalink() . "'><small>" . get_the_category()[0]->name . "&emsp;&bullet;&emsp;" . get_the_date('d M Y', $post->ID) . "</small><hr>" . get_the_title() . "</a></li>";
             ?>
               <!-- Slide -->
               <div class="carousel-item <?php if ($x == 0) echo 'active'; ?>" style="background-image: url(<?php echo $imagem; ?>)">
@@ -222,12 +222,28 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
             'posts_per_page' =>  4,
             'order' => 'DESC'
           );
+
           $loop = new WP_Query($args);
           foreach ($loop->posts as $post) {
             if (has_post_thumbnail()) {
               $imagem = get_the_post_thumbnail_url(get_the_ID(), 'full');
             } else {
               $imagem = SITEPATH . "assets/img/semimagem.png";
+            }
+            $agenda_inicio = get_post_meta($post->ID, 'agenda_data_inicio', true);
+            $agenda_fim = get_post_meta($post->ID, 'agenda_data_fim', true);
+            if ($agenda_inicio != "" && $agenda_fim != "") {
+              $campo_agenda_inicio = explode('T', $agenda_inicio);
+              $hora_inicio = $campo_agenda_inicio[1];
+              $array_agenda_inicio = explode('-', $campo_agenda_inicio[0]);
+
+              $campo_agenda_fim = explode('T', $agenda_fim);
+              $hora_fim = $campo_agenda_fim[1];
+              $array_agenda_fim = explode('-', $campo_agenda_fim[0]);
+
+              $string_agenda_inicio = $array_agenda_inicio[2] . "/" . $array_agenda_inicio[1] . "/" . $array_agenda_inicio[0]  . " - " . $hora_inicio;
+              $string_agenda_fim = $array_agenda_fim[2] . "/" . $array_agenda_fim[1] . "/" . $array_agenda_fim[0]  . " - " . $hora_fim;
+              $string_agenda = $string_agenda_inicio . " | " . $string_agenda_fim;
             }
           ?>
 
@@ -239,6 +255,8 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.179" && $_SERVER['REMOTE_ADDR'] != "1
 
               <div class="col-lg-9 title-agenda">
                 <a href="<?php echo get_the_permalink(); ?>">
+                  <small><?php echo $string_agenda; ?></small>
+                  <hr>
                   <h5><?php echo get_the_title(); ?></h5>
                 </a>
               </div>
