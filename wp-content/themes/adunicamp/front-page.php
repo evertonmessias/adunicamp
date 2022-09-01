@@ -242,7 +242,7 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.153" && $_SERVER['REMOTE_ADDR'] != "1
 
               $string_agenda_inicio = $array_agenda_inicio[2] . "/" . $array_agenda_inicio[1] . "/" . $array_agenda_inicio[0]  . " - " . $hora_inicio;
               $string_agenda_fim = $array_agenda_fim[2] . "/" . $array_agenda_fim[1] . "/" . $array_agenda_fim[0]  . " - " . $hora_fim;
-              $string_agenda = $string_agenda_inicio . " | " . $string_agenda_fim;
+              $string_agenda = "de ".$string_agenda_inicio . "H a " . $string_agenda_fim."H";
             }
           ?>
 
