@@ -204,6 +204,8 @@
   /**
  * Top News Slider
  */
+
+  /*
    new Swiper('.gallery-slider', {
     speed: 400,
     loop: true,
@@ -232,7 +234,10 @@
         spaceBetween: 20
       }
     }
-  });
+  }); */
+
+
+  
 
   /**
    * Agreement Slider

@@ -101,15 +101,8 @@ function portal_page_html()
 			<br><span>(Altera qual a <b>Categoria</b> do Post é exibida nos Slides)</span>
 
 
-			<br><br><!-- Número de Destaques******************************* -->
+			<br><br><!-- Destaques******************************* -->
 			<hr>
-			<label>
-				<h3 class="title">Número de Destaques: </h3><input type="number" onKeyDown="return false" min="0" max="10" id="portal_input_44" name="portal_input_44" value="<?php echo get_option('portal_input_44'); ?>" />
-			</label>
-
-
-			<br><!-- Categoria dos Destaques******************************* -->
-
 			<label>
 				<h3 class="title">Categoria dos Destaques: </h3>
 				<select id="portal_input_45" name="portal_input_45">
@@ -130,51 +123,9 @@ function portal_page_html()
 			<br><span>(Altera qual a <b>Categoria</b> do Post é exibida nos Destaques)</span>
 
 
-			<br><br><!-- Seções ******************************* -->
-			<hr>
-			<?php
-			$portal_input_47 = get_option('portal_input_47');
-			if ($portal_input_47 == 'on') {
-				$pi47 = "checked";
-			} else {
-				$pi47 = "";
-			}
-			$portal_input_48 = get_option('portal_input_48');
-			if ($portal_input_48 == 'on') {
-				$pi48 = "checked";
-			} else {
-				$pi48 = "";
-			}
-			$portal_input_49 = get_option('portal_input_49');
-			if ($portal_input_49 == 'on') {
-				$pi49 = "checked";
-			} else {
-				$pi49 = "";
-			}
-			$portal_input_50 = get_option('portal_input_50');
-			if ($portal_input_50 == 'on') {
-				$pi50 = "checked";
-			} else {
-				$pi50 = "";
-			}
-			?>
-			<h3 class="title">Seções: </h3>
-			<label><input type="checkbox" name="portal_input_47" <?php echo $pi47; ?>> Convênios</label><br>
-			<label><input type="checkbox" name="portal_input_48" <?php echo $pi48; ?>> Podcast</label><br>
-			<label><input type="checkbox" name="portal_input_49" <?php echo $pi49; ?>> Galeria</label><br>
-			<label><input type="checkbox" name="portal_input_50" <?php echo $pi50; ?>> Equipe</label>
-			<br><span>(Altera qual <b>Seção</b> do site será exibida)</span>
-
-
 			<br><br><!-- Botões de Acesso (Serviços) ********************************** -->
 			<hr>
-			<h3 class="title">Botões de Acesso (Serviços): </h3>
-			<?php /*
-				$portal5 = get_option('portal_input_5');
-				if($portal5 == "")$portal5 = file_get_contents(plugin_dir_path(__FILE__) ."buttons.html"); 
-				$settings = array( 'textarea_name' => 'portal_input_5','tinymce' => false, 'media_buttons' => false, 'quicktags' => false, 'wpautop' => false );
-				wp_editor($portal5, 'portal_about_box', $settings);
-				*/ ?>
+			<h3 class="title">Botões de Acesso (Serviços): </h3>			
 			<br>
 			<label>
 				<strong>Botão de Acesso 1: </strong><input type="text" id="portal_input_51" name="portal_input_51" value="<?php echo get_option('portal_input_51'); ?>" />
@@ -215,7 +166,7 @@ function portal_page_html()
 			</label>
 
 
-			<br><span>(<b>URL</b>, <a target="_blank" href="https://remixicon.com/"><b><u>Ícone</u></b></a> e <b>Título</b>, separados por <b>vírgula</b>, ex: /adunicamp-solidaria,ri-hand-heart-line,ADUNICAMP SOLIDÁRIA)</span>
+			<br><span>(<b>URL, Título e Cor</b>, separados por <b>vírgula</b>, ex: /adunicamp-solidaria,ADUNICAMP SOLIDÁRIA,#f00)</span>
 
 
 

@@ -90,18 +90,10 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.153" && $_SERVER['REMOTE_ADDR'] != "1
               } else {
                 $active = "";
               }
-              $string_li .= "<li data-bs-target='#heroTabCarousel' data-bs-slide-to='" . $x . "' " . $active . "><a href='" . get_the_permalink() . "'><small>" . get_the_category()[0]->name . "&emsp;&bullet;&emsp;" . get_the_date('d M Y', $post->ID) . "</small><hr>" . get_the_title() . "</a></li>";
+              $string_li .= "<li data-bs-target='#heroTabCarousel' data-bs-slide-to='" . $x . "' " . $active . "><a href='" . get_the_permalink() . "'><small>" . get_the_category()[0]->name . "</small><hr>" . get_the_title() . "</a></li>";
             ?>
               <!-- Slide -->
-              <div class="carousel-item <?php if ($x == 0) echo 'active'; ?>" style="background-image: url(<?php echo $imagem; ?>)">
-                <div class="carousel-container">
-                  <div class="carousel-content">
-                    <h5 class="animate__animated animate__fadeInDown"><?php echo get_the_category()[0]->name; ?></h5><br>
-                    <h2 class="animate__animated animate__fadeInDown"><?php echo get_the_title() ?></h2>
-                    <a href="<?php the_permalink() ?>" class="btn-get-started animate__animated animate__fadeInUp">Leia Mais</a>
-                  </div>
-                </div>
-              </div>
+              <div class="carousel-item <?php if ($x == 0) echo 'active'; ?>" style="background-image: url(<?php echo $imagem; ?>)"></div>
             <?php $x++;
             }
             wp_reset_postdata();
@@ -125,17 +117,21 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.153" && $_SERVER['REMOTE_ADDR'] != "1
 
   <!-- ======= Last News ======= -->
   <?php if (get_option('portal_input_44') != 0) { ?>
-    <section id="top-news" class="gallery section-bg">
 
-      <div class="section-title" data-aos="fade-up">
-        <h2>Destaques</h2>
-      </div>
+    <section id="top-news" class="gallery">
 
       <div class="container" data-aos="fade-up">
 
+        <div class="section-title" data-aos="fade-up">
+          <a href="/arquivos">
+            <h2>Notícias</h2>
+          </a>
+        </div>
+        <hr class="line">
+
         <div class="row">
 
-          <div class="col-lg-8">
+          <div class="col-lg-6">
 
             <div class="gallery-slider swiper">
               <div class="swiper-wrapper icon-boxes">
@@ -144,7 +140,7 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.153" && $_SERVER['REMOTE_ADDR'] != "1
                 $x = 1;
                 $args = array(
                   'post_type' => 'post',
-                  'posts_per_page' =>  get_option('portal_input_44'),
+                  'posts_per_page' =>  2,
                   'category_name' => get_option('portal_input_45'),
                   'order' => 'DESC'
                 );
@@ -157,14 +153,18 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.153" && $_SERVER['REMOTE_ADDR'] != "1
                   }
                 ?>
 
-                  <div class="swiper-slide">
+                  <div class="col-lg-6">
 
-                    <div class="post-entry-1">
-                      <a href="<?php the_permalink() ?>"><img src="<?php echo $imagem; ?>" alt="" class="img-fluid"></a>
-                      <div class="post-meta"><span class="date"><?php echo get_the_category()[0]->name; ?></span>
-                        <span class="mx-1">&bullet;</span> <span><?php echo get_the_date('d M Y', $post->ID); ?></span>
+                    <div class="swiper-slide">
+
+                      <div class="post-entry-1">
+                        <a href="<?php the_permalink() ?>"><img src="<?php echo $imagem; ?>" alt="" class="img-fluid"></a>
+                        <div class="post-meta"><span class="date"><?php echo get_the_category()[0]->name; ?></span>
+                          <span class="mx-1">&bullet;</span> <span><?php echo get_the_date('d M Y', $post->ID); ?></span>
+                        </div>
+                        <h2><a href="<?php the_permalink() ?>"><?php echo get_the_title() ?></a></h2>
                       </div>
-                      <h2><a href="<?php the_permalink() ?>"><?php echo get_the_title() ?></a></h2>
+
                     </div>
 
                   </div>
@@ -175,17 +175,18 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.153" && $_SERVER['REMOTE_ADDR'] != "1
                 ?>
 
               </div>
-              <div class="swiper-pagination"></div>
+              <!--<div class="swiper-pagination"></div>-->
             </div>
 
           </div>
 
-          <div class="col-lg-4 buttons" data-aos="fade-up">
+          <div class="col-lg-6 buttons" data-aos="fade-up">
             <?php
             $valor = array();
             for ($i = 1; $i <= 8; $i++) {
               $valor = explode(',', get_option('portal_input_5' . $i), 3);
-              echo '<a href="' . $valor[0] . '"><div class="icon-box"><div class="icon"><i class="' . $valor[1] . '"></i></div><h4 class="title">' . $valor[2] . '</h4></div></a>';
+              echo '<style>.icon-box' . $i . '{color:#fff !important;background:' . $valor[2] . ';border: 2px solid ' . $valor[2] . ';}.icon-box' . $i . ':hover{background:#fff !important;color:' . $valor[2] . ' !important;}</style>';
+              echo '<a href="' . $valor[0] . '"><div class="icon-box icon-box' . $i . '"><h4 class="title">' . $valor[1] . '</h4></div></a>';
             }
             ?>
           </div>
@@ -198,13 +199,16 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.153" && $_SERVER['REMOTE_ADDR'] != "1
 
 
   <!-- ======= Services Section ======= -->
-  <section id="services" class="services">
-
-    <div class="section-title" data-aos="fade-up">
-      <h2>Agenda</h2>
-    </div>
+  <section id="services" class="services section-bg">
 
     <div class="container">
+
+      <div class="section-title" data-aos="fade-up">
+        <a href="/agenda">
+          <h2>Agenda</h2>
+        </a>
+      </div>
+      <hr class="line">
 
       <div class="row">
 
@@ -242,7 +246,7 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.153" && $_SERVER['REMOTE_ADDR'] != "1
 
               $string_agenda_inicio = $array_agenda_inicio[2] . "/" . $array_agenda_inicio[1] . "/" . $array_agenda_inicio[0]  . " - " . $hora_inicio;
               $string_agenda_fim = $array_agenda_fim[2] . "/" . $array_agenda_fim[1] . "/" . $array_agenda_fim[0]  . " - " . $hora_fim;
-              $string_agenda = "de ".$string_agenda_inicio . "H a " . $string_agenda_fim."H";
+              $string_agenda = "de " . $string_agenda_inicio . "H a " . $string_agenda_fim . "H";
             }
           ?>
 
@@ -276,65 +280,8 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.153" && $_SERVER['REMOTE_ADDR'] != "1
     </div>
   </section><!-- End Services Section -->
 
-  <!-- ======= Convênios Section ======= -->
-  <?php if (get_option('portal_input_47') == "on") { ?>
-    <section id="agreement" class="agreement" style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('<?php echo get_option('portal_input_2') ?>') center center;background-size: cover;padding: 50px 0;background-attachment: fixed;">
-      <div class="section-title" data-aos="fade-up">
-        <h2 class="white">Convênios</h2>
-      </div>
-
-      <div class="container" data-aos="fade-up">
-
-        <div class="agreement-slider swiper">
-          <div class="swiper-wrapper align-items-center">
-
-            <?php
-            $x = 1;
-            $args = array(
-              'post_type' => 'convenio',
-              'order' => 'DESC',
-              'posts_per_page' => 20
-            );
-            $loop = new WP_Query($args);
-            foreach ($loop->posts as $post) {
-              if (has_post_thumbnail()) {
-                $imagem = get_the_post_thumbnail_url(get_the_ID(), 'full');
-              } else {
-                $imagem = SITEPATH . "assets/img/semimagem.png";
-              }
-            ?>
-
-              <div class="swiper-slide">
-                <a href="<?php echo get_the_permalink() ?>"><img src="<?php echo $imagem; ?>" class="img-fluid" alt="" title="<?php echo $post->post_title; ?>">
-                  <p><?php echo $post->post_title; ?></p>
-                </a>
-              </div>
-
-            <?php $x++;
-            }
-            wp_reset_postdata();
-            ?>
-
-          </div>
-          <div class="swiper-pagination"></div>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-12 more">
-            <a class="getstarted" href="/convenio">Veja todos</a>
-          </div>
-        </div>
-
-      </div>
-    </section><!-- End Convênios Section -->
-  <?php } ?>
-
   <!-- ======= News Section ======= -->
   <section id="news" class="new-posts">
-
-    <div class="section-title" data-aos="fade-up">
-      <h2>Notícias</h2>
-    </div>
 
     <div class="container">
 
@@ -370,12 +317,26 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.153" && $_SERVER['REMOTE_ADDR'] != "1
 
       <div class="row">
         <div class="col-lg-4 left">
-          <h5 class="title-cat">Mais Recentes</h5>
+
+          <div class="section-title" data-aos="fade-up">
+            <a href="/arquivos">
+              <h2>Mais Recentes</h2>
+            </a>
+          </div>
+          <hr class="line">
+
           <?php echo $postentry[0] . $postentry[1]; ?>
         </div>
 
         <div class="col-lg-8 right">
-          <h5 class="title-cat">Outras Notícias</h5>
+
+          <div class="section-title" data-aos="fade-up">
+            <a href="/arquivos">
+              <h2>Outras Notícias</h2>
+            </a>
+          </div>
+          <hr class="line">
+
           <div class="row">
             <div class="col-lg-4 border-start custom-border">
               <?php echo $postentry[2] . $postentry[3] . $postentry[4]; ?>
@@ -390,206 +351,21 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.153" && $_SERVER['REMOTE_ADDR'] != "1
         </div>
 
       </div> <!-- End .row -->
-      <div class="row">
-        <div class="col-lg-12 more">
-          <a class="getstarted" href="/arquivos">Veja todos</a>
-        </div>
-      </div>
+
     </div>
   </section><!-- End News Section -->
-
-  <!-- ======= Video Section ======= -->
-  <?php if (get_option('portal_input_48') == "on") { ?>
-    <section id="podcast" class="podcast" style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('<?php echo get_option('portal_input_2') ?>') center center;background-size: cover;background-attachment: fixed;">>
-
-      <div class="section-title" data-aos="fade-up">
-        <h2 class="white">Podcast</h2>
-      </div>
-
-      <div class="container" data-aos="fade-up">
-
-        <div class="podcast-slider swiper">
-          <div class="swiper-wrapper align-items-center">
-
-            <?php
-            $x = 1;
-            $args = array(
-              'post_type' => 'post',
-              'category_name' => 'podcast',
-              'order' => 'DESC',
-              'posts_per_page' => 10
-            );
-            $loop = new WP_Query($args);
-            foreach ($loop->posts as $post) {
-              if (has_post_thumbnail()) {
-                $imagem = get_the_post_thumbnail_url(get_the_ID(), 'full');
-              } else {
-                $imagem = SITEPATH . "assets/img/semimagem.png";
-              }
-            ?>
-              <div class="swiper-slide"><a href="<?php echo get_permalink() ?>"><img src="<?php echo $imagem ?>" class="img-fluid" alt="" title="<?php echo get_the_title() ?>"><small><?php echo get_the_title() ?></small></a></div>
-            <?php $x++;
-            }
-            wp_reset_postdata();
-            ?>
-
-
-          </div>
-          <div class="swiper-pagination"></div>
-        </div>
-
-      </div>
-    </section><!-- End Gallery Section -->
-  <?php } ?>
-
-  <!-- ======= Portfolio Section ======= -->
-  <?php if (get_option('portal_input_49') == "on") { ?>
-    <section id="gallery" class="portfolio">
-
-      <div class="section-title">
-        <h2>Galeria</h2>
-      </div>
-
-      <div class="container" data-aos="fade-up">
-
-        <div class="row" data-aos="fade-up" data-aos-delay="100">
-          <div class="col-lg-12 d-flex justify-content-center">
-            <ul id="portfolio-flters">
-              <!--<li data-filter="*" class="filter-active">Todos</li>-->
-              <?php
-              $x = 1;
-              $args = array(
-                'post_type' => 'album',
-                'order' => 'ASC',
-                'posts_per_page' => 5
-              );
-              $loop = new WP_Query($args);
-              foreach ($loop->posts as $post) {
-              ?>
-                <li data-filter=".filter-<?php echo $post->post_name ?>" class="btn-album <?php if ($x == 1) echo "filter-active"; ?>"><?php echo $post->post_title ?></li>
-              <?php
-                $x++;
-              }
-              wp_reset_postdata();
-              ?>
-            </ul>
-          </div>
-        </div>
-
-        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
-
-          <?php
-          $x = 1;
-          $args = array(
-            'post_type' => 'album',
-            'order' => 'ASC',
-            'posts_per_page' => 5
-          );
-          $loop = new WP_Query($args);
-          foreach ($loop->posts as $post) {
-            $array_imgs = explode(',', rtrim(get_post_meta($post->ID, 'post_upload_0', true), ','));
-            foreach ($array_imgs as $img) {
-          ?>
-              <div class="<?php if ($x != 1) echo "display"; ?> col-lg-4 col-md-6 portfolio-item filter-<?php echo $post->post_name ?>">
-                <div class="portfolio-wrap">
-                  <img src="<?php echo $img ?>" class="img-fluid" alt="">
-                  <div class="portfolio-info">
-                    <div class="portfolio-links">
-                      <a href="<?php echo $img ?>" data-gallery="portfolioGallery" class="portfolio-lightbox"><i class="bx bx-plus"></i></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-          <?php
-            }
-            $x++;
-          }
-          wp_reset_postdata();
-          ?>
-        </div>
-      </div>
-    </section><!-- End Portfolio Section -->
-  <?php } ?>
-
-
-  <!-- ======= Team Section ======= -->
-  <?php if (get_option('portal_input_50') == "on") { ?>
-    <section id="team" class="team" style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('<?php echo get_option('portal_input_2') ?>') center center;background-size: cover;background-attachment: fixed;">>
-
-      <div class="section-title" data-aos="fade-up">
-        <h2 class="white">Equipe</h2>
-      </div>
-
-      <div class="container" data-aos="fade-up">
-
-        <div class="team-slider swiper">
-          <div class="swiper-wrapper align-items-center">
-
-            <?php
-            $args = array(
-              'post_type' => 'equipe',
-              'posts_per_page' => 100,
-              'order' => 'ASC'
-            );
-            $loop = new WP_Query($args);
-            while ($loop->have_posts()) {
-              $loop->the_post();
-              $imagem = get_the_post_thumbnail_url(get_the_ID(), 'full');
-              if ($imagem == "") $imagem = SITEPATH . "assets/img/semimagem.png";
-              $local = get_post_meta($post->ID, 'equipe_local', true);
-              $contato = get_post_meta($post->ID, 'equipe_contato', true);
-            ?>
-              <div class="swiper-slide">
-                <div class="member">
-                  <div class="member-img">
-                    <a href="<?php echo get_the_permalink(); ?>" title="Abrir"><img src="<?php echo $imagem; ?>" class="img-fluid" title="<?php echo get_the_title() ?>"></a>
-                  </div>
-                  <div class="member-info">
-                    <a href="<?php echo get_the_permalink(); ?>" title="Abrir">
-                      <h4><?php echo get_the_title() ?></h4>
-                    </a>
-                    <p><?php echo get_post_meta($post->ID, 'equipe_funcao', true); ?></p>
-                    <span>
-                      <?php
-                      if ($local != "") {
-                        echo '(' . $local . ')';
-                      } else if ($contato != "") {
-                        echo '<i class="ri-phone-line"></i> ' . $contato;
-                      }
-                      ?>
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-            <?php
-            }
-            wp_reset_postdata();
-            ?>
-
-          </div>
-          <div class="swiper-pagination"></div>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-12 more">
-            <a class="getstarted" href="/equipe">Veja todos</a>
-          </div>
-        </div>
-
-      </div>
-    </section><!-- End Team Section -->
-  <?php } ?>
-
 
   <!-- ======= Contact Section ======= -->
   <section id="contact" class="contact">
 
-    <div class="section-title">
-      <h2>Contato</h2>
-    </div>
-
     <div class="container">
+
+    <div class="section-title" data-aos="fade-up">
+        <a href="/#contact">
+          <h2>Contato</h2>
+        </a>
+      </div>
+      <hr class="line">
 
       <div class="row">
         <div class="col-lg-6">
