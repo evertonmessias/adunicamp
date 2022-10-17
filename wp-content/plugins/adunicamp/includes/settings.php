@@ -104,9 +104,9 @@ function portal_page_html()
 			<br><br><!-- Destaques******************************* -->
 			<hr>
 			<label>
-				<h3 class="title">Categoria dos Destaques: </h3>
-				<select id="portal_input_45" name="portal_input_45">
-					<option selected hidden><?php echo get_option('portal_input_45'); ?></option>
+				<h3 class="title">Categoria dos Destaques: </h3><br>
+				<select id="portal_input_61" name="portal_input_61">
+					<option selected hidden><?php echo get_option('portal_input_61'); ?></option>
 					<?php
 					$argsCat = array(
 						'post_type' => 'post',
@@ -118,9 +118,107 @@ function portal_page_html()
 						echo '<option>' . $category->slug . '</option>';
 					}
 					?>
-				</select>
+				</select><br><br>
+				<select id="portal_input_62" name="portal_input_62">
+					<option selected hidden><?php echo get_option('portal_input_62'); ?></option>
+					<?php
+					$argsCat = array(
+						'post_type' => 'post',
+						'orderby'       => 'name',
+						'order'         => 'ASC'
+					);
+					$categories = get_terms('category', $argsCat);
+					foreach ($categories as $category) {
+						echo '<option>' . $category->slug . '</option>';
+					}
+					?>
+				</select><br><br>
+				<select id="portal_input_63" name="portal_input_63">
+					<option selected hidden><?php echo get_option('portal_input_63'); ?></option>
+					<?php
+					$argsCat = array(
+						'post_type' => 'post',
+						'orderby'       => 'name',
+						'order'         => 'ASC'
+					);
+					$categories = get_terms('category', $argsCat);
+					foreach ($categories as $category) {
+						echo '<option>' . $category->slug . '</option>';
+					}
+					?>
+				</select><br><br>
+				<select id="portal_input_64" name="portal_input_64">
+					<option selected hidden><?php echo get_option('portal_input_64'); ?></option>
+					<?php
+					$argsCat = array(
+						'post_type' => 'post',
+						'orderby'       => 'name',
+						'order'         => 'ASC'
+					);
+					$categories = get_terms('category', $argsCat);
+					foreach ($categories as $category) {
+						echo '<option>' . $category->slug . '</option>';
+					}
+					?>
+				</select><br><br>
+				<select id="portal_input_65" name="portal_input_65">
+					<option selected hidden><?php echo get_option('portal_input_65'); ?></option>
+					<?php
+					$argsCat = array(
+						'post_type' => 'post',
+						'orderby'       => 'name',
+						'order'         => 'ASC'
+					);
+					$categories = get_terms('category', $argsCat);
+					foreach ($categories as $category) {
+						echo '<option>' . $category->slug . '</option>';
+					}
+					?>
+				</select><br><br>
+				<select id="portal_input_66" name="portal_input_66">
+					<option selected hidden><?php echo get_option('portal_input_66'); ?></option>
+					<?php
+					$argsCat = array(
+						'post_type' => 'post',
+						'orderby'       => 'name',
+						'order'         => 'ASC'
+					);
+					$categories = get_terms('category', $argsCat);
+					foreach ($categories as $category) {
+						echo '<option>' . $category->slug . '</option>';
+					}
+					?>
+				</select><br><br>
+				<select id="portal_input_67" name="portal_input_67">
+					<option selected hidden><?php echo get_option('portal_input_67'); ?></option>
+					<?php
+					$argsCat = array(
+						'post_type' => 'post',
+						'orderby'       => 'name',
+						'order'         => 'ASC'
+					);
+					$categories = get_terms('category', $argsCat);
+					foreach ($categories as $category) {
+						echo '<option>' . $category->slug . '</option>';
+					}
+					?>
+				</select><br><br>
+				<select id="portal_input_68" name="portal_input_68">
+					<option selected hidden><?php echo get_option('portal_input_68'); ?></option>
+					<?php
+					$argsCat = array(
+						'post_type' => 'post',
+						'orderby'       => 'name',
+						'order'         => 'ASC'
+					);
+					$categories = get_terms('category', $argsCat);
+					foreach ($categories as $category) {
+						echo '<option>' . $category->slug . '</option>';
+					}
+					?>
+				</select><br><br>
 			</label>
-			<br><span>(Altera qual a <b>Categoria</b> do Post é exibida nos Destaques)</span>
+			<span>(Altera qual a <b>Categoria</b> do Post é exibida nos Destaques)</span>
 
 
 			<br><br><!-- Botões de Acesso (Serviços) ********************************** -->
@@ -315,6 +413,30 @@ function portal_settings()
 
 	add_option('portal_input_6');
 	register_setting('portal_option_grupo', 'portal_input_6');
+
+	add_option('portal_input_61');
+	register_setting('portal_option_grupo', 'portal_input_61');
+
+	add_option('portal_input_62');
+	register_setting('portal_option_grupo', 'portal_input_62');
+
+	add_option('portal_input_63');
+	register_setting('portal_option_grupo', 'portal_input_63');
+
+	add_option('portal_input_64');
+	register_setting('portal_option_grupo', 'portal_input_64');
+
+	add_option('portal_input_65');
+	register_setting('portal_option_grupo', 'portal_input_65');
+
+	add_option('portal_input_66');
+	register_setting('portal_option_grupo', 'portal_input_66');
+
+	add_option('portal_input_67');
+	register_setting('portal_option_grupo', 'portal_input_67');
+
+	add_option('portal_input_68');
+	register_setting('portal_option_grupo', 'portal_input_68');
 
 	add_option('portal_input_7');
 	register_setting('portal_option_grupo', 'portal_input_7');

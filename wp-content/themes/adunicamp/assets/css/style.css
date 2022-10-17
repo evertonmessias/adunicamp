@@ -978,11 +978,11 @@ hr.line{
   background: #1e6583;
 }
 
-#top-news .buttons{
+#news .buttons{
   padding-top: 1px;
 }
 
-#top-news .icon-box {
+#news .icon-box {
   display: block;
   margin: 0 auto;
   width: 90%;
@@ -995,7 +995,7 @@ hr.line{
   box-shadow: 0px 0px 21px 2px rgb(0 0 0 / 18%);
 }
 
-#top-news .title {
+#news .title {
   margin-top: 8px;
   font-weight: 700;
   font-size: 15px;
@@ -1003,7 +1003,7 @@ hr.line{
 }
 
 @media(max-width:900px){  
-  #top-news .buttons{
+  #news .buttons{
     margin-top: 50px;
   }
 }
@@ -1028,10 +1028,10 @@ hr.line{
 }
 
 #news .post-entry-2 {
-  margin-bottom: 30px;
-  border-bottom: 1px solid #ddd;
+  margin-bottom: 30px; 
   padding-bottom: 20px;
 }
+
 #news .post-entry-2 img {
   display: block;
   position: relative;

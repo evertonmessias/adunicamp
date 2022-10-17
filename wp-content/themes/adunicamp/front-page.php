@@ -116,86 +116,71 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.153" && $_SERVER['REMOTE_ADDR'] != "1
 <main id="main">
 
   <!-- ======= Last News ======= -->
-  <?php if (get_option('portal_input_44') != 0) { ?>
+  <section id="news" class="new-posts">
 
-    <section id="top-news" class="gallery">
+    <div class="container">
 
-      <div class="container" data-aos="fade-up">
+    <div class="section-title" data-aos="fade-up">
+            <a href="/arquivos">
+              <h2>Notícias</h2>
+            </a>
+          </div>
+          <hr class="line">
 
-        <div class="section-title" data-aos="fade-up">
-          <a href="/arquivos">
-            <h2>Notícias</h2>
-          </a>
-        </div>
-        <hr class="line">
+      <?php
 
-        <div class="row">
+      $args = array(
+        'post_type' => 'post',
+        'posts_per_page' => 2,
+        'category_name' => get_option('portal_input_61'),
+        'order' => 'DESC'
+      );
+      $loop = new WP_Query($args);
+      $postentry1 = array();
+      foreach ($loop->posts as $post) {
+        $imagem = get_the_post_thumbnail_url(get_the_ID(), 'full');
+        if ($imagem == "") $imagem = SITEPATH . "assets/img/semimagem.png";
+        $ccategory1 = get_the_category()[0]->name;
+        $postentry1[] = '<div class="post-entry-2">' .
+          '<a href="' . get_the_permalink() . '"><img src="' . $imagem . '" alt="" class="img-fluid"></a>' .
+          '<div class="post-meta"><span class="date">' . get_the_category()[0]->name . '</span>' .
+          '<span class="mx-1">&bullet;</span> <span>' . get_the_date('d M Y', $post->ID) . '</span></div>' .
+          '<h2><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></h2><p class="mb-4 d-block">' . get_excerpt(180) . '</p></div>';
+      }
+      wp_reset_postdata();
+      ?>
 
-          <div class="col-lg-6">
+      <div class="row">
 
-            <div class="gallery-slider swiper">
-              <div class="swiper-wrapper icon-boxes">
+        <div class="col-lg-6">
+          
 
-                <?php
-                $x = 1;
-                $args = array(
-                  'post_type' => 'post',
-                  'posts_per_page' =>  2,
-                  'category_name' => get_option('portal_input_45'),
-                  'order' => 'DESC'
-                );
-                $loop = new WP_Query($args);
-                foreach ($loop->posts as $post) {
-                  if (has_post_thumbnail()) {
-                    $imagem = get_the_post_thumbnail_url(get_the_ID(), 'full');
-                  } else {
-                    $imagem = SITEPATH . "assets/img/semimagem.png";
-                  }
-                ?>
-
-                  <div class="col-lg-6">
-
-                    <div class="swiper-slide">
-
-                      <div class="post-entry-1">
-                        <a href="<?php the_permalink() ?>"><img src="<?php echo $imagem; ?>" alt="" class="img-fluid"></a>
-                        <div class="post-meta"><span class="date"><?php echo get_the_category()[0]->name; ?></span>
-                          <span class="mx-1">&bullet;</span> <span><?php echo get_the_date('d M Y', $post->ID); ?></span>
-                        </div>
-                        <h2><a href="<?php the_permalink() ?>"><?php echo get_the_title() ?></a></h2>
-                      </div>
-
-                    </div>
-
-                  </div>
-
-                <?php $x++;
-                }
-                wp_reset_postdata();
-                ?>
-
-              </div>
-              <!--<div class="swiper-pagination"></div>-->
+          <div class="row">
+            <div class="col-lg-6">
+              <?php echo $postentry1[0]; ?>
             </div>
-
+            <div class="col-lg-6">
+              <?php echo $postentry1[1]; ?>
+            </div>
           </div>
 
-          <div class="col-lg-6 buttons" data-aos="fade-up">
-            <?php
-            $valor = array();
-            for ($i = 1; $i <= 8; $i++) {
-              $valor = explode(',', get_option('portal_input_5' . $i), 3);
-              echo '<style>.icon-box' . $i . '{color:#fff !important;background:' . $valor[2] . ';border: 2px solid ' . $valor[2] . ';}.icon-box' . $i . ':hover{background:#fff !important;color:' . $valor[2] . ' !important;}</style>';
-              echo '<a href="' . $valor[0] . '"><div class="icon-box icon-box' . $i . '"><h4 class="title">' . $valor[1] . '</h4></div></a>';
-            }
-            ?>
-          </div>
+        </div>
 
+        <div class="col-lg-6 buttons" data-aos="fade-up">
+          <?php
+          $valor = array();
+          for ($i = 1; $i <= 8; $i++) {
+            $valor = explode(',', get_option('portal_input_5' . $i), 3);
+            echo '<style>.icon-box' . $i . '{color:#fff !important;background:' . $valor[2] . ';border: 2px solid ' . $valor[2] . ';}.icon-box' . $i . ':hover{background:#fff !important;color:' . $valor[2] . ' !important;}</style>';
+            echo '<a href="' . $valor[0] . '"><div class="icon-box icon-box' . $i . '"><h4 class="title">' . $valor[1] . '</h4></div></a>';
+          }
+          ?>
         </div>
 
       </div>
-    </section><!-- End Gallery -->
-  <?php } ?>
+
+    </div>
+  </section>
 
 
   <!-- ======= Services Section ======= -->
@@ -286,68 +271,129 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.153" && $_SERVER['REMOTE_ADDR'] != "1
     <div class="container">
 
       <?php
-      $x = 1;
+
       $args = array(
         'post_type' => 'post',
-        'order' => 'DESC',
-        'posts_per_page' => 11
+        'posts_per_page' => 1,
+        'category_name' => get_option('portal_input_62'),
+        'order' => 'DESC'
       );
       $loop = new WP_Query($args);
-      $postentry = array();
-
+      $postentry2 = "";
       foreach ($loop->posts as $post) {
         $imagem = get_the_post_thumbnail_url(get_the_ID(), 'full');
         if ($imagem == "") $imagem = SITEPATH . "assets/img/semimagem.png";
-
-        if ($x <= 2) {
-          $excerpt = '<p class="mb-4 d-block">' . get_excerpt(220) . '</p>';
-        } else {
-          $excerpt = "";
-        }
-        $postentry[] = '<div class="post-entry-2">' .
+        $ccategory2 = get_the_category()[0]->name;
+        $postentry2 .= '<div class="post-entry-2">' .
           '<a href="' . get_the_permalink() . '"><img src="' . $imagem . '" alt="" class="img-fluid"></a>' .
           '<div class="post-meta"><span class="date">' . get_the_category()[0]->name . '</span>' .
           '<span class="mx-1">&bullet;</span> <span>' . get_the_date('d M Y', $post->ID) . '</span></div>' .
-          '<h2><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></h2>' . $excerpt . '</div>';
-        $x++;
+          '<h2><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></h2><p class="mb-4 d-block">' . get_excerpt(180) . '</p></div>';
       }
       wp_reset_postdata();
+
+      $args = array(
+        'post_type' => 'post',
+        'posts_per_page' => 1,
+        'category_name' => get_option('portal_input_63'),
+        'order' => 'DESC'
+      );
+      $loop = new WP_Query($args);
+      $postentry3 = "";
+      foreach ($loop->posts as $post) {
+        $imagem = get_the_post_thumbnail_url(get_the_ID(), 'full');
+        if ($imagem == "") $imagem = SITEPATH . "assets/img/semimagem.png";
+        $ccategory3 = get_the_category()[0]->name;
+        $postentry3 .= '<div class="post-entry-2">' .
+          '<a href="' . get_the_permalink() . '"><img src="' . $imagem . '" alt="" class="img-fluid"></a>' .
+          '<div class="post-meta"><span class="date">' . get_the_category()[0]->name . '</span>' .
+          '<span class="mx-1">&bullet;</span> <span>' . get_the_date('d M Y', $post->ID) . '</span></div>' .
+          '<h2><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></h2><p class="mb-4 d-block">' . get_excerpt(180) . '</p></div>';
+      }
+      wp_reset_postdata();
+
+      $args = array(
+        'post_type' => 'post',
+        'posts_per_page' => 1,
+        'category_name' => get_option('portal_input_64'),
+        'order' => 'DESC'
+      );
+      $loop = new WP_Query($args);
+      $postentry4 = "";
+      foreach ($loop->posts as $post) {
+        $imagem = get_the_post_thumbnail_url(get_the_ID(), 'full');
+        if ($imagem == "") $imagem = SITEPATH . "assets/img/semimagem.png";
+        $ccategory4 = get_the_category()[0]->name;
+        $postentry4 .= '<div class="post-entry-2">' .
+          '<a href="' . get_the_permalink() . '"><img src="' . $imagem . '" alt="" class="img-fluid"></a>' .
+          '<div class="post-meta"><span class="date">' . get_the_category()[0]->name . '</span>' .
+          '<span class="mx-1">&bullet;</span> <span>' . get_the_date('d M Y', $post->ID) . '</span></div>' .
+          '<h2><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></h2><p class="mb-4 d-block">' . get_excerpt(180) . '</p></div>';
+      }
+      wp_reset_postdata();
+
+      $args = array(
+        'post_type' => 'post',
+        'posts_per_page' => 1,
+        'category_name' => get_option('portal_input_65'),
+        'order' => 'DESC'
+      );
+      $loop = new WP_Query($args);
+      $postentry5 = "";
+      foreach ($loop->posts as $post) {
+        $imagem = get_the_post_thumbnail_url(get_the_ID(), 'full');
+        if ($imagem == "") $imagem = SITEPATH . "assets/img/semimagem.png";
+        $ccategory5 = get_the_category()[0]->name;
+        $postentry5 .= '<div class="post-entry-2">' .
+          '<a href="' . get_the_permalink() . '"><img src="' . $imagem . '" alt="" class="img-fluid"></a>' .
+          '<div class="post-meta"><span class="date">' . get_the_category()[0]->name . '</span>' .
+          '<span class="mx-1">&bullet;</span> <span>' . get_the_date('d M Y', $post->ID) . '</span></div>' .
+          '<h2><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></h2><p class="mb-4 d-block">' . get_excerpt(180) . '</p></div>';
+      }
+      wp_reset_postdata();
+
       ?>
 
-
       <div class="row">
-        <div class="col-lg-4 left">
 
+        <div class="col-lg-3">
           <div class="section-title" data-aos="fade-up">
             <a href="/arquivos">
-              <h2>Mais Recentes</h2>
+              <h2><?php echo $ccategory2; ?></h2>
             </a>
           </div>
           <hr class="line">
-
-          <?php echo $postentry[0] . $postentry[1]; ?>
+          <?php echo $postentry2; ?>
         </div>
 
-        <div class="col-lg-8 right">
-
+        <div class="col-lg-3">
           <div class="section-title" data-aos="fade-up">
             <a href="/arquivos">
-              <h2>Outras Notícias</h2>
+              <h2><?php echo $ccategory3; ?></h2>
             </a>
           </div>
           <hr class="line">
+          <?php echo $postentry3; ?>
+        </div>
 
-          <div class="row">
-            <div class="col-lg-4 border-start custom-border">
-              <?php echo $postentry[2] . $postentry[3] . $postentry[4]; ?>
-            </div>
-            <div class="col-lg-4 border-start custom-border">
-              <?php echo $postentry[5] . $postentry[6] . $postentry[7]; ?>
-            </div>
-            <div class="col-lg-4 border-start custom-border">
-              <?php echo $postentry[8] . $postentry[9] . $postentry[10]; ?>
-            </div>
+        <div class="col-lg-3">
+          <div class="section-title" data-aos="fade-up">
+            <a href="/arquivos">
+              <h2><?php echo $ccategory4; ?></h2>
+            </a>
           </div>
+          <hr class="line">
+          <?php echo $postentry4; ?>
+        </div>
+
+        <div class="col-lg-3">
+          <div class="section-title" data-aos="fade-up">
+            <a href="/arquivos">
+              <h2><?php echo $ccategory5; ?></h2>
+            </a>
+          </div>
+          <hr class="line">
+          <?php echo $postentry5; ?>
         </div>
 
       </div> <!-- End .row -->
@@ -360,7 +406,7 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.153" && $_SERVER['REMOTE_ADDR'] != "1
 
     <div class="container">
 
-    <div class="section-title" data-aos="fade-up">
+      <div class="section-title" data-aos="fade-up">
         <a href="/#contact">
           <h2>Contato</h2>
         </a>
