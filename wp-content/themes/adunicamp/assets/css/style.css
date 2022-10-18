@@ -52,6 +52,49 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /*--------------------------------------------------------------
+# Popup
+--------------------------------------------------------------*/
+#popup{
+  display: block;
+  position:absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  z-index: 1000;
+}
+#popup .popup-content{
+  margin: 0;
+  padding: 0;
+  display: block;
+  position: relative;
+  margin: 0 auto;
+  top: 10%;
+  width: 60em;
+  height: 40em;
+  background: #fff;
+  z-index: 1500;
+}
+
+@media(max-width:900px){
+  #popup .popup-content{
+    width: 100%;
+  }
+}
+
+#popup .popup-content .ri-close-line{
+  position: absolute;
+  font-size: 50px;
+  color: #2682A8;
+  right: 10px;
+  top: 0px;
+  cursor: pointer;
+  z-index: 2000;
+}
+#popup .popup-content .ri-close-line:hover{
+  color: #1e6583;
+}
+
+/*--------------------------------------------------------------
 # Back to top button
 --------------------------------------------------------------*/
 .back-to-top {
@@ -1027,7 +1070,7 @@ hr.line{
   position: relative;
   margin: 0 auto;
   margin-bottom: 30px;
-  width: 100%;
+  width: auto;
   height: 150px;
 }
 

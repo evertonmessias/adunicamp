@@ -9,8 +9,22 @@ function portal_page_html()
 		<form method="post" action="options.php">
 			<?php settings_fields('portal_option_grupo'); ?>
 
+			<!-- Popup******************************* -->
 
-			<!-- Nome ********************************** -->
+			<h3 class="title">Popup: </h3>
+
+			<label><input type="checkbox" class="portal_input_00 pop" name="portal_input_00" value="pop" <?php checked('pop', get_option('portal_input_00')); ?> />&ensp;Exibir Popup ?</label>
+			<br>
+			<div class="popup">
+				<?php
+				$portal01 = get_option('portal_input_01'); 
+				wp_editor($portal01, 'portal_box01', array('textarea_name' => 'portal_input_01'));
+				?>
+			</div>
+
+
+			<br><br><!-- Nome******************************* -->
+			<hr>
 			<label>
 				<h3 class="title">Nome do Site: </h3><input type="text" id="portal_input_0" name="portal_input_0" value="<?php echo get_option('portal_input_0'); ?>" />
 			</label>
@@ -71,14 +85,14 @@ function portal_page_html()
 
 
 			<br><br><!-- Tipo e Número de Slides******************************* -->
-			<hr>			
-				<h3 class="title">Tipo e Número de Slides: </h3>
-				
-				<label><input type="radio" class="portal_input_46 tabs" name="portal_input_46" value="tabs" <?php checked( 'tabs', get_option('portal_input_46') ); ?> />&ensp;Slide Tabs (3 slides)</label>				
-				<label><input type="radio" class="portal_input_46 full" name="portal_input_46" value="full" <?php checked( 'full', get_option('portal_input_46') ); ?> />&ensp;Slide Full&ensp;(n slides)</label>
+			<hr>
+			<h3 class="title">Tipo e Número de Slides: </h3>
 
-				<input type="number" class="nslide" onKeyDown="return false" min="1" max="10" id="portal_input_42" name="portal_input_42" value="<?php echo get_option('portal_input_42'); ?>" />
-			
+			<label><input type="radio" class="portal_input_46 tabs" name="portal_input_46" value="tabs" <?php checked('tabs', get_option('portal_input_46')); ?> />&ensp;Slide Tabs (3 slides)</label>
+			<label><input type="radio" class="portal_input_46 full" name="portal_input_46" value="full" <?php checked('full', get_option('portal_input_46')); ?> />&ensp;Slide Full&ensp;(n slides)</label>
+
+			<input type="number" class="nslide" onKeyDown="return false" min="1" max="10" id="portal_input_42" name="portal_input_42" value="<?php echo get_option('portal_input_42'); ?>" />
+
 
 			<br><!-- Categoria dos Slides******************************* -->
 			<label>
@@ -223,7 +237,7 @@ function portal_page_html()
 
 			<br><br><!-- Botões de Acesso (Serviços) ********************************** -->
 			<hr>
-			<h3 class="title">Botões de Acesso (Serviços): </h3>			
+			<h3 class="title">Botões de Acesso (Serviços): </h3>
 			<br>
 			<label>
 				<strong>Botão de Acesso 1: </strong><input type="text" id="portal_input_51" name="portal_input_51" value="<?php echo get_option('portal_input_51'); ?>" />
@@ -342,6 +356,12 @@ add_action('admin_menu', 'portal_options_page');
 
 function portal_settings()
 {
+	add_option('portal_input_00');
+	register_setting('portal_option_grupo', 'portal_input_00');
+	
+	add_option('portal_input_01');
+	register_setting('portal_option_grupo', 'portal_input_01');
+
 	add_option('portal_input_0');
 	register_setting('portal_option_grupo', 'portal_input_0');
 

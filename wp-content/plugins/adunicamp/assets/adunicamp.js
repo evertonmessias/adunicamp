@@ -13,6 +13,14 @@ function show_anexos(str_anexos) {
     }
 }
 
+function prop_popup(){
+    if($(".portal_input_00.pop").is(':checked')){
+        $(".popup").show();
+    }else{
+        $(".popup").hide();
+    }
+}
+
 function prop_checked(){
     if($(".portal_input_46.full").is(':checked')){
         $(".nslide").show();
@@ -21,9 +29,15 @@ function prop_checked(){
     }
 }
 
+
 window.onload = function () {
 
+    prop_popup();
     prop_checked();
+
+    $(".portal_input_00").change(()=>{
+        prop_popup();
+    })
 
     $(".portal_input_46").change(()=>{
         prop_checked();

@@ -92,10 +92,10 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.153" && $_SERVER['REMOTE_ADDR'] != "1
               }
               $string_li .= "<li data-bs-target='#heroTabCarousel' data-bs-slide-to='" . $x . "' " . $active . "><a href='" . get_the_permalink() . "'><small>" . get_the_category()[0]->name . "</small><hr>" . get_the_title() . "</a></li>";
             ?>
-            <!-- Slide -->
-            <div class="carousel-item <?php if ($x == 1) echo 'active'; ?>" style="background-image: url(<?php echo $imagem; ?>)">
-              <a href="<?php the_permalink() ?>" class="tab-link">&nbsp;</a>
-            </div>
+              <!-- Slide -->
+              <div class="carousel-item <?php if ($x == 1) echo 'active'; ?>" style="background-image: url(<?php echo $imagem; ?>)">
+                <a href="<?php the_permalink() ?>" class="tab-link">&nbsp;</a>
+              </div>
             <?php $x++;
             }
             wp_reset_postdata();
@@ -279,7 +279,9 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.153" && $_SERVER['REMOTE_ADDR'] != "1
         $array_cat = [get_option('portal_input_62'), get_option('portal_input_63'), get_option('portal_input_64'), get_option('portal_input_65')];
 
         for ($i = 0; $i < 4; $i++) {
-          
+
+          $title_cat = get_category_by_slug($array_cat[$i])->name;
+
           $args = array(
             'post_type' => 'post',
             'posts_per_page' => 1,
@@ -294,7 +296,7 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.153" && $_SERVER['REMOTE_ADDR'] != "1
               $imagem = SITEPATH . "assets/img/semimagem.png";
             }
             echo '<div class="col-lg-3"><div class="section-title" data-aos="fade-up">
-        <a href="/arquivos"><h2>' . get_the_category()[0]->name . '</h2></a></div><hr class="line">            
+        <a href="/arquivos"><h2>' . $title_cat . '</h2></a></div><hr class="line">            
             <div class="post-entry-2">' .
               '<a href="' . get_the_permalink() . '"><img src="' . $imagem . '" alt="" class="img-fluid"></a>' .
               '<div class="post-meta"><span class="date">' . get_the_category()[0]->name . '</span>' .
@@ -310,6 +312,54 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.153" && $_SERVER['REMOTE_ADDR'] != "1
 
     </div>
   </section><!-- End News Section -->
+
+
+  <!-- ======= News Section ======= -->
+  <section id="news" class="new-posts section-bg">
+
+    <div class="container">
+
+      <div class="row">
+
+        <?php
+
+        $array_cat = [get_option('portal_input_66'), get_option('portal_input_67'), get_option('portal_input_68')];
+
+        for ($i = 0; $i < 3; $i++) {
+
+          $title_cat = get_category_by_slug($array_cat[$i])->name;
+
+          $args = array(
+            'post_type' => 'post',
+            'posts_per_page' => 1,
+            'category_name' => $array_cat[$i],
+            'order' => 'DESC'
+          );
+          $loop = new WP_Query($args);
+          $postentry2 = "";
+          foreach ($loop->posts as $post) {
+            $imagem = get_the_post_thumbnail_url(get_the_ID(), 'full');
+            if ($imagem == "") {
+              $imagem = SITEPATH . "assets/img/semimagem.png";
+            }
+            echo '<div class="col-lg-4"><div class="section-title" data-aos="fade-up">
+    <a href="/arquivos"><h2>' . $title_cat . '</h2></a></div><hr class="line">            
+        <div class="post-entry-2">' .
+              '<a href="' . get_the_permalink() . '"><img src="' . $imagem . '" alt="" class="img-fluid"></a>' .
+              '<div class="post-meta"><span class="date">' . get_the_category()[0]->name . '</span>' .
+              '<span class="mx-1">&bullet;</span> <span>' . get_the_date('d M Y', $post->ID) . '</span></div>' .
+              '<h2><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></h2><p class="mb-4 d-block">' . get_excerpt(180) . '</p></div></div>';
+          }
+        }
+        wp_reset_postdata();
+
+        ?>
+
+      </div> <!-- End .row -->
+
+    </div>
+  </section><!-- End News Section -->
+
 
   <!-- ======= Contact Section ======= -->
   <section id="contact" class="contact">
