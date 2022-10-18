@@ -47,18 +47,6 @@ $post_color = get_option('portal_input_3');
 
 <body>
 
-  <?php if (get_option('portal_input_00') == 'pop') {
-  ?>
-    <div id="popup">
-      <div class="popup-content">
-        <?php echo get_option('portal_input_01'); ?>
-        <i class="ri-close-line"></i>
-      </div>
-    </div>
-  <?php
-  }
-  ?>
-
   <!-- ======= Top Bar ======= -->
   <section id="topbar" class="d-flex align-items-center <?php if (is_user_logged_in()) echo "user-logged"; ?>">
     <div class="container d-flex justify-content-center justify-content-md-between">
