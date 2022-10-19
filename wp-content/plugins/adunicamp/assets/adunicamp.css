@@ -106,6 +106,8 @@ table.access td {
     padding: 3px;
 }
 
+#convenio_telefones_id input[type=text],
+#convenio_email_id input[type=text],
 #post_descricao_id input[type=text],
 #equipe_funcao_id input[type=text],
 #equipe_local_id input[type=text],

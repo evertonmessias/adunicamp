@@ -16,7 +16,7 @@ $conteudo = get_the_content();
         <li>
           <a href="/<?php echo url_active()[1] ?>"><?php echo url_active()[1] ?></a>
         </li>
-      </ol>      
+      </ol>
     </div>
   </section><!-- End Breadcrumbs -->
 
@@ -28,16 +28,58 @@ $conteudo = get_the_content();
 
         <div class="col-lg-12 entries">
           <article class="entry entry-single convenio">
-            <?php /*
-            if ($imagem != "") { ?>
-              <div class="entry-img">
-                <img src="<?php echo $imagem; ?>" title="<?php echo $titulo ?>" alt="" class="img-fluid">
+
+            <div class="row">
+
+              <div class="col-lg-6">
+                <img src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'full'); ?>" alt="" class="img-fluid">
+                <h3>Contatos</h3>
+                <?php
+                echo "<p>" . get_post_meta($post->ID, 'convenio_telefones', true) . "</p>";
+                echo "<p>" . get_post_meta($post->ID, 'convenio_email', true) . "</p>";
+                ?>
               </div>
-            <?php }
-            */ ?>
-            <div class="entry-content">
-              <?php echo $conteudo ?>
+              <div class="col-lg-6">
+                <?php
+                echo get_post_meta($post->ID, 'convenio_informacoes1', true);
+                ?>
+              </div>
+
             </div>
+
+            <hr>
+
+            <div class="row">
+
+              <div class="col-lg-6">
+                <?php
+                echo get_post_meta($post->ID, 'convenio_informacoes2', true);
+                ?>
+              </div>
+              <div class="col-lg-6">
+                <?php
+                echo get_post_meta($post->ID, 'convenio_informacoes3', true);
+                ?>
+              </div>
+
+            </div>
+
+            <div class="row">
+
+              <div class="col-lg-6">
+                <?php
+                echo get_post_meta($post->ID, 'convenio_informacoes4', true);
+                ?>
+              </div>
+              <div class="col-lg-6">
+                <?php
+                echo get_post_meta($post->ID, 'convenio_informacoes5', true);
+                ?>
+              </div>
+
+            </div>
+
+
           </article><!-- End blog entry -->
 
         </div>
