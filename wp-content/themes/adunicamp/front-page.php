@@ -145,7 +145,7 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.153" && $_SERVER['REMOTE_ADDR'] != "1
 
       $args = array(
         'post_type' => 'post',
-        'posts_per_page' => 2,
+        'posts_per_page' => 3,
         'category_name' => get_option('portal_input_61'),
         'order' => 'DESC'
       );
@@ -166,21 +166,23 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.153" && $_SERVER['REMOTE_ADDR'] != "1
 
       <div class="row">
 
-        <div class="col-lg-6">
-
+        <div class="col-lg-8">
 
           <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-4">
               <?php echo $postentry1[0]; ?>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-4">
               <?php echo $postentry1[1]; ?>
+            </div>
+            <div class="col-lg-4">
+              <?php echo $postentry1[2]; ?>
             </div>
           </div>
 
         </div>
 
-        <div class="col-lg-6 buttons" data-aos="fade-up">
+        <div class="col-lg-4 buttons" data-aos="fade-up">
           <?php
           $valor = array();
           for ($i = 1; $i <= 8; $i++) {
