@@ -17,7 +17,8 @@ function create_custom_post_type_convenio()
 	];
 	$args = [
 		'labels'				=> $labels,
-		'supports'              => ['title' , 'thumbnail'/*,'editor', 'author', 'excerpt'*/],
+		//'supports'              => ['title' , 'thumbnail'/*,'editor', 'author', 'excerpt'*/],
+        'supports'              => ['title' , 'thumbnail','editor'/*, 'author', 'excerpt'*/],
 		'hierarchical'          => false,
 		'public'                => true,
 		'show_ui'               => true,

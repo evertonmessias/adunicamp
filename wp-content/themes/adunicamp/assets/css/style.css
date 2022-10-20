@@ -2478,6 +2478,43 @@ font-weight: 600;
   }
 }
 
+.convenio .col-lg-6{
+  padding: 20px !important;
+}
+
+.convenio .img-convenio{
+  width: 100%;
+}
+.convenio .contatos{
+  margin-top: 50px;
+}
+
+.convenio hr.line{
+  margin-top: 20px;
+  margin-bottom: 50px;
+  opacity: 0.2;
+}
+
+.convenio table{
+  width: 100%;
+  border-spacing: 0px;
+}
+
+.convenio table th{
+  background: #aaa;
+  color: #fff;
+}
+
+.convenio table td, .convenio table th{
+  border: 1px solid rgba(38, 129, 168, 0.2);
+  padding: 10px;
+}
+
+.convenio .right{
+  border-left: 1px solid rgba(38, 129, 168, 0.2);
+}
+
+
 /*--------------------------------------------------------------
 # Forminator Button
 --------------------------------------------------------------*/
