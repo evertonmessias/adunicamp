@@ -42,7 +42,7 @@ function portal_page_html()
 					<td>&emsp;<a href="<?php echo $image1; ?>" target="_blank"><img style="height:30px" id="preview_portal_input_1" alt="preview" title="preview" src="<?php echo $image1; ?>" /></a></td>
 				</tr>
 			</table>
-			<span>(Ideal size: 100x80 px)</span>
+			<span>Ideal size: 100x80 px</span>
 
 
 			<br><br><!-- Background*************************************** -->
@@ -57,7 +57,7 @@ function portal_page_html()
 					<td>&emsp;<a href="<?php echo $image2; ?>" target="_blank"><img style="height:30px" id="preview_portal_input_2" alt="preview" title="preview" src="<?php echo $image2; ?>" /></a></td>
 				</tr>
 			</table>
-			<span>(Background usado em algumas seções, tamanho ideal: 1920x1000 px)</span>
+			<span>Background usado em algumas seções, tamanho ideal: 1920x1000 px</span>
 
 
 			<br><br><!-- Colors *************************************** -->
@@ -66,14 +66,14 @@ function portal_page_html()
 			<label>
 				<h3 class="title">Cor do Tema: </h3><input type="color" id="portal_input_3" name="portal_input_3" value="<?php echo get_option('portal_input_3'); ?>" />
 			</label>
-			<span>(Padrão: #2682A8)</span>
+			<span>Padrão: #2682A8</span>
 
 			<br><br><!-- Descrição *************************************** -->
 			<hr>
 			<label>
 				<h3 class="title">Descrição do Topo: </h3><input type="text" id="portal_input_4" name="portal_input_4" value="<?php echo get_option('portal_input_4'); ?>" />
 			</label>
-			<span>(Frase do Topo)</span>
+			<span>Frase do Topo</span>
 
 
 			<br><br><!-- Botão Top******************************* -->
@@ -81,7 +81,7 @@ function portal_page_html()
 			<label>
 				<h3 class="title">Botão Top: </h3><input type="text" id="portal_input_41" name="portal_input_41" value="<?php echo get_option('portal_input_41'); ?>" />
 			</label>
-			<span>(<b>URL</b> e <b>Título</b>, separados por <b>vírgula</b>, ex: /filie-se,FILIE-SE)</span>
+			<span><b>URL</b> e <b>Título</b>, separados por <b>vírgula</b>, ex: /filie-se,FILIE-SE</span>
 
 
 			<br><br><!-- Tipo e Número de Slides******************************* -->
@@ -112,7 +112,7 @@ function portal_page_html()
 					?>
 				</select>
 			</label>
-			<br><span>(Altera qual a <b>Categoria</b> do Post é exibida nos Slides)</span>
+			<br><span>Altera qual a <b>Categoria</b> do Post é exibida nos Slides</span>
 
 
 			<br><br><!-- Destaques******************************* -->
@@ -232,7 +232,7 @@ function portal_page_html()
 					?>
 				</select><br><br>
 			</label>
-			<span>(Altera qual a <b>Categoria</b> do Post é exibida nos Destaques)</span>
+			<span>Altera qual a <b>Categoria</b> do Post é exibida nos Destaques</span>
 
 
 			<br><br><!-- Botões de Acesso (Serviços) ********************************** -->
@@ -278,7 +278,7 @@ function portal_page_html()
 			</label>
 
 
-			<br><span>(<b>URL, Título e Cor</b>, separados por <b>vírgula</b>, ex: /adunicamp-solidaria,ADUNICAMP SOLIDÁRIA,#f00)</span>
+			<br><span><b>URL, Título e Cor</b>, separados por <b>vírgula</b>, ex: /adunicamp-solidaria,ADUNICAMP SOLIDÁRIA,#f00</span>
 
 
 
@@ -293,14 +293,30 @@ function portal_page_html()
 			<label>
 				<h3 class="title">Google Maps: </h3><input type="text" id="portal_input_7" name="portal_input_7" value="<?php echo get_option('portal_input_7'); ?>" />
 			</label>
-			<br><span>(https://www.google.com/maps/embed?......)</span>
+			<br><span>https://www.google.com/maps/embed?......</span>
 
-			<br><br><!-- Fone *************************************** -->
+			<br><br><!-- Fone1 *************************************** -->
 			<hr>
 			<label>
-				<h3 class="title">Telefone: </h3><input type="text" id="portal_input_9" name="portal_input_9" value="<?php echo get_option('portal_input_9'); ?>" />
+				<h3 class="title">Telefone 1: </h3><input type="text" id="portal_input_9" name="portal_input_9" value="<?php echo get_option('portal_input_9'); ?>" />
 			</label>
-			<br><span>(+00 00 00000-0000)</span>
+			<br><span>(00) 00000-0000</span>
+
+
+			<br><br><!-- Fone2 *************************************** -->
+			<hr>
+			<label>
+				<h3 class="title">Telefone 2: </h3><input type="text" id="portal_input_91" name="portal_input_91" value="<?php echo get_option('portal_input_91'); ?>" />
+			</label>
+			<br><span>(00) 00000-0000</span>
+
+
+			<br><br><!-- Videochamada *************************************** -->
+			<hr>
+			<label>
+				<h3 class="title">Videochamada: </h3><input type="text" id="portal_input_92" name="portal_input_92" value="<?php echo get_option('portal_input_92'); ?>" />
+			</label>
+			<br><span>https://meet.google.com/xxx-xxx-xxx</span>
 
 
 			<br><br><!-- E-Mail *************************************** -->
@@ -308,7 +324,7 @@ function portal_page_html()
 			<label>
 				<h3 class="title">E-Mail: </h3><input type="email" id="portal_input_10" name="portal_input_10" value="<?php echo get_option('portal_input_10'); ?>" />
 			</label>
-			<br><span>(only one)</span>
+			<br><span>only one</span>
 
 			<br><br><!-- Facebook *************************************** -->
 			<hr>
@@ -466,6 +482,12 @@ function portal_settings()
 
 	add_option('portal_input_9');
 	register_setting('portal_option_grupo', 'portal_input_9');
+
+	add_option('portal_input_91');
+	register_setting('portal_option_grupo', 'portal_input_91');
+
+	add_option('portal_input_92');
+	register_setting('portal_option_grupo', 'portal_input_92');
 
 	add_option('portal_input_10');
 	register_setting('portal_option_grupo', 'portal_input_10');

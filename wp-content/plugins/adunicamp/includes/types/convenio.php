@@ -113,26 +113,50 @@ add_action('edit_form_after_title', 'move_postmeta_to_top_informacoes1');
 
 // Informações Telefones **********************************
 
-function field_box_convenio_telefones()
+function field_box_convenio_telefone1()
 {
-    add_meta_box('convenio_telefones_id', 'Informações Telefones', 'field_convenio_telefones', 'convenio','convenio_telefones','high',null);
+    add_meta_box('convenio_telefone1_id', 'Informações Telefone 1', 'field_convenio_telefone1', 'convenio','convenio_telefone1','high',null);
 }
-add_action('add_meta_boxes', 'field_box_convenio_telefones');
+add_action('add_meta_boxes', 'field_box_convenio_telefone1');
 
-function field_convenio_telefones($post)
+function field_convenio_telefone1($post)
 {
-    $value = get_post_meta($post->ID, 'convenio_telefones', true);
+    $value = get_post_meta($post->ID, 'convenio_telefone1', true);
+    if($value == "") $value = get_option('portal_input_9');
 ?>
-    <input class="postmeta-convenio" type="text" name="convenio_telefones" value="<?php echo $value; ?>">
+    <input class="postmeta-convenio" type="text" placeholder="Se preferir deixe em branco para reenchimento automático" name="convenio_telefone1" value="<?php echo $value; ?>">
 <?php
 }
 
-function move_postmeta_to_top_telefones() {
+function move_postmeta_to_top_telefone1() {
     global $post, $wp_meta_boxes;
-    do_meta_boxes( get_current_screen(), 'convenio_telefones', $post );
-    unset($wp_meta_boxes['post']['convenio_telefones']);
+    do_meta_boxes( get_current_screen(), 'convenio_telefone1', $post );
+    unset($wp_meta_boxes['post']['convenio_telefone1']);
 }
-add_action('edit_form_after_title', 'move_postmeta_to_top_telefones');
+add_action('edit_form_after_title', 'move_postmeta_to_top_telefone1');
+
+
+function field_box_convenio_telefone2()
+{
+    add_meta_box('convenio_telefone2_id', 'Informações Telefone 2', 'field_convenio_telefone2', 'convenio','convenio_telefone2','high',null);
+}
+add_action('add_meta_boxes', 'field_box_convenio_telefone2');
+
+function field_convenio_telefone2($post)
+{
+    $value = get_post_meta($post->ID, 'convenio_telefone2', true);
+    if($value == "") $value = get_option('portal_input_91');
+?>
+    <input class="postmeta-convenio" type="text" placeholder="Se preferir deixe em branco para reenchimento automático" name="convenio_telefone2" value="<?php echo $value; ?>">
+<?php
+}
+
+function move_postmeta_to_top_telefone2() {
+    global $post, $wp_meta_boxes;
+    do_meta_boxes( get_current_screen(), 'convenio_telefone2', $post );
+    unset($wp_meta_boxes['post']['convenio_telefone2']);
+}
+add_action('edit_form_after_title', 'move_postmeta_to_top_telefone2');
 
 
 // Informações Email **********************************
@@ -146,8 +170,9 @@ add_action('add_meta_boxes', 'field_box_convenio_email');
 function field_convenio_email($post)
 {
     $value = get_post_meta($post->ID, 'convenio_email', true);
+    if($value == "") $value = get_option('portal_input_10');
 ?>
-    <input class="postmeta-convenio" type="text" name="convenio_email" value="<?php echo $value; ?>">
+    <input class="postmeta-convenio" type="text" placeholder="Se preferir deixe em branco para reenchimento automático" name="convenio_email" value="<?php echo $value; ?>">
 <?php
 }
 
@@ -157,6 +182,31 @@ function move_postmeta_to_top_email() {
     unset($wp_meta_boxes['post']['convenio_email']);
 }
 add_action('edit_form_after_title', 'move_postmeta_to_top_email');
+
+
+// Informações por Videochamada **********************************
+
+function field_box_convenio_videochamada()
+{
+    add_meta_box('convenio_videochamada_id', 'Informações por Videochamada', 'field_convenio_videochamada', 'convenio','convenio_videochamada','high',null);
+}
+add_action('add_meta_boxes', 'field_box_convenio_videochamada');
+
+function field_convenio_videochamada($post)
+{
+    $value = get_post_meta($post->ID, 'convenio_videochamada', true);
+    if($value == "") $value = get_option('portal_input_92');
+?>
+    <input class="postmeta-convenio" type="text" placeholder="Se preferir deixe em branco para reenchimento automático" name="convenio_videochamada" value="<?php echo $value; ?>">
+<?php
+}
+
+function move_postmeta_to_top_videochamada() {
+    global $post, $wp_meta_boxes;
+    do_meta_boxes( get_current_screen(), 'convenio_videochamada', $post );
+    unset($wp_meta_boxes['post']['convenio_videochamada']);
+}
+add_action('edit_form_after_title', 'move_postmeta_to_top_videochamada');
 
 
 // Informações Secundárias 1 **********************************
@@ -271,13 +321,21 @@ function save_postmeta_convenio($post_id)
         
         update_post_meta($post_id, 'convenio_informacoes5', $_POST['convenio_informacoes5']);
     }
-    if (isset($_POST['convenio_telefones'])) {
+    if (isset($_POST['convenio_telefone1'])) {
         
-        update_post_meta($post_id, 'convenio_telefones', $_POST['convenio_telefones']);
+        update_post_meta($post_id, 'convenio_telefone1', $_POST['convenio_telefone1']);
     } 
+    if (isset($_POST['convenio_telefone2'])) {
+        
+        update_post_meta($post_id, 'convenio_telefone2', $_POST['convenio_telefone2']);
+    }
     if (isset($_POST['convenio_email'])) {
         
         update_post_meta($post_id, 'convenio_email', $_POST['convenio_email']);
-    }      
+    }   
+    if (isset($_POST['convenio_videochamada'])) {
+        
+        update_post_meta($post_id, 'convenio_videochamada', $_POST['convenio_videochamada']);
+    }   
 }
 add_action('save_post', 'save_postmeta_convenio');
