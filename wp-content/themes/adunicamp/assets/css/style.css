@@ -664,6 +664,30 @@ margin-left: -110px;
   border: 1px solid #f9f9f9;
 }
 
+#heroTab .btn-get-started {
+  font-family: "Raleway", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 12px 32px;
+  border-radius: 5px;
+  transition: 0.5s;
+  line-height: 1;
+  margin: 10px;
+  color: #fff;
+  -webkit-animation-delay: 0.8s;
+  animation-delay: 0.8s;
+  border: 2px solid #1e6583;
+  background: #1e6583;
+}
+
+#heroTab .btn-get-started:hover {
+  background: #fff;
+  color: #1e6583;
+  text-decoration: none;
+}
+
 @media (max-height: 768px), (max-width: 1200px) {
   #heroTab {
     margin-bottom: 0px;

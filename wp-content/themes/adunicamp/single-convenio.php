@@ -47,14 +47,14 @@ $conteudo = get_the_content();
                                         <p>
                                             <a target="_blank" href="tel:+55<?php echo preg_replace('/[^0-9]/', '', get_post_meta($post->ID, 'convenio_telefone1', true)); ?>"><?php echo get_post_meta($post->ID, 'convenio_telefone1', true); ?></a>
                                             &nbsp;,&nbsp;
-                                            <a target="_blank" href="tel:+55<?php echo preg_replace('/[^0-9]/', '', get_post_meta($post->ID, 'convenio_telefone2', true)); ?>"><?php echo get_post_meta($post->ID, 'convenio_telefone2', true); ?></a>                                    
+                                            <a target="_blank" href="tel:+55<?php echo preg_replace('/[^0-9]/', '', get_post_meta($post->ID, 'convenio_telefone2', true)); ?>"><?php echo get_post_meta($post->ID, 'convenio_telefone2', true); ?></a>
                                         </p>
                                         <p>
-                                            <a target="_blank" href="<?php echo get_post_meta($post->ID, 'convenio_videochamada', true); ?>">Atendimento por Videochamada</a>                                    
+                                            <a target="_blank" href="<?php echo get_post_meta($post->ID, 'convenio_videochamada', true); ?>">Atendimento por Videochamada</a>
                                         </p>
                                         <p>
                                             <a target="_blank" href="mailto:<?php echo get_post_meta($post->ID, 'convenio_email', true); ?>"><?php echo get_post_meta($post->ID, 'convenio_email', true); ?></a>
-                                        </p>                  
+                                        </p>
                                     </div>
                                 </div>
 

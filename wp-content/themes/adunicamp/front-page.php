@@ -6,16 +6,16 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.153" && $_SERVER['REMOTE_ADDR'] != "1
 ?>
 
 <?php if (get_option('portal_input_00') == 'pop') {
-  ?>
-    <div id="popup">
-      <div class="popup-content">
-        <?php echo get_option('portal_input_01'); ?>
-        <i class="ri-close-line"></i>
-      </div>
+?>
+  <div id="popup">
+    <div class="popup-content">
+      <?php echo get_option('portal_input_01'); ?>
+      <i class="ri-close-line"></i>
     </div>
-  <?php
-  }
-  ?>
+  </div>
+<?php
+}
+?>
 
 <!-- ======= Hero Section ======= -->
 <div id="home"></div>
@@ -82,6 +82,7 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.153" && $_SERVER['REMOTE_ADDR'] != "1
         <div class="col-lg-9 slides">
           <div class="carousel-inner" role="listbox">
             <?php
+            $isMob = is_numeric(strpos(strtolower($_SERVER["HTTP_USER_AGENT"]), "mobile"));
             $x = 0;
             $string_li = "";
             $args = array(
@@ -106,7 +107,24 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.153" && $_SERVER['REMOTE_ADDR'] != "1
             ?>
               <!-- Slide -->
               <div class="carousel-item <?php if ($x == 1) echo 'active'; ?>" style="background-image: url(<?php echo $imagem; ?>)">
-                <a href="<?php the_permalink() ?>" class="tab-link">&nbsp;</a>
+
+                <?php
+
+                if ($isMob == 1) { ?>
+
+                  <div class="carousel-container">
+                    <div class="carousel-content">
+                      <h5 class="animate__animated animate__fadeInDown"><?php echo get_the_category()[0]->name; ?></h5><br>
+                      <h2 class="animate__animated animate__fadeInDown"><?php echo get_the_title() ?></h2>
+                      <a href="<?php the_permalink() ?>" class="btn-get-started animate__animated animate__fadeInUp">Leia Mais</a>
+                    </div>
+                  </div>
+                <?php } else { ?>
+
+                  <a href="<?php the_permalink() ?>" class="tab-link">&nbsp;</a>
+
+                <?php } ?>
+
               </div>
             <?php $x++;
             }
@@ -310,7 +328,7 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.153" && $_SERVER['REMOTE_ADDR'] != "1
               $imagem = SITEPATH . "assets/img/semimagem.png";
             }
             echo '<div class="col-lg-3"><div class="section-title" data-aos="fade-up">
-        <a href="/arquivos/'. $array_cat[$i] .'"><h2>' . $title_cat . '</h2></a></div><hr class="line">            
+        <a href="/arquivos/' . $array_cat[$i] . '"><h2>' . $title_cat . '</h2></a></div><hr class="line">            
             <div class="post-entry-2">' .
               '<a href="' . get_the_permalink() . '"><img src="' . $imagem . '" alt="" class="img-fluid"></a>' .
               '<div class="post-meta"><span class="date">' . get_the_category()[0]->name . '</span>' .
@@ -357,7 +375,7 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.153" && $_SERVER['REMOTE_ADDR'] != "1
               $imagem = SITEPATH . "assets/img/semimagem.png";
             }
             echo '<div class="col-lg-4"><div class="section-title" data-aos="fade-up">
-    <a href="/arquivos/'. $array_cat[$i] .'"><h2>' . $title_cat . '</h2></a></div><hr class="line">            
+    <a href="/arquivos/' . $array_cat[$i] . '"><h2>' . $title_cat . '</h2></a></div><hr class="line">            
         <div class="post-entry-2">' .
               '<a href="' . get_the_permalink() . '"><img src="' . $imagem . '" alt="" class="img-fluid"></a>' .
               '<div class="post-meta"><span class="date">' . get_the_category()[0]->name . '</span>' .
