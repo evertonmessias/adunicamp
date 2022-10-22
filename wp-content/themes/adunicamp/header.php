@@ -52,8 +52,9 @@ $post_color = get_option('portal_input_3');
     <div class="container d-flex justify-content-center justify-content-md-between">
 
       <div class="contact-info d-flex align-items-center">
-        <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:<?php echo get_option('portal_input_9'); ?>"><?php echo get_option('portal_input_10'); ?></a></i>
-        <i class="bi bi-phone d-flex align-items-center ms-4"><span><?php echo get_option('portal_input_9'); ?></span></i>
+        <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:<?php echo get_option('portal_input_10'); ?>"><?php echo get_option('portal_input_10'); ?></a></i>
+        &emsp;
+        <i class="bi bi-phone d-flex align-items-center"><a href="tel:+55<?php echo get_option('portal_input_9'); ?>"><?php echo get_option('portal_input_9'); ?></a>&nbsp;,&nbsp;<a href="tel:+55<?php echo get_option('portal_input_91'); ?>"><?php echo get_option('portal_input_91'); ?></a></i>
       </div>
       <div class="top-search">
         <form action="/" method="get">

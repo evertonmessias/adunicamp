@@ -10,7 +10,7 @@
             <p>
             <?php echo get_option('portal_input_6'); ?>
             <br>
-              <strong>Telefone:</strong> <?php echo get_option('portal_input_9'); ?><br>
+              <strong>Telefones:</strong> <?php echo get_option('portal_input_9'); ?>&nbsp;,&nbsp;<?php echo get_option('portal_input_91'); ?><br>
               <strong>E-mail:</strong> <?php echo get_option('portal_input_10'); ?><br>
             </p>
           </div>
