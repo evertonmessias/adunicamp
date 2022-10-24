@@ -62,10 +62,10 @@ $post_color = get_option('portal_input_3');
           <button type="submit"><i class="bi bi-search"></i></button>
         </form>
       </div>
-      <!--<div class="desc-button cta d-none d-md-flex align-items-center">
-        <div class="portal-desc"><?php //echo get_option('portal_input_4'); ?></div>
-        <a href="<?php //echo explode(',', get_option('portal_input_41'))[0]; ?>" class="scrollto"><?php //echo explode(',', get_option('portal_input_41'))[1]; ?></a>
-      </div>-->
+      <div class="desc-button cta d-none d-md-flex align-items-center">
+        <div class="portal-desc"><?php echo get_option('portal_input_4'); ?></div>
+        <a href="<?php echo explode(',', get_option('portal_input_41'))[0]; ?>" class="scrollto"><?php echo explode(',', get_option('portal_input_41'))[1]; ?></a>
+      </div>
 
     </div>
   </section>
