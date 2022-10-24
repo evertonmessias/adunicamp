@@ -308,7 +308,7 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.153" && $_SERVER['REMOTE_ADDR'] != "1
   </section><!-- End Services Section -->
 
   <!-- ======= News Section ======= -->
-  <section id="news" class="new-posts">
+  <section id="news2" class="new-posts">
 
     <div class="container">
 
@@ -355,7 +355,7 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.153" && $_SERVER['REMOTE_ADDR'] != "1
 
 
   <!-- ======= News Section ======= -->
-  <section id="news" class="new-posts section-bg">
+  <section id="news3" class="new-posts section-bg">
 
     <div class="container">
 
@@ -391,6 +391,101 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.153" && $_SERVER['REMOTE_ADDR'] != "1
               '<h2><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></h2><p class="mb-4 d-block">' . get_excerpt(180) . '</p></div></div>';
           }
         }
+        wp_reset_postdata();
+
+        ?>
+
+      </div> <!-- End .row -->
+
+    </div>
+  </section><!-- End News Section -->
+
+
+  <!-- ======= News Section ======= -->
+  <section id="news4" class="new-posts convenios">
+
+    <div class="container">
+
+      <div class="section-title" data-aos="fade-up">
+        <a href="/convenio">
+          <h2>Convênios</h2>
+        </a>
+      </div>
+      <hr class="line">
+
+      <div class="row">
+
+        <div class="col-lg-3">
+          <a class="ico-convenio" href="/convenio/?cat=saude">
+            <img src="<?php echo SITEPATH; ?>assets/img/ico-saude.png">
+            <h4>Saúde</h4>
+          </a>
+        </div>
+        <div class="col-lg-3">
+          <a class="ico-convenio" href="/convenio/?cat=servicos">
+            <img src="<?php echo SITEPATH; ?>assets/img/ico-servicos.png">
+            <h4>Serviços</h4>
+          </a>
+        </div>
+        <div class="col-lg-3">
+          <a class="ico-convenio" href="/convenio/?cat=esporte">
+            <img src="<?php echo SITEPATH; ?>assets/img/ico-esporte.png">
+            <h4>Esporte e Lazer</h4>
+          </a>
+        </div>
+        <div class="col-lg-3">
+          <a class="ico-convenio" href="/convenio/?cat=alimentacao">
+            <img src="<?php echo SITEPATH; ?>assets/img/ico-alimentacao.png">
+            <h4>Alimentação</h4>
+          </a>
+        </div>
+
+      </div> <!-- End .row -->
+
+    </div>
+  </section><!-- End News Section -->
+
+
+  <!-- ======= News Section ======= -->
+  <section id="news5" class="new-posts section-bg">
+
+    <div class="container">
+
+      <div class="section-title" data-aos="fade-up">
+        <a href="/arquivos/opiniao">
+          <h2>Opinião</h2>
+        </a>
+      </div>
+      <hr class="line">
+
+      <div class="row">
+
+        <?php
+
+        $slug_cat = 'opiniao';
+
+        $title_cat = get_category_by_slug($slug_cat)->name;
+
+        $args = array(
+          'post_type' => 'post',
+          'posts_per_page' => 4,
+          'category_name' => $slug_cat,
+          'order' => 'DESC'
+        );
+        $loop = new WP_Query($args);
+        $postentry2 = "";
+        foreach ($loop->posts as $post) {
+          $imagem = get_the_post_thumbnail_url(get_the_ID(), 'full');
+          if ($imagem == "") {
+            $imagem = SITEPATH . "assets/img/semimagem.png";
+          }
+          echo '<div class="col-lg-3"><div class="post-entry-2">' .
+            '<a href="' . get_the_permalink() . '"><img src="' . $imagem . '" alt="" class="img-fluid"></a>' .
+            '<div class="post-meta"><span class="date">' . get_the_category()[0]->name . '</span>' .
+            '<span class="mx-1">&bullet;</span> <span>' . get_the_date('d M Y', $post->ID) . '</span></div>' .
+            '<h2><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></h2><p class="mb-4 d-block">' . get_excerpt(180) . '</p></div></div>';
+        }
+
         wp_reset_postdata();
 
         ?>

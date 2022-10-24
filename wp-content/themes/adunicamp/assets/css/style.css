@@ -1021,29 +1021,29 @@ hr.line{
   margin-bottom: 10px;
   text-align: left !important;
 }
-#top-news .more,#news .more{
+#top-news .more,.new-posts .more{
   text-align: right;
   margin-top: 20px;
 }
 
-#top-news .getstarted,#news .getstarted {
+#top-news .getstarted,.new-posts .getstarted {
   background: #2682A8;
   padding: 8px 20px;
   margin-left: 30px;
   border-radius: 4px;
   color: #fff;
 }
-#top-news .getstarted:hover,#news .getstarted:hover  {
+#top-news .getstarted:hover,.new-posts .getstarted:hover  {
   color: #fff;
   background: #1e6583;
 }
 
-#news .buttons{
+.new-posts .buttons{
   width: 26%;
   padding-top: 1px;
 }
 
-#news .icon-box {
+.new-posts .icon-box {
   display: block;
   margin: 0 auto;
   width: 90%;
@@ -1056,7 +1056,7 @@ hr.line{
   box-shadow: 0px 0px 21px 2px rgb(0 0 0 / 18%);
 }
 
-#news .title {
+.new-posts .title {
   margin-top: 8px;
   font-weight: 700;
   font-size: 15px;
@@ -1064,7 +1064,7 @@ hr.line{
 }
 
 @media(max-width:900px){  
-  #news .buttons{
+  .new-posts .buttons{
     margin-top: 50px;
   }
 }
@@ -1073,27 +1073,27 @@ hr.line{
 # News Posts
 --------------------------------------------------------------*/
 
-#news .title-cat{
+.new-posts .title-cat{
   background: #2682A8;
   padding: 5px;
   color: #fff;
   margin-bottom: 20px;
 }
 
-#news .left .post-entry-2{
+.new-posts .left .post-entry-2{
   height: 46%;
 }
 
-#news .right .post-entry-2{
+.new-posts .right .post-entry-2{
   height: 31%;
 }
 
-#news .post-entry-2 {
+.new-posts .post-entry-2 {
   margin-bottom: 30px; 
   padding-bottom: 20px;
 }
 
-#news .post-entry-2 img {
+.new-posts .post-entry-2 img {
   display: block;
   position: relative;
   margin: 0 auto;
@@ -1102,7 +1102,7 @@ hr.line{
   height: 150px;
 }
 
-#news .post-entry-2 h2 {
+.new-posts .post-entry-2 h2 {
   margin-bottom: 20px;
   font-size: 20px;
   font-weight: 500;
@@ -1110,24 +1110,24 @@ hr.line{
   font-weight: 500;
   text-align: left !important;
 }
-#news .post-entry-2 h2 a,#news .post-entry-2 p a {
+.new-posts .post-entry-2 h2 a,.new-posts .post-entry-2 p a {
   color: #2682A8;
 }
-#news .post-entry-2 h2 a:hover,#news .post-entry-2 p a:hover {
+.new-posts .post-entry-2 h2 a:hover,.new-posts .post-entry-2 p a:hover {
   color: #1e6583;
 }
-#news .post-entry-2.lg h2 {
+.new-posts .post-entry-2.lg h2 {
   font-size: 40px;
   line-height: 1;
 }
-#news .post-meta {
+.new-posts .post-meta {
   font-size: 11px;
   font-weight: 600;
   margin-bottom: 10px;
   text-align: left !important;
 }
 
-#news .categories .getstarted {
+.new-posts .categories .getstarted {
   display: block;
   position: relative;
   width: 100%;
@@ -1138,17 +1138,17 @@ hr.line{
   border-radius: 4px;
   color: #fff;
 }
-#news .categories .getstarted:hover  {
+.new-posts .categories .getstarted:hover  {
   color: #fff;
   background: #1e6583;
 }
 
-#news .categories .getstarted.empty {
+.new-posts .categories .getstarted.empty {
   background: #fff;
   border:1px solid #2682A8;
   color: #2682A8;
 }
-#news .categories .getstarted.empty:hover  {
+.new-posts .categories .getstarted.empty:hover  {
   color: #fff;
   background: #1e6583;
 }
@@ -1365,14 +1365,14 @@ hr.line{
   text-align: right;
 }
 
-.agreement .getstarted,#news .getstarted {
+.agreement .getstarted,.new-posts .getstarted {
   background: #2682A8;
   padding: 8px 20px;
   margin-left: 30px;
   border-radius: 4px;
   color: #fff;
 }
-.agreement .getstarted:hover,#news .getstarted:hover  {
+.agreement .getstarted:hover,.new-posts .getstarted:hover  {
   color: #fff;
   background: #1e6583;
 }
@@ -1518,14 +1518,14 @@ hr.line{
   text-align: right;
 }
 
-.team .getstarted,#news .getstarted {
+.team .getstarted,.new-posts .getstarted {
   background: #2682A8;
   padding: 8px 20px;
   margin-left: 30px;
   border-radius: 4px;
   color: #fff;
 }
-.team .getstarted:hover,#news .getstarted:hover  {
+.team .getstarted:hover,.new-posts .getstarted:hover  {
   color: #fff;
   background: #1e6583;
 }
@@ -2408,6 +2408,35 @@ font-weight: 600;
 }
 .new-posts .blog-comments .reply-form .submit:hover {
   background-color: #1e6583;
+}
+
+.new-posts.convenios{
+  min-height: 380px;
+}
+
+.new-posts.convenios .ico-convenio{
+  display: block;
+  position: relative;
+  width:fit-content;
+  height: fit-content;
+  padding: 20px 40px;
+  border: 1px solid transparent;
+}
+
+.new-posts.convenios .ico-convenio:hover{
+  border: 1px solid #2682A8;
+}
+
+.new-posts.convenios img{
+  display: block;
+  position: relative;
+  margin: 0 auto;
+  width: 180px;
+}
+
+.new-posts.convenios h4{
+  text-align: center;
+  margin-top: 20px;
 }
 
 /*--------------------------------------------------------------

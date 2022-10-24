@@ -4,7 +4,7 @@
   <!-- ======= Breadcrumbs ======= -->
   <section id="breadcrumbs" class="breadcrumbs">
     <div class="container">
-      <h2><?php echo ucfirst(url_active()[1]) ?></h2>
+      <h2><?php echo ucfirst(url_active()[1]); if($_GET['cat'] != "")echo ": ".ucfirst($_GET['cat']); ?></h2>
       <ol>
         <li><a href="/">inicio</a></li>
         <li><?php echo url_active()[1] ?></li>
@@ -22,7 +22,8 @@
         <?php
         $args = array(
           'post_type' => url_active()[1],
-          'posts_per_page' => 100
+          'posts_per_page' => 100,
+          'convenio_categories' => $_GET['cat']
         );
         $loop = new WP_Query($args);
         while ($loop->have_posts()) {
