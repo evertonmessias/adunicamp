@@ -487,7 +487,7 @@ margin-left: -110px;
   margin-top: 2vh;
   margin-bottom: 2vh;
   width: 100%;
-  height: 45vh;
+  height: 46vh;
   top: 0;
   position: relative;
   z-index: 1;
@@ -495,7 +495,7 @@ margin-left: -110px;
 }
 
 #heroTab .slides{
-  width: calc(75% - 43px);
+  width: 75%;
 }
 
 #heroTab .carousel-item {
@@ -579,6 +579,7 @@ margin-left: -110px;
   color: #2682A8;
 }
 #heroTab .tabs{
+  width: 22%;
   margin: 0;padding: 0;
   margin-left: -15px; 
 }
@@ -611,11 +612,12 @@ margin-left: -110px;
   overflow: hidden;
   border: 0;
   width: 100% !important;
-  height: 15vh !important;
+  height: calc(15vh - 2px) !important;
   border-radius: 0;
   opacity: 1;
   background: #efefef;
   border-bottom: 2px solid #fff;
+  font-size: 14px;
 }
 
 #heroTab .carousel-indicators li:hover {
@@ -1037,6 +1039,7 @@ hr.line{
 }
 
 #news .buttons{
+  width: 26%;
   padding-top: 1px;
 }
 
@@ -1851,9 +1854,11 @@ hr.line{
 --------------------------------------------------------------*/
 .new-posts{
   min-height: 450px;
-}
-.new-posts {
   padding: 28px 0;
+}
+
+.new-posts .col-news{
+  width: 74%;
 }
 
 .new-posts .entry {

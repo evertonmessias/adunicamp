@@ -152,13 +152,6 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.153" && $_SERVER['REMOTE_ADDR'] != "1
 
     <div class="container">
 
-      <div class="section-title" data-aos="fade-up">
-        <a href="/arquivos">
-          <h2>Notícias</h2>
-        </a>
-      </div>
-      <hr class="line">
-
       <?php
 
       $args = array(
@@ -184,7 +177,14 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.153" && $_SERVER['REMOTE_ADDR'] != "1
 
       <div class="row">
 
-        <div class="col-lg-8">
+        <div class="col-lg-9 col-news">
+
+          <div class="section-title" data-aos="fade-up">
+            <a href="/arquivos">
+              <h2>Notícias</h2>
+            </a>
+          </div>
+          <hr class="line">
 
           <div class="row">
             <div class="col-lg-4">
@@ -200,7 +200,15 @@ if ($_SERVER['REMOTE_ADDR'] != "143.106.16.153" && $_SERVER['REMOTE_ADDR'] != "1
 
         </div>
 
-        <div class="col-lg-4 buttons" data-aos="fade-up">
+        <div class="col-lg-3 buttons">
+
+          <div class="section-title" data-aos="fade-up">
+            <a href="!#">
+              <h2>Acesso Rápido</h2>
+            </a>
+          </div>
+          <hr class="line">
+
           <?php
           $valor = array();
           for ($i = 1; $i <= 8; $i++) {
