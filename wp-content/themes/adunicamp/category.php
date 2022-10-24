@@ -40,11 +40,11 @@
               $imagem = get_the_post_thumbnail_url(get_the_ID(), 'full');
               if ($imagem == "") $imagem = SITEPATH . "assets/img/semimagem.png";
 
-              echo '<div class="col-lg-6 border-start custom-border"><div class="post-entry-2">' .
+              echo '<div class="col-lg-3 border-start custom-border"><div class="post-entry-2">' .
                 '<a href="' . get_the_permalink() . '"><img src="' . $imagem . '" alt="" class="img-fluid"></a>' .
                 '<div class="post-meta"><span class="date">' . get_the_category()[0]->name . '</span>' .
                 '<span class="mx-1">&bullet;</span> <span>' . get_the_date('d M Y', $post->ID) . '</span></div>' .
-                '<h2><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></h2>' . get_excerpt(200) . '</div></div>';
+                '<p><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></p></div></div>';
               $x++;
             } ?>
 
